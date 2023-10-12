@@ -41,7 +41,7 @@ public class MissionDAOImpl implements MissionDAO {
 	// 나의 미션기록 조회
 	@Override
 	public List<Mission> selectMyMissions(Integer userIdx) throws Exception {
-		return sqlSession.selectOne("mapper.mission.selectMyMissions", userIdx);
+		return sqlSession.selectList("mapper.mission.selectMyMissions", userIdx);
 	}
 
 	// 총 미션
