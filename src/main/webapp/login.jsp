@@ -82,7 +82,7 @@ img.img-fluid {
 				<div class="col-md-6">
 					<img
 						class="img-fluid"
-						src="./images/miplogo.png"
+						src="${pageContext.request.contextPath}/images/miplogo.png"
 						alt="logo"
 					>
 				</div>
@@ -97,7 +97,7 @@ img.img-fluid {
 				<div class="col-md-3">
 					<img
 						class="img-fluid"
-						src="./images/mainImg1.png"
+						src="${pageContext.request.contextPath}/images/mainImg1.png"
 						alt="MainImg1"
 					>
 				</div>

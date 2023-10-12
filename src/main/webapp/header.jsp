@@ -95,7 +95,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           class="logo-a"
         >
           <img
-            src="./images/miplogo.png"
+            src="${pageContext.request.contextPath}/images/miplogo.png"
             alt="홈으로이동-프로젝트로고"
             width="50%"
             height="60%"
