@@ -29,4 +29,8 @@ public interface MissionService {
 
 	// 성공률 계산
 	Integer calculateSuccessRate(Integer userIdx) throws Exception;
+
+	// 페이징 처리
+	Map<String, Object> getPageInfo(int page) throws Exception;
+
 }

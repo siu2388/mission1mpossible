@@ -138,8 +138,8 @@ button:hover {
 
 		<div>
 			<c:choose>
-				<c:when test="${user.profileImg ne null}">
-					<img src="image?profileImg=${user.profileImg}" class="profile-img" />
+				<c:when test="${loginedUser.profileImg ne null}">
+					<img src="image?profileImg=${loginedUser.profileImg}" class="profile-img" />
 				</c:when>
 				<c:otherwise>
 					<img src="./upload/default_profile.jpg" class="profile-img" />
@@ -147,10 +147,10 @@ button:hover {
 			</c:choose>
 		</div>
 		<div class="desc">
-			<div class="name"><b>${user.nickname}</b></div>
+			<div class="name"><b>${loginedUser.nickname}</b></div>
 			<div
 				class="star ${successRate >= 90 ? 'high-success' : successRate >= 80 ? 'medium-success' : successRate >= 70 ? 'low-success' : 'no-success'}"></div>
-			<div class="date"><i>Since</i> <b>${user.createdAt}</b></div>
+			<div class="date"><i>Since</i> <b>${loginedUser.createdAt}</b></div>
 			<div class="mission">Total <b>${totalMissions}</b>개의 미션</div>
 			<div class="success">성공률: <b>${successRate} %</b></div>
 		</div>

@@ -68,4 +68,16 @@ public class MissionDAOImpl implements MissionDAO {
 		return sqlSession.selectOne("mapper.mission.countAllMissions");
 	}
 
+	// 건강 미션 리스트 조회
+	@Override
+	public List<Mission> selectHealthMissionList(Integer row) throws Exception {
+		return sqlSession.selectList("mapper.mission.selectAllMissions", row);
+	}
+
+	// 건강 미션 개수 반환
+	@Override
+	public Integer countHealthMissions() throws Exception {
+		return sqlSession.selectOne("mapper.mission.countHealthMissions");
+	}
+
 }

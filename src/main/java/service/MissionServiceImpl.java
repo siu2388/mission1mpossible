@@ -54,15 +54,16 @@ public class MissionServiceImpl implements MissionService {
 		return missionDao.calculateSuccessRate(userIdx);
 	}
 
+	// 페이징 처리 서비스
 	@Override
-	public Map<String, Object> findAllMissions(Integer page) throws Exception {
-		// 페이지네이션
+	public Map<String, Object> getPageInfo(int page) throws Exception {
 		PageInfo pageInfo = new PageInfo();
 
-		int totalCounts = missionDao.countAllMissions(); // 전체 미션의 개수 조회
+		int totalCounts = missionDao.countAllMissions();
 		int maxPage = (int) Math.ceil((double) totalCounts / 10);
-		int startPage = (page - 1) / 10 * 10 + 1; // 1,11,21,31,...
-		int endPage = startPage + 10 - 1; // 10,20,30...
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 10 - 1;
+
 		if (endPage > maxPage)
 			endPage = maxPage;
 		if (page > maxPage)
@@ -73,13 +74,29 @@ public class MissionServiceImpl implements MissionService {
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 
-		int row = (page - 1) * 10 + 1; // 현재 페이지의 시작 row
+		int row = (page - 1) * 10 + 1;
+
+		Map<String, Object> paging = new HashMap<>();
+		paging.put("pageInfo", pageInfo);
+		paging.put("startRow", row);
+
+		return paging;
+	}
+
+//전체 미션 조회
+	@Override
+	public Map<String, Object> findAllMissions(Integer page) throws Exception {
+		// pageInfo
+
+		Map<String, Object> pageInfoResult = getPageInfo(page);
+		int row = (int) pageInfoResult.get("startRow");
 
 		List<Mission> missionList = missionDao.selectMissionList(row - 1);
+		System.out.println(missionList);
 
 		// 맵에 담아서 전달
 		Map<String, Object> result = new HashMap<>();
-		result.put("pageInfo", pageInfo);
+		result.put("pageInfo", pageInfoResult.get("pageInfo"));
 		result.put("missionList", missionList);
 		return result;
 

@@ -19,6 +19,12 @@ public interface MissionDAO {
 	// 미션 총 개수 반환 ( for 페이지네이션 적용)
 	Integer countAllMissions() throws Exception;
 
+	// 건강 미션 전체리스트 조회
+	List<Mission> selectHealthMissionList(Integer row) throws Exception;
+
+	// 건강 미션 총 개수 반환 ( for 페이지네이션 적용)
+	Integer countHealthMissions() throws Exception;
+
 	// 오늘의 미션 상세보기 by missionIdx
 	Mission selectMission(Integer idx) throws Exception;
 

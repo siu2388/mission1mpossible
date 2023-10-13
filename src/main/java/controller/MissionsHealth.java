@@ -13,16 +13,16 @@ import service.MissionService;
 import service.MissionServiceImpl;
 
 /**
- * Servlet implementation class Missions
+ * Servlet implementation class MissionsHealth
  */
-@WebServlet("/missions")
-public class Missions extends HttpServlet {
+@WebServlet("/missions-health")
+public class MissionsHealth extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Missions() {
+	public MissionsHealth() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,12 +40,9 @@ public class Missions extends HttpServlet {
 		try {
 			MissionService missionService = new MissionServiceImpl();
 			Map<String, Object> result = missionService.findAllMissions(curPage);
-//
-//			result.put("uprofileImg", uprofileImg);
-//			result.put("unickname", unickname);
-
 			req.setAttribute("result", result);
 
+			// resp.sendRedirect("/missions");
 			req.getRequestDispatcher("missions.jsp").forward(req, resp);
 
 		} catch (Exception e) {
@@ -55,5 +52,7 @@ public class Missions extends HttpServlet {
 			req.getRequestDispatcher("error.jsp").forward(req, resp);
 
 		}
+
 	}
+
 }
