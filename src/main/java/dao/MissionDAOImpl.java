@@ -80,11 +80,13 @@ public class MissionDAOImpl implements MissionDAO {
 	@Override
 	public Integer countHealthMissions() throws Exception {
 		return sqlSession.selectOne("mapper.mission.countHealthMissions");
-// 좋아요 수 카운트
+	}
+
+	// 좋아요 수 카운트
 	@Override
 	public Integer selectMissionLikeCount(Integer idx) throws Exception {
 		return sqlSession.selectOne("mapper.board.selectMissionLikeCount", idx);
-		}
+	}
 
 	// 좋아요 수 증가 + 1
 	@Override
@@ -98,7 +100,7 @@ public class MissionDAOImpl implements MissionDAO {
 	public void minusMissionLikeCount(Integer idx) throws Exception {
 		sqlSession.update("mapper.board.minusMissionLikeCount", idx);
 		sqlSession.commit();
-		
+
 	}
 
 	// 좋아요 누른 여부
