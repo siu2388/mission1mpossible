@@ -113,7 +113,7 @@ html, body {
               <div class="col-md-5 d-flex align-items-center justify-content-center" id="imgUploadBundle">
                 <div class="px-4">
                   <div class="d-flex justify-content-center mb-4">
-                    <img src="images/${user.profileImg}" class="rounded-circle user-img-default" id="imagePreview" alt="defaultImage" />
+                    <img src="${pageContext.request.contextPath}/upload/${user.profileImg}" class="rounded-circle user-img-default" id="imagePreview" alt="defaultImage" />
                   </div>
                   <div class="d-flex justify-content-center mb-2 custom-text-title">프로필사진</div>
                   <div class="d-flex justify-content-center align-items-center">
@@ -162,7 +162,7 @@ html, body {
       }
     });
 
-    // 회원 가입 전 프로필사진 첨부했을 때 미리보기
+    // 프로필사진 첨부했을 때 미리보기
     function previewImg(event) {
       const imagePreview = document.getElementById('imagePreview');
       const fileInput = event.target;
@@ -176,7 +176,7 @@ html, body {
 
         reader.readAsDataURL(fileInput.files[0]);
       } else {
-        imagePreview.src = 'images/defaultImg.png';
+        imagePreview.src = '${pageContext.request.contextPath}/images/defaultImg.png';
       }
     }
     

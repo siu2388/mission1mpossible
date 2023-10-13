@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 import java.util.Map;
 
+import dto.Bookmark;
 import dto.Mission;
 
 public interface MissionService {
@@ -29,4 +30,20 @@ public interface MissionService {
 
 	// 성공률 계산
 	Integer calculateSuccessRate(Integer userIdx) throws Exception;
+
+	// 페이징 처리
+	Map<String, Object> getPageInfo(int page) throws Exception;
+	
+	// 좋아요 계산 로직
+
+	String getMissionLikeStatus(Integer userIdx, Integer missionIdx) throws Exception;
+
+	Boolean isMissionLike(Integer userIdx, Integer missionIdx) throws Exception;
+
+	// 북마크 가져오기
+	List<Bookmark> getBookmark(int userIdx) throws Exception;
+
+	// 북마크 추가
+	void insertBookmark(Bookmark bookmark) throws Exception;
+
 }

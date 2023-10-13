@@ -53,11 +53,11 @@ public class Login extends HttpServlet {
 			Integer successRate = missionService.calculateSuccessRate(userIdx);
 
 			HttpSession session = req.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute("loginedUser", user);
 			session.setAttribute("totalMissions", totalMissions);
 			session.setAttribute("successRate", successRate);
-
-			req.getRequestDispatcher("missions.jsp").forward(req, resp);
+			
+			resp.sendRedirect("missions");
 
 		} catch (Exception e) {
 			req.setAttribute("err", e.getMessage());

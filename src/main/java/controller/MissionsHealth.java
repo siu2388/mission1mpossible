@@ -1,48 +1,58 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dto.Mission;
-import dto.User;
 import service.MissionService;
 import service.MissionServiceImpl;
 
-@WebServlet("/my-missions")
-public class myMissions extends HttpServlet {
+/**
+ * Servlet implementation class MissionsHealth
+ */
+@WebServlet("/missions-health")
+public class MissionsHealth extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public myMissions() {
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public MissionsHealth() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 
+		String page = req.getParameter("page");
+		int curPage = 1; // 페이지를 안가져왔을 때 기본 1 페이지
+		if (page != null) {
+			curPage = Integer.parseInt(page);
+		}
+
 		try {
-			HttpSession session = req.getSession();
-			User user = (User) session.getAttribute("user");
-			Integer userIdx = user.getIdx();
-
 			MissionService missionService = new MissionServiceImpl();
-			List<Mission> missions = missionService.findMyMissions(userIdx);
-			req.setAttribute("missions", missions);
-			System.out.println(missions);
+			Map<String, Object> result = missionService.findAllMissions(curPage);
+			req.setAttribute("result", result);
 
-			req.getRequestDispatcher("myMissions.jsp").forward(req, resp);
+			// resp.sendRedirect("/missions");
+			req.getRequestDispatcher("missions.jsp").forward(req, resp);
 
 		} catch (Exception e) {
+
 			e.printStackTrace();
-			req.setAttribute("err", "나의 미션기록 조회 실패");
+			req.setAttribute("err", e.getMessage());
 			req.getRequestDispatcher("error.jsp").forward(req, resp);
 
 		}
+
 	}
+
 }

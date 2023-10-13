@@ -191,7 +191,7 @@ div.card .card-top {
 
 	<div>
 		<c:choose>
-			<c:when test="${empty sessionScope.user}">
+			<c:when test="${empty sessionScope.loginedUser}">
 				<div class="join">
 					<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
 						이용하실 수 있습니다!</div>
@@ -227,18 +227,41 @@ div.card .card-top {
 							<div class="card-text">
 								<div class="card-title">${mission.title }</div>
 								<div class="card-date">${mission.createdAt }</div>
-								<img
-									src="<%=request.getContextPath()%>/images/cha.png"
-									class="card-img"
-									alt="..."
-								>
+								<c:choose>
+									<c:when test="${mission.miImg ne null}">
+										<img
+											class="card-img-top rounded-0"
+											src="image?miImg=${mission.miImg}"
+										/>
+									</c:when>
+									<c:otherwise>
+										<img
+											src="<%=request.getContextPath()%>/images/defaultMission.jpg"
+											class="card-img"
+											alt="미션기본이미지"
+										>
+									</c:otherwise>
+								</c:choose>
+								
 								<div class="card-user">
-									<img
-										src="<%=request.getContextPath()%>/images/cha2.png"
-										class="user-img"
-										alt="..."
-									>
-									<div class="card-text">${user.nickname }님도전 중!</div>
+								
+								  <c:choose>
+                  <c:when test="${mission.uprofileImg ne null}">
+                    <img
+                      class="card-img-top rounded-0"
+                      src="image?miImg=${mission.uprofileImg }"
+                    />
+                  </c:when>
+                  <c:otherwise>
+                    <img
+                      src="<%=request.getContextPath()%>/images/defaultProfile.png"
+                      class="card-img"
+                      alt="미션기본이미지"
+                    >
+                  </c:otherwise>
+                </c:choose>
+									
+									<div class="card-text">${mission.unickname }님도전중!</div>
 								</div>
 							</div>
 						</div>
