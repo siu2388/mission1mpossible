@@ -46,6 +46,7 @@ public class ProfileCard extends HttpServlet {
 			}
 
 			req.getRequestDispatcher("profilecard.jsp").forward(req, resp);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("err", e.getMessage());

@@ -179,7 +179,7 @@ div.card .card-top {
 
 	<div>
 		<c:choose>
-			<c:when test="${empty sessionScope.loginedUser}">
+			<c:when test="${empty sessionScope.user}">
 				<div class="join">
 					<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
 						이용하실 수 있습니다!</div>
@@ -192,8 +192,7 @@ div.card .card-top {
 				</div>
 			</c:otherwise>
 		</c:choose>
-
-		<c:forEach items="${result.missionList }" var="mission">
+		<c:forEach items="${missions}" var="mission">
 			<div class="cards">
 				<div class="row row-cols-1 row-cols-md-4 g-4">
 					<div class="col">

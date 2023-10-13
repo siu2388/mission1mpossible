@@ -36,18 +36,6 @@ public class myMissions extends HttpServlet {
 			req.setAttribute("missions", missions);
 			System.out.println(missions);
 
-			// 미션없음 처리
-//			List<Mission> noMission = new ArrayList<>();
-//
-//			if (noMission.isEmpty()) {
-//				Mission emptyMission = new Mission();
-//				// emptyMission.setCreatedAt(null);
-//				emptyMission.setTitle(null);
-//				noMission.add(emptyMission);
-//			}
-//			req.setAttribute("missions", noMission);
-			// 끝
-
 			req.getRequestDispatcher("myMissions.jsp").forward(req, resp);
 
 		} catch (Exception e) {
