@@ -1,9 +1,11 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dto.Bookmark;
 import dto.Mission;
 import util.MybatisSqlSessionFactory;
 
@@ -78,6 +80,58 @@ public class MissionDAOImpl implements MissionDAO {
 	@Override
 	public Integer countHealthMissions() throws Exception {
 		return sqlSession.selectOne("mapper.mission.countHealthMissions");
+// 좋아요 수 카운트
+	@Override
+	public Integer selectMissionLikeCount(Integer idx) throws Exception {
+		return sqlSession.selectOne("mapper.board.selectMissionLikeCount", idx);
+		}
+
+	// 좋아요 수 증가 + 1
+	@Override
+	public void plusMissionLikeCount(Integer idx) throws Exception {
+		sqlSession.update("mapper.board.plusMissionLikeCount", idx);
+		sqlSession.commit();
+	}
+
+	// 좋아요 수 감소 - 1
+	@Override
+	public void minusMissionLikeCount(Integer idx) throws Exception {
+		sqlSession.update("mapper.board.minusMissionLikeCount", idx);
+		sqlSession.commit();
+		
+	}
+
+	// 좋아요 누른 여부
+	@Override
+	public Integer selectMissionLike(Map<String, Object> param) throws Exception {
+		return sqlSession.selectOne("mapper.missionlike.selectMissionLike", param);
+	}
+
+	// 좋아요 추가
+
+	@Override
+	public void insertMissionLike(Map<String, Object> param) throws Exception {
+		sqlSession.insert("mapper.missionlike.insertMissionLike", param);
+		sqlSession.commit();
+
+	}
+
+	// 좋아요 제거
+	@Override
+	public void deleteMissionLike(Map<String, Object> param) throws Exception {
+		sqlSession.delete("mapper.missionlike.deleteMissionLike", param);
+		sqlSession.commit();
+	}
+
+	@Override
+	public void insertBookmark(Bookmark bookmark) throws Exception {
+		sqlSession.insert("mapper.bookmark.insertBookmark", bookmark);
+		sqlSession.commit();
+	}
+
+	@Override
+	public List<Bookmark> getBookmark(int userIdx) throws Exception {
+		return sqlSession.selectList("mapper.bookmark.getBookmark", userIdx);
 	}
 
 }

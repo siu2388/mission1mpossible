@@ -8,6 +8,9 @@
   <!-- 특정 파일에 대한 임포트 역할  -->
     <typeAlias type="dto.User" alias="User"/>
     <typeAlias type="dto.Mission" alias="Mission"/>
+    <typeAlias type="dto.Bookmark" alias="Bookmark"/>
+    <typeAlias type="dto.Category" alias="Category"/>
+    <typeAlias type="dto.Goodidea" alias="Goodidea"/>
   </typeAliases>
   
   <environments default="development">
@@ -22,6 +25,8 @@
   <mappers>
     <mapper resource="mapper/User.xml"/>
     <mapper resource="mapper/Mission.xml"/>
+    <mapper resource="mapper/MissionLike.xml"/>
+    <mapper resource="mapper/Bookmark.xml"/>
     
   </mappers>
 </configuration>

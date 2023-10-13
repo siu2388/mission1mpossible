@@ -120,10 +120,6 @@ body {
 	background-color: violet;
 }
 
-.heart-icon.liked {
-	color: red; 
-	
-}
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script type="text/javascript">
@@ -137,13 +133,7 @@ body {
 					'idx' : '<c:out value="${mission.idx}"/>'
 				},
 				success : function(res) {
-					console.log(res.select);
 					console.log(res.likecount);
-					if (res.select) {
-						$('.heart-icon').addClass('liked');
-					} else {
-						$('.heart-icon').removeClass('liked');
-					}
 					$('#likecount').text(res.likecount);
 				},
 				error : function(err) {

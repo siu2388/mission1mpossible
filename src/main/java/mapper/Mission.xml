@@ -130,4 +130,27 @@
     ]]>
 	</select>
 
+	<!-- 미션 좋아요 컬럼 가져오기 -->
+	<select id="selectMissionLikeCount" parameterType="Integer"
+		resultType="Integer">
+		SELECT likecount FROM mission WHERE idx=#{idx}
+	</select>
+
+
+	<!-- 미션 좋아요 수 증가 -->
+	<update id="plusMissionLikeCount" parameterType="Integer">
+        <![CDATA[
+        UPDATE mission SET likecount = likecount + 1 WHERE idx = #{idx}
+        ]]>
+	</update>
+
+	<!-- 미션 좋아요 수 감소 -->
+	<update id="minusMissionLikeCount" parameterType="Integer">
+        <![CDATA[
+        UPDATE mission SET likecount = likecount - 1 WHERE idx = #{idx}
+        ]]>
+	</update>
+
+
+
 </mapper>
