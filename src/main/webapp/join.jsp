@@ -91,7 +91,7 @@ html, body {
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
-					<img class="img-fluid" src="./images/miplogo.png" alt="logo" />
+					<img class="img-fluid" src="${pageContext.request.contextPath}/images/miplogo.png" alt="logo" />
 				</div>
 				<div class="col-md-3"></div>
 			</div>
@@ -103,18 +103,18 @@ html, body {
 
 				<!-- 좌 이미지 -->
 				<div class="col-md-3">
-					<img class="img-fluid" src="./images/mainImg2.png" alt="MainImg1" />
+					<img class="img-fluid" src="${pageContext.request.contextPath}/images/mainImg2.png" alt="MainImg1" />
 				</div>
 
 				<!-- 중앙, 우 회원가입 폼 -->
 				<div class="col-md-5 custom-form d-flex align-items-center justify-content-center">
-					<form class="px-1" action="join" method="post"
-						enctype="multipart/form-data">
+					<form class="px-1" action="join" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-5 d-flex align-items-center justify-content-center" id="imgUploadBundle">
 								<div class="px-4">
 									<div class="d-flex justify-content-center mb-4">
-										<img src="images/defaultImg.png" class="rounded-circle user-img-default" id="imagePreview" alt="defaultImage" />
+										<img src="${pageContext.request.contextPath}/images/defaultProfile.png" class="rounded-circle user-img-default"
+										  id="imagePreview" alt="defaultProfile" />
 									</div>
 									<div class="d-flex justify-content-center mb-2 custom-text-title">프로필사진</div>
 									<div class="d-flex justify-content-center align-items-center">
@@ -181,7 +181,7 @@ html, body {
 
 				reader.readAsDataURL(fileInput.files[0]);
 			} else {
-				imagePreview.src = 'images/defaultImg.png';
+				imagePreview.src = '${pageContext.request.contextPath}/images/defaultProfile.png';
 			}
 		}
 		
