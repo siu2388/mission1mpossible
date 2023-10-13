@@ -7,11 +7,12 @@ public class Mission {
 	private String title;
 	private String context;
 	private String miImg;
-	private boolean success; // 기본값 : null, true=1 false=0
+	private String success;
 	private Date createdAt; // 등록일
 	private Date updatedAt; // 성공, 실패 업뎃 시 updatedAt 받음 (수정저장시에는 받지 않음)
 	private int catId;
 	private int userIdx;
+	private int likecount;
 
 	public int getIdx() {
 		return idx;
@@ -45,14 +46,6 @@ public class Mission {
 		this.miImg = miImg;
 	}
 
-	public boolean isSuccess() {
-		return success;
-	}
-
-	public void setSuccess(boolean success) {
-		this.success = success;
-	}
-
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -83,6 +76,21 @@ public class Mission {
 
 	public void setUserIdx(int userIdx) {
 		this.userIdx = userIdx;
+	}
+
+	public String getSuccess() {
+		return success;
+	}
+
+	public void setSuccess(String success) {
+		this.success = success;
+	}
+	public int getLikecount() {
+		return likecount;
+	}
+
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
 	}
 
 }

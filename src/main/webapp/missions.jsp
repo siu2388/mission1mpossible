@@ -39,7 +39,7 @@ body {
 }
 
 .profilebox {
-    float: left;
+		float: left;
 }
 
 .join {
@@ -198,8 +198,7 @@ div.card .card-top {
 					<a
 						href="join"
 						class="join-button"
-					>회원가입
-					</a>
+					>회원가입 </a>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -209,83 +208,89 @@ div.card .card-top {
 			</c:otherwise>
 		</c:choose>
 
-		<div class="cards">
-			<div class="row row-cols-1 row-cols-md-4 g-4">
-				<div class="col">
-					<div class="card bg-secondary-subtle">
-						<div class="card-top">
-							<div class="bookmark">
-								<i class="fa-solid fa-bookmark"></i>
+		<c:forEach
+			items="${result.missionList }"
+			var="mission"
+		>
+			<div class="cards">
+				<div class="row row-cols-1 row-cols-md-4 g-4">
+					<div class="col">
+						<div class="card bg-secondary-subtle">
+							<div class="card-top">
+								<div class="bookmark">
+									<i class="fa-solid fa-bookmark"></i>
+								</div>
+								<div class="like">
+									33 <i class="fa-solid fa-heart"></i>
+								</div>
 							</div>
-							<div class="like">
-								33 <i class="fa-solid fa-heart"></i>
-							</div>
-						</div>
-						<div class="card-text">
-							<div class="card-title">양치하기 2번하기 ㅇㅇ</div>
-							<div class="card-date">09월 19일</div>
-							<img
-								src="<%=request.getContextPath()%>/images/cha.png"
-								class="card-img"
-								alt="..."
-							>
-							<div class="card-user">
+							<div class="card-text">
+								<div class="card-title">${mission.title }</div>
+								<div class="card-date">${mission.createdAt }</div>
 								<img
-									src="<%=request.getContextPath()%>/images/cha2.png"
-									class="user-img"
+									src="<%=request.getContextPath()%>/images/cha.png"
+									class="card-img"
 									alt="..."
 								>
-								<div class="card-text">최대닉네임글자 님 도전 중!</div>
+								<div class="card-user">
+									<img
+										src="<%=request.getContextPath()%>/images/cha2.png"
+										class="user-img"
+										alt="..."
+									>
+									<div class="card-text">${user.nickname }님도전 중!</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!--  페이지네이션 -->
-				<div class="d-flex justify-content-center mt-4">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
-							<li class="page-item">
-								<a
-									class="page-link"
-									href="#"
-									aria-label="Previous"
-								>
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li class="page-item">
-								<a
-									class="page-link"
-									href="#"
-								>1</a>
-							</li>
-							<li class="page-item">
-								<a
-									class="page-link"
-									href="#"
-								>2</a>
-							</li>
-							<li class="page-item">
-								<a
-									class="page-link"
-									href="#"
-								>3</a>
-							</li>
-							<li class="page-item">
-								<a
-									class="page-link"
-									href="#"
-									aria-label="Next"
-								>
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
 			</div>
+		</c:forEach>
+		<!--  페이지네이션 -->
+		<div class="d-flex justify-content-center mt-4">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item">
+						<a
+							class="page-link"
+							href="#"
+							aria-label="Previous"
+						>
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li class="page-item">
+						<a
+							class="page-link"
+							href="#"
+						>1</a>
+					</li>
+					<li class="page-item">
+						<a
+							class="page-link"
+							href="#"
+						>2</a>
+					</li>
+					<li class="page-item">
+						<a
+							class="page-link"
+							href="#"
+						>3</a>
+					</li>
+					<li class="page-item">
+						<a
+							class="page-link"
+							href="#"
+							aria-label="Next"
+						>
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
 		</div>
 	</div>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	></script>

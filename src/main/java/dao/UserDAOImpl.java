@@ -14,11 +14,24 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.insert("mapper.user.insertUser", user);
 		sqlSession.commit();
 	}
+	
+	@Override
+	public void updateUser(User user) throws Exception {
+		sqlSession.update("mapper.user.updateUser", user);
+		sqlSession.commit();
+	}
 
 	@Override
 	public User selectUser(String userId) throws Exception {
 		User user = sqlSession.selectOne("mapper.user.selectUser", userId);
 		return user;
 	}
+
+	@Override
+	public User selectUserByNickname(String nickname) throws Exception {
+		User user = sqlSession.selectOne("mapper.user.selectUserByNickname", nickname);
+		return user;
+	}
+
 
 }

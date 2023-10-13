@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>프로필 카드</title>
 <style>
-.card {
+.card1 {
 	background-color: antiquewhite;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	width: 12.5rem;
@@ -29,7 +29,7 @@
 	border: 0.5px solid blueviolet;
 }
 
-.card>.name {
+.card1>.name {
 	text-align: center;
 	color: blueviolet;
 	height: 1.5rem;
@@ -133,7 +133,7 @@ button:hover {
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
-	<div class="card">
+	<div class="card card1">
 		<a href="updateUser" type="button" class="user-update-btn">정보수정</a>
 
 		<div>

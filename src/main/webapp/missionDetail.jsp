@@ -42,16 +42,30 @@ body {
 		background-image: url(./images/bg.jpg);
 }
 
-.w-90 {
-		width: 90% !important;
+.profilebox {
+		float: left;
 }
 
-.w-80 {
-		width: 80% !important;
+.missionbox {
+		border: 2px solid #EFD915;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		
+		
+		border-radius: 10px;
+    background-color: #E5D689;
+    
+		background-size: contain;
+		width: 60%;
+		float: right;
+		height: 500px;
+		padding: 10px;
+		margin: 2rem 5rem 0 0;
 }
 
-.w-70 {
-		width: 70% !important;
+
+
+.zxc {
+		background-color: red;
 }
 
 .custom-btn {
@@ -136,113 +150,88 @@ img.img-fluid {
 	</header>
 
 	<div class="main">
-    <div class="profilebox">
-      <jsp:include page="profilecard.jsp" />
-    </div>
+		<!-- 좌 프로필카드 -->
+		<div class="profilebox">
+			<jsp:include page="profilecard.jsp" />
+		</div>
 	</div>
-<!-- 좌 프로필카드 -->
-	<main class="w-100 m-auto">
+	<div class="missionbox">
 
-		<div class="container mt-5">
-			<div class="row"></div>
-			<!-- 좌 공백 -->
-			<div class="col-md-1"></div>
-			<!-- 좌 프로필카드 -->
-			<div class="col-md-2">profileCard</div>
-			<!-- 중간 공백 -->
-			<div class="col-md-1"></div>
-			<!-- 우 myToday 폼 -->
+		<div class="zxc py-2 mx-auto w-90">
 			<div
-				class="col-md-6 custom-form d-flex align-items-center justify-content-center"
+				class="zxc py-1 px-2 custom-currentDate-div text-center"
+				id="currentDate"
 			>
-				<div class="py-2 mx-auto w-90">
-					<div
-						class="py-1 px-2 custom-currentDate-div text-center"
-						id="currentDate"
+				<span id="createdAt">${formattedDate}</span>
+				<div
+					class="zxc mb-1 mt-2 d-flex align-items-center justify-content-center"
+				>
+					<!-- 성공/실패/진행중에따라 보여지는 값 -->
+					<!-- 오늘날짜 아직 진행중: 미션이 성공하지 않았고, 생성일이 오늘인 경우 -->
+					<!-- 성공: 미션이 성공했고, 생성일과 수정일이 같은 경우 -->
+					<!-- 실페: 기타 모든 경우 -->
+					<div class="custom-text2">진행중인 미션!</div>
+
+				</div>
+				<div class="zxc card mx-auto w-70">
+					<div class="card-title text-center custom-text">${mission.title }</div>
+					<c:if test="${mission.miImg ne null }">
+						<img
+							class="card-img-top rounded-0"
+							src="image?miImg=${mission.miImg}"
+						/>
+					</c:if>
+
+					<c:if test="${mission.context ne null }">
+						<div class="card-body custom-text3">${mission.context }</div>
+					</c:if>
+				</div>
+				<div
+					class="mx-auto w-70 d-flex justify-content-end align-items-center"
+				>
+					<span class="mr-2 custom-text-color"></span>
+					<i class="fas fa-heart mx-1 custom-icon-color"></i>
+				</div>
+			</div>
+			<div class="zxc col-md-4 d-flex justify-content-center">
+
+				<!-- 성공 / 실패 -->
+				<form
+					action="success-fail?idx=${mission.idx }"
+					method="post"
+				>
+					<input
+						type="hidden"
+						name="idx"
+						value="${mission.idx}"
 					>
-						<span id="createdAt">${formattedDate}</span>
-						<div
-							class="mb-1 mt-2 d-flex align-items-center justify-content-center"
-						>
-							<!-- 성공/실패/진행중에따라 보여지는 값 -->
-							<!-- 오늘날짜 아직 진행중: 미션이 성공하지 않았고, 생성일이 오늘인 경우 -->
-							<!-- 성공: 미션이 성공했고, 생성일과 수정일이 같은 경우 -->
-							<!-- 실페: 기타 모든 경우 -->
-							<div class="custom-text2">진행중인 미션!</div>
-
-						</div>
-						<div class="card mx-auto w-70">
-							<div class="card-title text-center custom-text">${mission.title }</div>
-							<c:if test="${mission.miImg ne null }">
-								<img
-									class="card-img-top rounded-0"
-									src="image?miImg=${mission.miImg}"
-								/>
-							</c:if>
-
-							<c:if test="${mission.context ne null }">
-								<div class="card-body custom-text3">${mission.context }</div>
-							</c:if>
-						</div>
-						<div
-							class="mx-auto w-70 d-flex justify-content-end align-items-center"
-						>
-							<span class="mr-2 custom-text-color"></span>
-							<i class="fas fa-heart mx-1 custom-icon-color"></i>
-						</div>
-					</div>
-					<!-- 중간 + 우 공백 -->
-					<div class="col-md-1"></div>
-					<!-- 중간 + 우 공백 -->
-					<div class="col-md-1"></div>
-				</div>
+					<input
+						class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
+						type="submit"
+						name="success"
+						value="성공"
+					/>
+					<input
+						class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail"
+						type="submit"
+						name="success"
+						value="실패"
+					/>
+				</form>
+				<!--  -->
+				<c:if test="${user.idx eq mission.userIdx }">
+          <a
+            href="update-mission?idx=${mission.idx }"
+            class="btn py-1 px-3 mt-2 custom-btn-modify"
+            type="button"
+          >수정</a>
+        </c:if>
 			</div>
+		</div>
+	</div>
 
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4"></div>
-					<div class="col-md-1"></div>
-					<div class="col-md-4 d-flex justify-content-center">
-						
-						<!--  성공=1, 실패=0 -->
-						<form
-							action="success-fail"
-							method="post"
-						>
-							<input
-								type="hidden"
-								name="idx"
-								value="${mission.idx}"
-							>
-							<input
-								class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
-								type="submit"
-								name="success"
-								value="성공"
-							/>
-							<input
-								class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail"
-								type="submit"
-								name="fail"
-								value="실패"
-							/>
 
-						</form>
-						<!--  -->
-					</div>
-					<div class="col-md-1 d-flex justify-content-end">
-						<c:if test="${user.idx eq mission.userIdx }">
-							<a
-								href="update-mission?idx=${mission.idx }"
-								class="btn py-1 px-3 mt-2 custom-btn-modify"
-								type="button"
-							>수정</a>
-						</c:if>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-			</div>
-	</main>
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
