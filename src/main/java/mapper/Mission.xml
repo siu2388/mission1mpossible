@@ -90,10 +90,10 @@
 	<select id="selectMyMissions" parameterType="Integer"
 		resultType="Mission">
   <![CDATA[
-      select createdAt, title, likecount
+      select title, miImg, createdAt, likecount
       from mission
-      where userIdx=#{userIdx} and month(createdAt) = month(curdate())
-      order by createdAt
+      where userIdx=#{userIdx}
+      order by createdAt desc
       ]]>
 	</select>
 

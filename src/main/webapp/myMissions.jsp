@@ -46,23 +46,23 @@ header {
 }
 
 .card77 {
-		width: 130px;
-		height: 250px;
+		width: 200px;
+		height: 200px;
 		text-align: center;
 		cursor: pointer;		
 }
 
 .card77:hover {
-		transform: translateY(-20px);
-		transition: 0.5s ease-in-out;
+    transform: rotateY(180deg);
+		transition: 0.7s ease-in-out;
 		cursor: pointer;
-		background-color: ivory;
+		background-image: url("images/park2.png");
 }
 
 .card-title {
 		font-size: 20px;
 		font-weight: bold;
-		color: black;
+		color: white;
 }
 
 .like {
@@ -80,49 +80,37 @@ header {
   <div class="profile">
     <jsp:include page="profilecard.jsp" />
   </div>
-  <div class="row row-cols-7 g-4">
+  <div class="row row-cols-5 g-4">
     <c:forEach items="${missions}" var="mission">
       <div class="col col77">
+      
         <div class="card card77">
-          <div class="card bg-success bg-opacity-75 border-dark">
+        
+          <div class="card card77 bg-success bg-opacity-75 border-dark">
+            <div>
+      <c:choose>
+        <c:when test="${mission.miImg ne null}">
+          <img src="image?miImg=${mission.miImg}" class="mission-img" style="width:200px; height:200px;"/>
+        </c:when>
+        <c:otherwise>
+          <img src="./images/park.png" class="mission-img"/>
+        </c:otherwise>
+      </c:choose>
+    </div>
             <div class="card-header bg-transparent border-dark">
-              <c:choose>
-                <c:when test="${mission.createdAt ne null}">
-                  ${mission.createdAt}
-                </c:when>
-                <c:otherwise>
-                  -
-                </c:otherwise>
-              </c:choose>
+              ${mission.createdAt}
             </div>
             <div class="card-body text-success">
               <h5 class="card-title">
-                <c:choose>
-                  <c:when test="${mission.title ne null}">
+                
                     <br>${mission.title}
                     <br>
-                  </c:when>
-                  <c:otherwise>
-                  
-                    <br>미션없음
                     <br>
-                    <br>
-                  </c:otherwise>
-                </c:choose>
               </h5>
             </div>
             <div class="card-footer bg-transparent border-dark">
               <div class="like">
-                <c:choose>
-                  <c:when test="${mission.likecount ne null}">
-                    ${mission.likecount} <i class="fa-solid fa-heart"></i>
-                  </c:when>
-                  <c:otherwise>
-                    -
-                    <br>
-                    <br>
-                  </c:otherwise>
-                </c:choose>
+                ${mission.likecount} <i class="fa-solid fa-heart"></i>
               </div>
             </div>
           </div>
