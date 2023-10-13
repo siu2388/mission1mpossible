@@ -40,9 +40,6 @@ public class Missions extends HttpServlet {
 		try {
 			MissionService missionService = new MissionServiceImpl();
 			Map<String, Object> result = missionService.findAllMissions(curPage);
-//
-//			result.put("uprofileImg", uprofileImg);
-//			result.put("unickname", unickname);
 
 			req.setAttribute("result", result);
 
