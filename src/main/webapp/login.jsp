@@ -67,11 +67,7 @@ img.img-fluid {
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
-					<img
-						class="img-fluid"
-						src="${pageContext.request.contextPath}/images/miplogo.png"
-						alt="logo"
-					>
+					<img class="img-fluid" src="${pageContext.request.contextPath}/images/miplogo.png" alt="logo">
 				</div>
 				<div class="col-md-3"></div>
 			</div>
@@ -82,11 +78,7 @@ img.img-fluid {
 				<div class="col-md-3"></div>
 				<!-- 좌 하단 이미지 -->
 				<div class="col-md-3">
-					<img
-						class="img-fluid"
-						src="${pageContext.request.contextPath}/images/mainImg1.png"
-						alt="MainImg1"
-					>
+					<img class="img-fluid" src="${pageContext.request.contextPath}/images/mainImg1.png" alt="MainImg1">
 				</div>
 				<!-- 우 하단 로그인 폼 -->
 				<div class="col-md-3 custom-form d-flex align-items-center justify-content-center">

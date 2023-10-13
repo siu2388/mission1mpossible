@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("loginedUser", user);
 			session.setAttribute("totalMissions", totalMissions);
 			session.setAttribute("successRate", successRate);
-
+			
 			resp.sendRedirect("missions");
 
 		} catch (Exception e) {
