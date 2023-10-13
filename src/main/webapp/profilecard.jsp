@@ -135,14 +135,13 @@ button:hover {
 <body>
 	<div class="card card1">
 		<a href="updateUser" type="button" class="user-update-btn">정보수정</a>
-
 		<div>
 			<c:choose>
 				<c:when test="${user.profileImg ne null}">
-					<img src="image?profileImg=${user.profileImg}" class="profile-img" />
+					<img src="profile-image?profileImg=${user.profileImg}" class="profile-img" />
 				</c:when>
 				<c:otherwise>
-					<img src="./upload/default_profile.jpg" class="profile-img" />
+					<img src="${pageContext.request.contextPath}/upload/default_profile.jpg" class="profile-img" />
 				</c:otherwise>
 			</c:choose>
 		</div>

@@ -38,8 +38,11 @@
   <select id="selectAllMissions" parameterType="Integer"
     resultType="Mission">
       <![CDATA[
-      select * from mission order by createdAt desc
-      limit #{row},8
+      SELECT m.title, m.createdAt, m.miImg, u.profileImg, u.nickname
+      FROM mission m
+      JOIN user u ON m.userIdx = u.idx
+      ORDER BY m.createdAt DESC
+      limit #{row},8;
       ]]>
   </select>
   
@@ -66,31 +69,14 @@
   <select id="selectMyMissions" parameterType="Integer"
     resultType="Mission">
   <![CDATA[
-      select createdAt, title, likecount
+      select title, miImg, createdAt, likecount
       from mission
-      where userIdx=#{userIdx} and month(createdAt) = month(curdate())
-      order by createdAt
+      where userIdx=#{userIdx}
+      order by createdAt desc
       ]]>
   </select>
-  
-  
-  <!-- missions -->
-  <!-- 날짜, 제목, 사진, 좋아요 수, 북마크 유무, 프로필 이미지, 닉네임 -->
-  <!-- <select id="selectMissions" parameterType="Integer"
-    resultType="Mission">
-  <![CDATA[
-      select m.createdAt, m.title, m.miImg, m.likecnt, u.profileImg, u.nickname
-      from mission m
-      join user u
-      where m.userIdx = u.idx
-      order by createdAt desc
-      limit 4
-      where userIdx=#{userIdx} and missionIdx=#{missionIdx}
-      select num from boardlike where member_id=#{id} and board_num=#{num} 
-      ]]>
-  </select> -->
-
-  
+    
+    
 	<!-- 총 미션 수 조회  -->
 
    <select id="selectTotalMissions" parameterType="Integer" resultType="Integer">
