@@ -85,6 +85,7 @@ public class Mission {
 	public void setSuccess(String success) {
 		this.success = success;
 	}
+
 	public int getLikecount() {
 		return likecount;
 	}

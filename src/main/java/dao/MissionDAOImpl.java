@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dto.Bookmark;
 import dto.Mission;
 import util.MybatisSqlSessionFactory;
 
@@ -110,6 +111,17 @@ public class MissionDAOImpl implements MissionDAO {
 	public void deleteMissionLike(Map<String, Object> param) throws Exception {
 		sqlSession.delete("mapper.missionlike.deleteMissionLike", param);
 		sqlSession.commit();
+	}
+
+	@Override
+	public void insertBookmark(Bookmark bookmark) throws Exception {
+		sqlSession.insert("mapper.bookmark.insertBookmark", bookmark);
+		sqlSession.commit();
+	}
+
+	@Override
+	public List<Bookmark> getBookmark(int userIdx) throws Exception {
+		return sqlSession.selectList("mapper.bookmark.getBookmark", userIdx);
 	}
 
 }

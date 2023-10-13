@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 import dao.MissionDAO;
 import dao.MissionDAOImpl;
+import dto.Bookmark;
 import dto.Mission;
 import util.PageInfo;
 
@@ -125,6 +126,20 @@ public class MissionServiceImpl implements MissionService {
 		}
 
 		return true;
+	}
+
+	// 북마크 가져오기
+	@Override
+	public List<Bookmark> getBookmark(int userIdx) throws Exception {
+		return missionDao.getBookmark(userIdx);
+
+	}
+	
+	// 북마크 추가
+	@Override
+	public void insertBookmark(Bookmark bookmark) throws Exception {
+		missionDao.insertBookmark(bookmark);
+		
 	}
 
 }

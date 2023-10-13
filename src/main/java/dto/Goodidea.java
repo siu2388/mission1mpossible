@@ -1,6 +1,7 @@
 package dto;
 
 public class Goodidea {
+	private int idx;
 	private int userIdx;
 	private int missionId;
 
@@ -27,6 +28,14 @@ public class Goodidea {
 
 	public void setMissionId(int missionId) {
 		this.missionId = missionId;
+	}
+
+	public int getIdx() {
+		return idx;
+	}
+
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 
 }

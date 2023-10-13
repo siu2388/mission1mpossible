@@ -27,10 +27,6 @@ public class Missions extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
@@ -44,9 +40,12 @@ public class Missions extends HttpServlet {
 		try {
 			MissionService missionService = new MissionServiceImpl();
 			Map<String, Object> result = missionService.findAllMissions(curPage);
+//
+//			result.put("uprofileImg", uprofileImg);
+//			result.put("unickname", unickname);
+
 			req.setAttribute("result", result);
 
-			System.out.println(result);
 			req.getRequestDispatcher("missions.jsp").forward(req, resp);
 
 		} catch (Exception e) {
