@@ -58,13 +58,11 @@ public class Join extends HttpServlet {
 		try {
 			UserService userService = new UserServiceImpl();
 			userService.joinUser(user);
-
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("err", e.getMessage());
 			req.getRequestDispatcher("error.jsp").forward(req, resp);
-
 		}
 
 	}
