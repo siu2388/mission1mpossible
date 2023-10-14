@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 			Integer successRate = missionService.calculateSuccessRate(userIdx);
 
 			HttpSession session = req.getSession();
-			session.setAttribute("loginedUser", user);
+			session.setAttribute("user", user);
 			session.setAttribute("totalMissions", totalMissions);
 			session.setAttribute("successRate", successRate);
 			
