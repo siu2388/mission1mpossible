@@ -9,7 +9,7 @@ public class Bookmark {
 
 	}
 
-	public Bookmark(int userIdx, int missionId) {
+	public Bookmark(int userIdx, int missionIdx) {
 		this.userIdx = userIdx;
 		this.missionIdx = missionIdx;
 	}
