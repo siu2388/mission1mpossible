@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.Bookmark;
+import dto.Mission;
 import dto.User;
 import service.MissionService;
 import service.MissionServiceImpl;
@@ -30,22 +31,22 @@ public class MyBookmark extends HttpServlet {
 			// 세션에서 사용자 정보 가져오기
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user");
+			Integer userIdx = user.getIdx();
 
 			// 북마크 추가 메서드 호출 (Service 레이어에서 비즈니스 로직을 처리하도록 함)
 			MissionService missionService = new MissionServiceImpl();
 
-			List<Bookmark> bookmarks = missionService.getBookmark(user.getIdx());
+			List<Bookmark> bookmarks = missionService.getBookmark(userIdx);
 			request.setAttribute("bookmarks", bookmarks);
+			System.out.println("북마크 : " + bookmarks);
 
 			request.getRequestDispatcher("mybookmark.jsp").forward(request, response);
-			
-			
-
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO: 사용자에게 적절한 오류 메시지를 보여주도록 수정하세요
-			request.setAttribute("err", "나의 북마크 조회 실패");
+			// 오류 메시지 설정
+			request.setAttribute("err", "북마크 불러오기에 실패하였습니다. 나중에 다시 시도해주세요.");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
+
 }
