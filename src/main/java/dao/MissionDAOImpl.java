@@ -73,7 +73,7 @@ public class MissionDAOImpl implements MissionDAO {
 	// 건강 미션 리스트 조회
 	@Override
 	public List<Mission> selectHealthMissionList(Integer row) throws Exception {
-		return sqlSession.selectList("mapper.mission.selectAllMissions", row);
+		return sqlSession.selectList("mapper.mission.selectHealthMissions", row);
 	}
 
 	// 건강 미션 개수 반환
@@ -81,6 +81,19 @@ public class MissionDAOImpl implements MissionDAO {
 	public Integer countHealthMissions() throws Exception {
 		return sqlSession.selectOne("mapper.mission.countHealthMissions");
 	}
+	
+	// 카테고리별 미션 리스트 조회 
+	@Override
+	public List<Mission> selectMissionsByCat(Map<String, Object> params) throws Exception {
+		return sqlSession.selectList("mapper.mission.selectMissionsByCat", params);
+	}
+
+	//카테리별 총 미션 개수 반환
+	@Override
+	public Integer countMissions(Integer catId) throws Exception {
+		return sqlSession.selectOne("mapper.mission.countMissions", catId);
+	}
+
 
 	// 좋아요 수 카운트
 	@Override
@@ -136,4 +149,5 @@ public class MissionDAOImpl implements MissionDAO {
 		return sqlSession.selectList("mapper.bookmark.getBookmark", userIdx);
 	}
 
+	
 }
