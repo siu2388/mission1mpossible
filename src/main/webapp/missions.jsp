@@ -33,6 +33,7 @@ body {
 .join {
 	float: left;
 	margin: 20px;
+	margin-right: 10px;
 	border: 10px solid rgb(157, 217, 174);
 	border-radius: 30px;
 	width: 200px;
@@ -40,6 +41,7 @@ body {
 	font-weight: 500;
 	padding: 12px;
 	background-color: rgb(221, 241, 228);
+	border: 10px solid rgb(157, 217, 174);
 }
 
 .join-text {
@@ -71,14 +73,23 @@ body {
 	transition: 0.5s ease-in-out;
 }
 
+.img.card-img {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
 .col {
 	width: 250px;
 	height: 250px;
+	margin-top: 50px;
+	margin-bottom: 30px;
 }
 
 .card {
 	border: 1px solid black;
 	background-color: rgb(251, 247, 238);
+	margin: 20px;
 }
 
 .card:hover {
@@ -87,79 +98,47 @@ body {
 	cursor: pointer;
 }
 
-div.card .card-top {
+.card-top {
 	display: flex;
-	justify-content: space-between;
-	margin: 0;
-	padding: 0;
+	justify-content: space-around;
 }
 
 .bookmark {
 	color: #FAF009;
-	margin-left: 10px;
+	margin-right: 70px;
 }
 
 .like {
 	color: #49339A;
-	margin-right: 10px;
-}
-
-.card-text {
-	margin-left: 2px;
-}
-
-.card-title {
-	font-size: 18px;
-	padding-left: 20px;
-	margin-bottom: 1px;
-	font-weight: bold;
-}
-
-.card-date {
-	border: 1px solid black;
-	border-radius: 5px;
-	width: 81px;
-	margin-left: 20px;
-	font-size: 13px;
-	padding-left: 10px;
-}
-
-.card-img {
-	width: 180px;
-	height: 95px;
-	margin: 10px 20px 10px 20px;
+	margin-left: 70px;
 }
 
 .card-user {
-	display: flex;
-	justify-content: center;
-	margin-left: 15px;
-}
-
-.user-img {
-	width: 35px;
-	height: 35px;
-	border-radius: 50%;
-	float: left;
-	margin-right: 5px;
-	margin-bottom: 10px;
-	padding: 0;
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
 .card-text {
-	font-size: 12px;
-	padding-top: 7px;
+	font-size: 13px;
+	padding: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.user-card-text {
+	margin: 0px;
+	margin-botton: 20px;
+	width: 120px;
+	height: 20px;
+	float: right;
 }
 
 .pagination .page-link {
 	margin-top: 4rem;
 	text-decoration: none;
-	/* 밑줄 스타일을 없앱니다. */
 	color: black;
 	background-color: transparent;
-	/* 페이지 번호의 배경 색상을 투명으로 설정합니다. */
 	border-color: transparent;
-	/* 페이지 번호의 테두리 색상을 투명으로 설정합니다. */
 }
 
 .pagination .page-link:hover {
@@ -179,7 +158,7 @@ div.card .card-top {
 
 	<div>
 		<c:choose>
-			<c:when test="${empty sessionScope.loginedUser}">
+			<c:when test="${empty sessionScope.user}">
 				<div class="join">
 					<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
 						이용하실 수 있습니다!</div>
@@ -193,11 +172,11 @@ div.card .card-top {
 			</c:otherwise>
 		</c:choose>
 
-		<c:forEach items="${result.missionList }" var="mission">
-			<div class="cards">
-				<div class="row row-cols-1 row-cols-md-4 g-4">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-md-4 g-4">
+				<c:forEach items="${result.missionList}" var="mission">
 					<div class="col">
-						<div class="card bg-secondary-subtle">
+						<div class="card bg-secondary-subtle" style="margin-top:50px">
 							<div class="card-top">
 								<div class="bookmark">
 									<i class="fa-solid fa-bookmark"></i>
@@ -217,16 +196,16 @@ div.card .card-top {
 									<c:otherwise>
 										<img
 											src="<%=request.getContextPath()%>/images/defaultMission.jpg"
-											class="card-img" alt="미션기본이미지">
+											class="card-img" alt="미션기본이미지" style="width: 200px; height: 100px;">
 									</c:otherwise>
 								</c:choose>
 
 								<div class="card-user">
-
 									<c:choose>
 										<c:when test="${mission.uprofileImg ne null}">
-											<img class="card-img-top rounded-0"
-												src="image?miImg=${mission.uprofileImg }" />
+											<img class="card-img-top rounded-circle"
+												src="image?miImg=${mission.uprofileImg}"
+												style="width: 50px; height: 50px;" />
 										</c:when>
 										<c:otherwise>
 											<img
@@ -234,38 +213,34 @@ div.card .card-top {
 												class="card-img" alt="미션기본이미지">
 										</c:otherwise>
 									</c:choose>
-
-									<div class="card-text">${mission.unickname }님도전중!</div>
 								</div>
+								<div class="user-card-text">${mission.unickname }
+									님 도전중!</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</c:forEach>
 			</div>
-		</c:forEach>
-		<!--  페이지네이션 -->
-		<div class="d-flex justify-content-center mt-4">
-			<nav aria-label="Page navigation example">
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">2</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">3</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-					</a></li>
-				</ul>
-			</nav>
+			<!-- 페이지네이션 -->
+			<div class="d-flex justify-content-center mt-4">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
 	</div>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+</html>
 
 </html>
