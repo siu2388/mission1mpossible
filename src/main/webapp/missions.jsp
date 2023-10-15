@@ -26,6 +26,10 @@ body {
 	background-image: url(./images/bg.jpg);
 }
 
+header {
+	margin-bottom: 30px;
+}
+
 .profilebox {
 	float: left;
 }
@@ -33,7 +37,7 @@ body {
 .join {
 	float: left;
 	margin: 20px;
-	margin-right: 10px;
+	margin-top: 50px;
 	border: 10px solid rgb(157, 217, 174);
 	border-radius: 30px;
 	width: 200px;
@@ -73,64 +77,86 @@ body {
 	transition: 0.5s ease-in-out;
 }
 
-.img.card-img {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-}
-
-.col {
-	width: 250px;
-	height: 250px;
-	margin-top: 50px;
-	margin-bottom: 30px;
-}
-
-.card {
-	border: 1px solid black;
-	background-color: rgb(251, 247, 238);
-	margin: 20px;
-}
-
 .card:hover {
 	transform: scale(1.1);
 	transition: 0.5s ease-in-out;
 	cursor: pointer;
 }
 
-.card-top {
+div.card .card-top {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
 }
 
 .bookmark {
 	color: #FAF009;
-	margin-right: 70px;
+	margin-left: 10px;
 }
 
 .like {
 	color: #49339A;
-	margin-left: 70px;
+	margin-right: 10px;
+}
+
+.card-text {
+	margin-left: 2px;
+}
+
+.card-title {
+	font-size: 18px;
+	padding-left: 20px;
+	margin-bottom: 1px;
+	font-weight: bold;
+}
+
+.card-date {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 82px;
+	margin-left: 20px;
+	font-size: 13px;
+	padding-left: 5px;
+}
+
+.card-img {
+	width: 180px;
+	height: 95px;
+	margin: 10px 20px 10px 30px;
 }
 
 .card-user {
 	margin-top: 10px;
-	margin-left: 10px;
+	margin-left: 20px;
+	margin-right: 0;
+	width: 50px;
+	margin-left: 20px;
+}
+
+.user-img {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	float: left;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	padding: 0;
+	margin-right: 5px;
 }
 
 .card-text {
-	font-size: 13px;
-	padding: 0;
-	margin-left: 10px;
-	margin-right: 10px;
+	font-size: 12px;
+	padding-top: 7px;
 }
 
 .user-card-text {
-	margin: 0px;
-	margin-botton: 20px;
-	width: 120px;
-	height: 20px;
-	float: right;
+	width: 120px; 
+	font-size : 14px;
+	text-align: right;
+	font-size: 14px;
+	margin-right:0;
+	margin-left: 90px;
 }
 
 .pagination .page-link {
@@ -147,7 +173,26 @@ body {
 	background-color: transparent;
 	border-color: transparent;
 }
+
+.container {
+	height: 730px; /* 페이지네이션에 충분한 높이 조정 */
+	position: relative;
+}
+
+.d-flex.justify-content-center.mt-4 {
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
+<script>
+        function callBtn(num) {
+            if (keyword != null && keyword.trim() != '') {
+                $('#page').val(num);
+                $('#searchform').submit();
+            }
+        }
+    </script>
 
 </head>
 
@@ -176,7 +221,8 @@ body {
 			<div class="row row-cols-1 row-cols-md-4 g-4">
 				<c:forEach items="${result.missionList}" var="mission">
 					<div class="col">
-						<div class="card bg-secondary-subtle" style="margin-top:50px">
+						<div class="card bg-secondary-subtle"
+							style="margin-top: 30px; margin-left: 20px">
 							<div class="card-top">
 								<div class="bookmark">
 									<i class="fa-solid fa-bookmark"></i>
@@ -186,8 +232,8 @@ body {
 								</div>
 							</div>
 							<div class="card-text">
-								<div class="card-title">${mission.title }</div>
-								<div class="card-date">${mission.createdAt }</div>
+								<div class="card-title">${mission.title}</div>
+								<div class="card-date">${mission.createdAt}</div>
 								<c:choose>
 									<c:when test="${mission.miImg ne null}">
 										<img class="card-img-top rounded-0"
@@ -195,52 +241,81 @@ body {
 									</c:when>
 									<c:otherwise>
 										<img
-											src="<%=request.getContextPath()%>/images/defaultMission.jpg"
-											class="card-img" alt="미션기본이미지" style="width: 200px; height: 100px;">
+											src="${pageContext.request.contextPath}/images/defaultMission.jpg"
+											class="card-img" alt="미션기본이미지"
+											style="width: 180px; height: 100px;">
 									</c:otherwise>
 								</c:choose>
 
 								<div class="card-user">
 									<c:choose>
 										<c:when test="${mission.uprofileImg ne null}">
-											<img class="card-img-top rounded-circle"
-												src="image?miImg=${mission.uprofileImg}"
-												style="width: 50px; height: 50px;" />
+											<div class="card-user2">
+												<div class="user-info">
+													<img class="card-img-top rounded-circle"
+														src="image?miImg=${mission.uprofileImg}"
+														style="width: 50px; height: 50px;" />
+												</div>
+											</div>
 										</c:when>
 										<c:otherwise>
-											<img
-												src="<%=request.getContextPath()%>/images/defaultProfile.png"
-												class="card-img" alt="미션기본이미지">
+											<div class="card-user3">
+												<div class="user-info">
+													<img
+														src="${pageContext.request.contextPath}/images/defaultProfile.png"
+														class="card-img rounded-circle" alt="미션기본이미지"
+														style="width: 50px; height: 50px;" />
+												</div>
+											</div>
 										</c:otherwise>
 									</c:choose>
 								</div>
-								<div class="user-card-text">${mission.unickname }
-									님 도전중!</div>
+								<div class="user-card-text">${mission.unickname}님 도전중!</div>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
-			<!-- 페이지네이션 -->
-			<div class="d-flex justify-content-center mt-4">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-					</ul>
-				</nav>
-			</div>
+		</div>
+
+		<!-- 페이지네이션 -->
+		<div class="d-flex justify-content-center mt-4">
+			<c:choose>
+				<c:when test="${result.pageInfo.curPage > 1}">
+					<a href="missions?page=${result.pageInfo.curPage - 1}">&lt;</a>
+				</c:when>
+				<c:otherwise>
+                    &lt;
+                </c:otherwise>
+			</c:choose>
+			&nbsp;&nbsp;
+			<c:forEach begin="${result.pageInfo.startPage}"
+				end="${result.pageInfo.endPage}" var="i">
+				<c:choose>
+					<c:when test="${result.pageInfo.curPage == i}">
+						<a href="missions?page=${i}" class="select"
+							onClick="callBtn(${i}); return ${result.keyword == null};">${i}</a>&nbsp;&nbsp;
+                    </c:when>
+					<c:otherwise>
+						<a href="missions?page=${i}" class="btn"
+							onClick="callBtn(${i}); return ${result.keyword == null};">${i}</a>&nbsp;&nbsp;
+                    </c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when
+					test="${result.pageInfo.curPage < result.pageInfo.totalPages}">
+					<a href="missions?page=${result.pageInfo.curPage + 1}">&gt;</a>
+				</c:when>
+				<c:otherwise>
+                    &gt;
+                </c:otherwise>
+			</c:choose>
 		</div>
 	</div>
-</body>
 
-</html>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
 </html>
