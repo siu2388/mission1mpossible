@@ -90,7 +90,7 @@ public class MissionServiceImpl implements MissionService {
 //전체 미션 조회
 	@Override
 	public Map<String, Object> findAllMissions(Integer page) throws Exception {
-		// pageInfo
+
 
 		int totalCounts = missionDao.countAllMissions();
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
@@ -99,32 +99,9 @@ public class MissionServiceImpl implements MissionService {
 		List<Mission> missionList = missionDao.selectMissionList(row-1);
 		System.out.println(missionList);
 
-		// 맵에 담아서 전달
 		Map<String, Object> result = new HashMap<>();
 		result.put("pageInfo", pageInfoResult.get("pageInfo"));
 		result.put("missionList", missionList);
-		
-		return result;
-	}
-	
-//건강 미션 리스트 조회 
-	@Override
-	public Map<String, Object> findHealthMissions(Integer page) throws Exception {
-		
-		int totalCounts = missionDao.countHealthMissions();
-		System.out.println("건강미션 총개수:" + totalCounts);
-		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
-		int row = (int) pageInfoResult.get("startRow");
-
-		System.out.println("row :"+row);
-		List<Mission> healthMissionList = missionDao.selectHealthMissionList(row - 1);
-		System.out.println(healthMissionList);
-		System.out.println("page" +page);
-
-		// 맵에 담아서 전달
-		Map<String, Object> result = new HashMap<>();
-		result.put("pageInfo", pageInfoResult.get("pageInfo"));
-		result.put("missionList", healthMissionList);
 		
 		return result;
 	}
@@ -157,7 +134,6 @@ public class MissionServiceImpl implements MissionService {
 		
 		return result;
 	}
-
 
 
 	@Override

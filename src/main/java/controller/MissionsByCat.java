@@ -15,7 +15,7 @@ import service.MissionServiceImpl;
 /**
  * Servlet implementation class MissionsByCat
  */
-@WebServlet("/missions-bycat")
+@WebServlet("/missions-by")
 public class MissionsByCat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class MissionsByCat extends HttpServlet {
 
 		String page = req.getParameter("page");
 		Integer catId = Integer.parseInt(req.getParameter("catId"));
-		System.out.println("컨트롤러에서 param으로 받은 catId:" + catId);
+
 		int curPage = 1; // 페이지를 안가져왔을 때 기본 1 페이지
 		if (page != null) {
 			curPage = Integer.parseInt(page);
@@ -45,7 +45,7 @@ public class MissionsByCat extends HttpServlet {
 			req.setAttribute("result", result);
 
 			System.out.println(req.getAttribute("result"));
-			// resp.sendRedirect("/missions");
+		
 			req.getRequestDispatcher("missions.jsp").forward(req, resp);
 
 		} catch (Exception e) {

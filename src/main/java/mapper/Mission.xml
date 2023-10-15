@@ -39,7 +39,7 @@
 	<select id="selectAllMissions" parameterType="Integer"
 		resultType="hashmap">
       <![CDATA[
-      SELECT m.title as title, m.createdAt as createdAt, m.miImg as miImg, u.profileImg as uprofileImg, u.nickname as unickname
+      SELECT m.idx as idx, m.title as title, m.createdAt as createdAt, m.miImg as miImg, u.profileImg as uprofileImg, u.nickname as unickname
       FROM mission m
       JOIN user u ON m.userIdx = u.idx
       ORDER BY m.createdAt DESC
@@ -54,33 +54,10 @@
 	</select>
 
 
-	<!-- 건강 -->
-	<!-- 건강 미션 리스트 조회 : 최신순 -->
-	<select id="selectHealthMissions" parameterType="Integer"
-		resultType="hashmap">
+	<!-- 카테고리별 미션리스트 조회 : 최신순 -->
+	<select id="selectMissionsByCat" resultType="hashmap">
       <![CDATA[
-      SELECT m.title as title, m.createdAt as createdAt, m.miImg as miImg, u.profileImg as uprofileImg, u.nickname as unickname
-      FROM mission m
-      JOIN user u ON m.userIdx = u.idx
-      where m.catId = 1
-      ORDER BY m.createdAt DESC
-      limit #{row},8
-      ]]>
-	</select>
-	<!-- 건강미션리스트 조회시: 총 건강미션수 -->
-	<select id="countHealthMissions" resultType="Integer">
-     <![CDATA[
-      select count(idx) from mission where catId=1
-      ]]>
-	</select>
-
-	<!-- 생활 -->
-	<!-- catId 하나로 요청할 수 있도록 수정 중 -->
-	<!-- 생활 미션리스트 조회 : 최신순 -->
-	<select id="selectMissionsByCat" 
-		resultType="hashmap">
-      <![CDATA[
-      SELECT m.title as title, m.createdAt as createdAt, m.miImg as miImg, u.profileImg as uprofileImg, u.nickname as unicknam
+      SELECT  m.idx as idx, m.title as title, m.createdAt as createdAt, m.miImg as miImg, u.profileImg as uprofileImg, u.nickname as unickname
       FROM mission m
       JOIN user u ON m.userIdx = u.idx
       where m.catId = #{catId}
@@ -88,7 +65,7 @@
       limit #{row},8
       ]]>
 	</select>
-	<!-- 생활 미션리스트 조회시: 총 생활미션수 -->
+	<!-- 카테고리별 미션리스트 조회시: 총 미션수 -->
 	<select id="countMissions" parameterType="Integer"
 		resultType="Integer">
      <![CDATA[

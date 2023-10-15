@@ -22,14 +22,9 @@ public interface MissionService {
 	// 미션 전체 리스트 조회 - 페이지 번호와 미션 리스트 전달
 	Map<String, Object> findAllMissions(Integer page) throws Exception;
 	
-	// 건강 미션 리스트 조회
-	Map<String, Object> findHealthMissions(Integer page) throws Exception;
-	
-	//******************************
 	// 카테고리별 미션 리스트 조회 
 	Map<String, Object> findhMissionsByCat(Integer page, Integer catId) throws Exception;
-	//******************************
-	
+
 	// 오늘의 미션 상세
 	Mission detailTodayMission(Integer idx) throws Exception;
 
