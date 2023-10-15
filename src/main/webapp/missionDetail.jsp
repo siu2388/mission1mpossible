@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,6 +41,16 @@ body {
 	margin: 2rem 5rem 0 0;
 }
 
+.success-background {
+  border: 2px solid #9BD6AF;
+  background-color: #9BD6AF;
+}
+
+.fail-background {
+  border: 2px solid #F3AA9F;
+  background-color: #F3AA9F;
+}
+
 .custom-btn {
 	background-color: #4AC98C !important;
 	border-color: #4AC98C !important;
@@ -78,6 +89,7 @@ body {
 	border-radius: 10px;
 	/* background-color: #49339A; */
 	color: #ffffff !important;
+	position: relative;
 }
 
 .custom-text {
@@ -89,6 +101,7 @@ body {
 .custom-text2 {
 	font-weight: bold;
 	color: #49339A;
+	margin-top: 20px;
 }
 
 .custom-text3 {
@@ -103,8 +116,14 @@ body {
 	color: #49339A;
 }
 
-.custom-bg-color {
+.custom-bg {
   background-color: #49339A;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* img.img-fluid {
@@ -132,24 +151,39 @@ body {
 	</header>
 	
   <!-- 좌 프로필카드 -->
-	<div>
-		<div class="profilebox">
-			<jsp:include page="profilecard.jsp" />
-		</div>
+	<div class="profilebox">
+		<jsp:include page="profilecard.jsp" />
 	</div>
-	
+		
 	<div class="missionbox">
 		<div class="py-2 mx-auto w-90">
-			<div class="py-1 px-2 custom-currentDate-div text-center" id="currentDate">
-				<span id="createdAt" class="custom-bg-color">${formattedDate}</span>
-				<div class="mb-1 mt-2 d-flex align-items-center justify-content-center">
+		
+			<div class="py-1 px-2 custom-currentDate-div text-center">
+				<span id="createdAt" class="custom-bg">${formattedDate}</span>
+				<div id="missionStatus" class="mb-1 mt-2 d-flex align-items-center justify-content-center">
 					<!-- 성공/실패/진행중에따라 보여지는 값 -->
-					<!-- 오늘날짜 아직 진행중: 미션이 성공하지 않았고, 생성일이 오늘인 경우 -->
-					<!-- 성공: 미션이 성공했고, 생성일과 수정일이 같은 경우 -->
-					<!-- 실페: 기타 모든 경우 -->
-					<div class="custom-text2">진행중인 미션!</div>
+					<!-- 진행중: success가 null, createdAt이 오늘인 경우 -->
+					<!-- 성공: success가 성공, createdAt == updatedAt인 경우 -->
+					<!-- 실패: 기타 모든 경우 -->
+					<c:set var="now" value='<%=new java.util.Date()%>' />
+					<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
+			    <c:set var="missionStatusText">
+		        <c:choose>
+	            <c:when test="${mission.success == null && mission.createdAt == today}">
+	              진행중인 미션!
+	            </c:when>
+	            <c:when test="${'성공' eq mission.success && mission.createdAt == mission.updatedAt}">
+	              성공한 미션🤩
+	            </c:when>
+	            <c:otherwise>
+	              실패한 미션😭
+	            </c:otherwise>
+		        </c:choose>
+			    </c:set>
+					<div class="custom-text2">${missionStatusText}</div>
 				</div>
 				
+
 				<div class="card mx-auto w-70">
 					<div class="card-title text-center custom-text">${mission.title}</div>
 					<c:if test="${mission.miImg ne null}">
@@ -160,14 +194,17 @@ body {
 						<div class="card-body custom-text3">${mission.context}</div>
 					</c:if>
 				</div>
-				<div class="mx-auto w-70 d-flex justify-content-end align-items-center">
+				<div
+					class="mx-auto w-70 d-flex justify-content-end align-items-center">
 					<span class="mr-2 custom-text-color"></span>
 					<i class="fas fa-heart mx-1 custom-icon-color"></i>
 				</div>
+				
 			</div>
+			
 		</div>
 		
-		<div class="d-flex justify-content-center">
+		<div class="d-flex justify-content-center" id="btnBox">
 			<!-- 성공 / 실패 -->
 			<form action="success-fail?idx=${mission.idx}" method="post">
 				<input type="hidden" name="idx" value="${mission.idx}">
@@ -179,10 +216,22 @@ body {
 				<a href="update-mission?idx=${mission.idx}" class="btn py-1 px-3 mt-2 custom-btn-modify" type="button">수정</a>
 			</c:if>
 		</div>
+		
 	</div>
 
-
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+	  $(document).ready(function () {
+      let success = '${mission.success}';
+      let missionBox = $('.missionbox');
+
+      if (success == '성공') {
+        missionBox.addClass('success-background');
+      } else if (success == '실패') {
+        missionBox.addClass('fail-background');
+      }
+	  });
+	</script>
 </body>
 
 </html>
