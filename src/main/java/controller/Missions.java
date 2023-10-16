@@ -42,6 +42,7 @@ public class Missions extends HttpServlet {
 			Map<String, Object> result = missionService.findAllMissions(curPage);
 
 			req.setAttribute("result", result);
+			req.setAttribute("catId", 0);
 
 			req.getRequestDispatcher("missions.jsp").forward(req, resp);
 

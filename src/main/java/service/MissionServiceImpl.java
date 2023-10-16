@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 
 import dao.MissionDAO;
 import dao.MissionDAOImpl;
-import dto.Bookmark;
 import dto.Mission;
 import util.PageInfo;
 
@@ -62,7 +61,15 @@ public class MissionServiceImpl implements MissionService {
 	public Map<String, Object> getPageInfo(int page, int totalCounts) throws Exception {
 		PageInfo pageInfo = new PageInfo();
 
+		Map<String, Object> paging = new HashMap<>();
 		int maxPage = (int) Math.ceil((double) totalCounts / 10);
+		if (maxPage == 0) {
+			paging.put("pageInfo", pageInfo);
+			paging.put("startRow", 1);
+
+			return paging;
+
+		}
 		int startPage = (page - 1) / 10 * 10 + 1;
 		int endPage = startPage + 10 - 1;
 
@@ -80,7 +87,6 @@ public class MissionServiceImpl implements MissionService {
 
 		int row = (page - 1) * 10 + 1;
 
-		Map<String, Object> paging = new HashMap<>();
 		paging.put("pageInfo", pageInfo);
 		paging.put("startRow", row);
 
@@ -134,20 +140,6 @@ public class MissionServiceImpl implements MissionService {
 		return result;
 	}
 
-	// 북마크 가져오기
-	@Override
-	public List<Bookmark> getBookmark(int userIdx) throws Exception {
-		return missionDao.getBookmark(userIdx);
-
-	}
-
-	// 북마크 추가
-	@Override
-	public void insertBookmark(Bookmark bookmark) throws Exception {
-		missionDao.insertBookmark(bookmark);
-
-	}
-
 	// 좋아요
 	@Override
 	public String missionLike(Integer idx, Integer userIdx) throws Exception {
@@ -189,12 +181,12 @@ public class MissionServiceImpl implements MissionService {
 		return jsonObj.toJSONString(); // 최종 string 타입으로 응답
 	}
 
+	// 좋아요 했는지 확인
 	@Override
 	public Boolean isMissionLiked(Integer idx, Integer userIdx) throws Exception {
 		Map<String, Object> params = new HashMap<>();
 		params.put("userIdx", userIdx);
 		params.put("idx", idx);
-		// Integer likenum = missionDao.selectMissionLike(params);
 
 		Integer likenum = missionDao.selectMissionLike(params);
 		System.out.println(missionDao.selectMissionLike(params));
@@ -205,9 +197,81 @@ public class MissionServiceImpl implements MissionService {
 		} else {
 			return false;
 		}
-//		if (likenum == null)
-//			return false;
-//		return true;
 	}
 
+	// 북마크 여부 조회
+	@Override
+	public Boolean isBookmarked(Integer idx, Integer userIdx) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+		params.put("userIdx", userIdx);
+		params.put("idx", idx);
+
+		Integer bmcheck = missionDao.selectBookmarked(params);
+
+		if (bmcheck > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	// 북마크 여부 조회서비스 호출하고 없으면
+	@Override
+	public String aboutBookmark(Integer idx, Integer userIdx) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+		params.put("idx", idx);
+		params.put("userIdx", userIdx);
+
+		System.out.println("서비스idx: " + idx);
+		System.out.println("userIdx:" + userIdx);
+
+		// 북마크 테이블에 데이터 있는지 확인 (
+		Integer bmcheck = missionDao.selectBookmarked(params);
+
+		// 북마크 없을 경우 처리
+		if (bmcheck == null)
+			bmcheck = 0;
+		System.out.println("서비스bmcheck" + bmcheck);
+		Map<String, Object> result = new HashMap<>();
+
+		// 없으면 bookmark테이블에 추가
+		if (bmcheck == 0) {
+			missionDao.insertBookmark(params);
+			result.put("bselected", true); // 북마크 추가했다고 전달
+		} else { // 없으면 북마크테이블에서 삭제
+			missionDao.deleteMissionLike(params);
+			result.put("bselected", false);
+		}
+
+		// 북마크 여부 리턴
+		JSONObject jsonObj = new JSONObject(result); // by JSON.simple json으로
+		System.out.println("toJSON" + jsonObj.toString());
+		return jsonObj.toJSONString(); // 최종 string 타입으로 응답
+	}
+
+	// 나의 북마크리스트 조회
+	@Override
+	public Map<String, Object> findMyBookmarks(Integer page, Integer userIdx) throws Exception {
+		int totalCounts = missionDao.countBookmarks(userIdx);
+		System.out.println("북마크 총개수:" + totalCounts);
+
+		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
+		int row = (int) pageInfoResult.get("startRow");
+		System.out.println("row :" + row);
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("userIdx", userIdx);
+		params.put("row", row - 1);
+		System.out.println("params를 찍으면:" + params);
+
+		List<Mission> bookmarkList = missionDao.selectBookmarks(params);
+		System.out.println(bookmarkList);
+
+		// 맵에 담아서 전달
+		Map<String, Object> result = new HashMap<>();
+		result.put("pageInfo", pageInfoResult.get("pageInfo"));
+		result.put("missionList", bookmarkList);
+
+		return result;
+	}
 }

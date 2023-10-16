@@ -3,7 +3,6 @@ package service;
 import java.util.List;
 import java.util.Map;
 
-import dto.Bookmark;
 import dto.Mission;
 
 public interface MissionService {
@@ -43,10 +42,13 @@ public interface MissionService {
 	// 내가 좋아요를 눌렀는지 확인 goodidea 테이블에서 내정보 찾아오기
 	Boolean isMissionLiked(Integer idx, Integer userIdx) throws Exception;
 
-	// 북마크 가져오기
-	List<Bookmark> getBookmark(int userIdx) throws Exception;
+	// 북마크 여부 조회 후 북마크 추가 / 제거
+	String aboutBookmark(Integer idx, Integer userIdx) throws Exception;
 
-	// 북마크 추가
-	void insertBookmark(Bookmark bookmark) throws Exception;
+	// 북마크 했는지 조회 후
+	Boolean isBookmarked(Integer idx, Integer userIdx) throws Exception;
+
+	// 나의 북마크리스트 조회
+	Map<String, Object> findMyBookmarks(Integer page, Integer userIdx) throws Exception;
 
 }

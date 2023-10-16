@@ -1,7 +1,7 @@
 package dto;
 
 public class Bookmark {
-	private int idx;
+
 	private int userIdx;
 	private int missionIdx;
 
@@ -28,14 +28,6 @@ public class Bookmark {
 
 	public void setMissionIdx(int missionIdx) {
 		this.missionIdx = missionIdx;
-	}
-
-	public int getIdx() {
-		return idx;
-	}
-
-	public void setIdx(int idx) {
-		this.idx = idx;
 	}
 
 }
