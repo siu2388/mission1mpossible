@@ -1,6 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page
+	language="java"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
+%>
+<%@ taglib
+  prefix="c"
+  uri="http://java.sun.com/jsp/jstl/core"
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,31 +32,31 @@ header {
 }
 
 .profile {
-	float: left;
+		float: left;
 }
 
 .col77 {
-	margin-bottom: 25px;
+		margin-bottom: 25px;
 }
 
 .card77 {
-	width: 200px;
-	height: 200px;
-	text-align: center;
-	cursor: pointer;
+		width: 200px;
+		height: 200px;
+		text-align: center;
+		cursor: pointer;		
 }
 
 .card77:hover {
-	transform: rotateY(180deg);
-	transition: 0.7s ease-in-out;
-	cursor: pointer;
-	background-image: url("images/park2.png");
+    transform: rotateY(180deg);
+		transition: 0.7s ease-in-out;
+		cursor: pointer;
+		background-image: url("images/park2.png");
 }
 
 .card-title {
-	font-size: 20px;
-	font-weight: bold;
-	color: white;
+		font-size: 20px;
+		font-weight: bold;
+		color: white;
 }
 
 .like {
@@ -64,47 +70,49 @@ header {
 		<jsp:include page="header.jsp" />
 	</header>
 
-	<main>
-		<div class="profile">
-			<jsp:include page="profilecard.jsp" />
-		</div>
-		<div class="row row-cols-5 g-4">
-			<c:forEach items="${missions}" var="mission">
-				<div class="col col77">
-
-					<div class="card card77">
-
-						<div class="card card77 bg-success bg-opacity-75 border-dark">
-							<div>
-								<c:choose>
-									<c:when test="${mission.miImg ne null}">
-										<img src="image?miImg=${mission.miImg}" class="mission-img"
-											style="width: 200px; height: 200px;" />
-									</c:when>
-									<c:otherwise>
-										<img src="./images/park.png" class="mission-img" />
-									</c:otherwise>
-								</c:choose>
-							</div>
-							<div class="card-header bg-transparent border-dark">
-								${mission.createdAt}</div>
-							<div class="card-body text-success">
-								<h5 class="card-title">
-
-									<br>${mission.title} <br> <br>
-								</h5>
-							</div>
-							<div class="card-footer bg-transparent border-dark">
-								<div class="like">
-									${mission.likecount} <i class="fa-solid fa-heart"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-	</main>
+<main>
+  <div class="profile">
+    <jsp:include page="profilecard.jsp" />
+  </div>
+  <div class="row row-cols-5 g-4">
+    <c:forEach items="${missions}" var="mission">
+      <div class="col col77">
+      
+        <div class="card card77">
+        
+          <div class="card card77 bg-success bg-opacity-75 border-dark">
+            <div>
+      <c:choose>
+        <c:when test="${mission.miImg ne null}">
+          <img src="image?miImg=${mission.miImg}" class="mission-img" style="width:200px; height:200px;"/>
+        </c:when>
+        <c:otherwise>
+          <img src="./images/park.png" class="mission-img"/>
+        </c:otherwise>
+      </c:choose>
+    </div>
+            <div class="card-header bg-transparent border-dark">
+              ${mission.createdAt}
+            </div>
+            <div class="card-body text-success">
+              <h5 class="card-title">
+                
+                    <br>${mission.title}
+                    <br>
+                    <br>
+              </h5>
+            </div>
+            <div class="card-footer bg-transparent border-dark">
+              <div class="like">
+                ${mission.likecount} <i class="fa-solid fa-heart"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </c:forEach>
+  </div>
+</main>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

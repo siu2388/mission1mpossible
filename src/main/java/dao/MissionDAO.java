@@ -21,7 +21,13 @@ public interface MissionDAO {
 	// 미션 총 개수 반환 ( for 페이지네이션 적용)
 	Integer countAllMissions() throws Exception;
 
-	// 오늘의 미션 상세보기 by missionIdx
+	// 카테고리별 미션 전체리스트 조회
+	List<Mission> selectMissionsByCat(Map<String, Object> params) throws Exception;
+
+	// 카테고리별 미션 총 개수 반환 ( for 페이지네이션 적용)
+	Integer countMissions(Integer catId) throws Exception;
+	
+	// 미션 상세보기 by missionIdx
 	Mission selectMission(Integer idx) throws Exception;
 
 	// 나의 미션기록 조회
@@ -33,22 +39,19 @@ public interface MissionDAO {
 	// 성공률 계산
 	Integer calculateSuccessRate(Integer userIdx) throws Exception;
 
-	// 좋아요 여부, 수 계산
-	// mission.xml
-
-	Integer selectMissionLikeCount(Integer idx) throws Exception;
-
+	// 좋아요 수 증/감/조히 
 	void plusMissionLikeCount(Integer idx) throws Exception;
 
 	void minusMissionLikeCount(Integer idx) throws Exception;
 
-	// missionLike.xml 좋아요 삽입 여부
+	Integer selectMissionLikeCount(Integer idx) throws Exception;
+	
+	//미션 좋아요 테이블에 추가시 
+	Integer selectMissionLike(Map<String, Object> params) throws Exception;
 
-	Integer selectMissionLike(Map<String, Object> param) throws Exception;
+	void insertMissionLike(Map<String, Object> params) throws Exception;
 
-	void insertMissionLike(Map<String, Object> param) throws Exception;
-
-	void deleteMissionLike(Map<String, Object> param) throws Exception;
+	void deleteMissionLike(Map<String, Object> params) throws Exception;
 
 	// 좋아요 수 끝
 

@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.Mission;
+import dto.User;
 import service.MissionService;
 import service.MissionServiceImpl;
 
@@ -46,10 +48,14 @@ public class MissionDetail extends HttpServlet {
 			req.setAttribute("formattedDate", formattedDate);
 			// end:날짜형식변경
 
-			// 여기서 유저정보가 필요한건지 확인필요
-			// HttpSession session = req.getSession();
-			// User user = (User) session.getAttribute("user");
-			// end
+			HttpSession session = req.getSession();
+			User user = (User) session.getAttribute("user");
+
+			if (user != null) {
+				Boolean isLiked = missionService.isMissionLiked(idx, user.getIdx());
+				System.out.println("isLiked:" + isLiked);
+				req.setAttribute("selected", isLiked);
+			}
 
 			req.getRequestDispatcher("missionDetail.jsp").forward(req, resp);
 

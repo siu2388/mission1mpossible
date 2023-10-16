@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,6 +176,7 @@ div.card .card-top {
 	<header>
 		<jsp:include page="header.jsp" />
 	</header>
+
 	<div>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
@@ -195,56 +195,60 @@ div.card .card-top {
 		<c:choose>
 			<c:when test="${not empty bookmarks}">
 				<c:forEach items="${bookmarks}" var="bookmark">
-
+					<!-- 북마크 미션 카드를 표시하는 코드 -->
 					<div class="cards">
-						<div class="row row-cols-1 row-cols-md-4 g-4">
-							<div class="col">
-								<div class="card bg-secondary-subtle">
-									<div class="card-top">
-										<div class="bookmark">
-											<i class="fa-solid fa-bookmark"></i>
-										</div>
-										<div class="like">
-											33 <i class="fa-solid fa-heart"></i>
-										</div>
-									</div>
-									<div class="card-text">
-										<div class="card-title">${mission.title }</div>
-										<div class="card-date">${mission.createdAt }</div>
-										<c:choose>
-											<c:when test="${mission.miImg ne null}">
-												<img class="card-img-top rounded-0"
-													src="image?miImg=${mission.miImg}" />
-											</c:when>
-											<c:otherwise>
-												<img
-													src="<%=request.getContextPath()%>/images/defaultMission.jpg"
-													class="card-img" alt="미션기본이미지">
-											</c:otherwise>
-										</c:choose>
+						<div class="card-title">${bookmark.title}</div>
+						<c:forEach items="${result.missionList }" var="mission">
+							<div class="cards">
+								<div class="row row-cols-1 row-cols-md-4 g-4">
+									<div class="col">
+										<div class="card bg-secondary-subtle">
+											<div class="card-top">
+												<div class="bookmark">
+													<i class="fa-solid fa-bookmark"></i>
+												</div>
+												<div class="like">
+													33 <i class="fa-solid fa-heart"></i>
+												</div>
+											</div>
+											<div class="card-text">
+												<div class="card-title">${mission.title }</div>
+												<div class="card-date">${mission.createdAt }</div>
+												<c:choose>
+													<c:when test="${mission.miImg ne null}">
+														<img class="card-img-top rounded-0"
+															src="image?miImg=${mission.miImg}" />
+													</c:when>
+													<c:otherwise>
+														<img
+															src="<%=request.getContextPath()%>/images/defaultMission.jpg"
+															class="card-img" alt="미션기본이미지">
+													</c:otherwise>
+												</c:choose>
 
-										<div class="card-user">
+												<div class="card-user">
 
-											<c:choose>
-												<c:when test="${mission.profileImg ne null}">
-													<img class="card-img-top rounded-0"
-														src="image?miImg=${mission.profileImg }" />
-												</c:when>
-												<c:otherwise>
-													<img
-														src="<%=request.getContextPath()%>/images/defaultProfile.png"
-														class="card-img" alt="미션기본이미지">
-												</c:otherwise>
-											</c:choose>
+													<c:choose>
+														<c:when test="${mission.uprofileImg ne null}">
+															<img class="card-img-top rounded-0"
+																src="image?miImg=${mission.uprofileImg }" />
+														</c:when>
+														<c:otherwise>
+															<img
+																src="<%=request.getContextPath()%>/images/defaultProfile.png"
+																class="card-img" alt="미션기본이미지">
+														</c:otherwise>
+													</c:choose>
 
-											<div class="card-text">${mission.nickname}님도전중!</div>
+													<div class="card-text">${mission.unickname }님도전중!</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</c:forEach>
 					</div>
-					
 				</c:forEach>
 			</c:when>
 			<c:otherwise>

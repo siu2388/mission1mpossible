@@ -1,17 +1,16 @@
 package dto;
 
 public class Goodidea {
-	private int idx;
 	private int userIdx;
-	private int missionId;
+	private int missionIdx;
 
 	public Goodidea() {
 
 	}
 
-	public Goodidea(int userIdx, int missionId) {
+	public Goodidea(int userIdx, int missionIdx) {
 		this.userIdx = userIdx;
-		this.missionId = missionId;
+		this.missionIdx = missionIdx;
 	}
 
 	public int getUserIdx() {
@@ -22,20 +21,12 @@ public class Goodidea {
 		this.userIdx = userIdx;
 	}
 
-	public int getMissionId() {
-		return missionId;
+	public int getMissionIdx() {
+		return missionIdx;
 	}
 
-	public void setMissionId(int missionId) {
-		this.missionId = missionId;
-	}
-
-	public int getIdx() {
-		return idx;
-	}
-
-	public void setIdx(int idx) {
-		this.idx = idx;
+	public void setMissionIdx(int missionIdx) {
+		this.missionIdx = missionIdx;
 	}
 
 }

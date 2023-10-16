@@ -56,8 +56,8 @@ public class Login extends HttpServlet {
 			session.setAttribute("user", user);
 			session.setAttribute("totalMissions", totalMissions);
 			session.setAttribute("successRate", successRate);
-
-			req.getRequestDispatcher("missions.jsp").forward(req, resp);
+			
+			resp.sendRedirect("missions");
 
 		} catch (Exception e) {
 			req.setAttribute("err", e.getMessage());

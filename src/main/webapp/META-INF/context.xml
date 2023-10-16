@@ -8,5 +8,5 @@
 			  driverClassName="org.mariadb.jdbc.Driver"
 			  factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 			  url="jdbc:mariadb://localhost:3306/mipdb"
-			  maxActive="500"/>	
+			  maxActive="700"/>	
 </Context>

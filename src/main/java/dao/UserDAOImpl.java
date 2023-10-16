@@ -14,7 +14,7 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.insert("mapper.user.insertUser", user);
 		sqlSession.commit();
 	}
-	
+
 	@Override
 	public void updateUser(User user) throws Exception {
 		sqlSession.update("mapper.user.updateUser", user);
@@ -32,6 +32,5 @@ public class UserDAOImpl implements UserDAO {
 		User user = sqlSession.selectOne("mapper.user.selectUserByNickname", nickname);
 		return user;
 	}
-
 
 }

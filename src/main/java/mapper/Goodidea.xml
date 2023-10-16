@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.goodidea">
+	<!-- 미션 좋아요 여부 조회 -->
+	<select
+		id="selectMissionLiked"
+		parameterType="hashmap"
+		resultType="Integer">
+        <![CDATA[
+        select count(*) from goodidea where missionIdx=#{idx} and userIdx=#{userIdx}
+        ]]>
+	</select>
+	<!-- 미션 좋아요 추가 -->
+	<insert
+		id="insertMissionLike"
+		parameterType="hashmap">
+        <![CDATA[
+        insert into goodidea (userIdx, missionIdx) values (#{userIdx}, #{idx})
+        ]]>
+	</insert>
+	<!-- 미션 좋아요 삭제 -->
+	<delete
+		id="deleteMissionLike"
+		parameterType="hashmap">
+        <![CDATA[
+        delete from goodidea where userIdx=#{userIdx} and missionIdx=#{idx}
+        ]]>
+	</delete>
+</mapper>

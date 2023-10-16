@@ -5,26 +5,19 @@
 
 <mapper namespace="mapper.bookmark">
 
-	<!-- 북마크 추가 -->
-	<insert id="insertBookmark" parameterType="Bookmark">
+    <!-- 북마크 추가 -->
+    <insert id="insertBookmark" parameterType="Bookmark">
         <![CDATA[
         INSERT INTO bookmark (userIdx, missionIdx)
         VALUES (#{userIdx}, #{missionIdx})
         ]]>
-	</insert>
+    </insert>
 
-	<!-- 사용자의 북마크 목록 가져오기 -->
-	<select id="getBookmark" parameterType="Integer"
-		resultType="Bookmark">
+    <!-- 사용자의 북마크 목록 가져오기 -->
+    <select id="getBookmark" parameterType="Integer" resultType="Bookmark">
         <![CDATA[
-        
-        SELECT m.idx, m.title, m.createdAt, m.miImg, u.profileImg, u.nickname, b.userIdx
-		FROM mission m
-		INNER JOIN bookmark b ON m.idx = b.missionIdx
-		INNER JOIN user u ON m.userIdx = u.idx
-		WHERE b.userIdx != m.userIdx AND b.userIdx = #{userIdx};
-        
+        SELECT * FROM bookmark WHERE userIdx = #{userIdx}
         ]]>
-	</select>
+    </select>
 
 </mapper>

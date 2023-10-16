@@ -70,48 +70,79 @@ public class MissionDAOImpl implements MissionDAO {
 		return sqlSession.selectOne("mapper.mission.countAllMissions");
 	}
 
-// 좋아요 수 카운트
+	// 카테고리별 미션 리스트 조회
+	@Override
+	public List<Mission> selectMissionsByCat(Map<String, Object> params) throws Exception {
+		return sqlSession.selectList("mapper.mission.selectMissionsByCat", params);
+	}
+
+	// 카테고리별 총 미션 개수 반환
+	@Override
+	public Integer countMissions(Integer catId) throws Exception {
+		return sqlSession.selectOne("mapper.mission.countMissions", catId);
+	}
+
+	// 좋아요 수 카운트
 	@Override
 	public Integer selectMissionLikeCount(Integer idx) throws Exception {
-		return sqlSession.selectOne("mapper.board.selectMissionLikeCount", idx);
-		}
+		return sqlSession.selectOne("mapper.mission.selectMissionLikeCount", idx);
+	}
 
 	// 좋아요 수 증가 + 1
 	@Override
 	public void plusMissionLikeCount(Integer idx) throws Exception {
-		sqlSession.update("mapper.board.plusMissionLikeCount", idx);
+		sqlSession.update("mapper.mission.plusMissionLikeCount", idx);
 		sqlSession.commit();
 	}
 
 	// 좋아요 수 감소 - 1
 	@Override
 	public void minusMissionLikeCount(Integer idx) throws Exception {
-		sqlSession.update("mapper.board.minusMissionLikeCount", idx);
+		sqlSession.update("mapper.mission.minusMissionLikeCount", idx);
 		sqlSession.commit();
-		
 	}
 
-	// 좋아요 누른 여부
+//미션에서 좋아요 눌러서 파라미터로 
 	@Override
-	public Integer selectMissionLike(Map<String, Object> param) throws Exception {
-		return sqlSession.selectOne("mapper.missionlike.selectMissionLike", param);
+	public Integer selectMissionLike(Map<String, Object> params) throws Exception {
+		return sqlSession.selectOne("mapper.goodidea.selectMissionLiked", params);
 	}
 
-	// 좋아요 추가
-
 	@Override
-	public void insertMissionLike(Map<String, Object> param) throws Exception {
-		sqlSession.insert("mapper.missionlike.insertMissionLike", param);
+	public void insertMissionLike(Map<String, Object> params) throws Exception {
+		sqlSession.insert("mapper.goodidea.insertMissionLike", params);
 		sqlSession.commit();
 
 	}
 
-	// 좋아요 제거
 	@Override
-	public void deleteMissionLike(Map<String, Object> param) throws Exception {
-		sqlSession.delete("mapper.missionlike.deleteMissionLike", param);
+	public void deleteMissionLike(Map<String, Object> params) throws Exception {
+		sqlSession.delete("mapper.goodidea.deleteMissionLike", params);
 		sqlSession.commit();
+
 	}
+
+//	// 좋아요 누른 여부
+//	@Override
+//	public Integer selectMissionLike(Map<String, Object> param) throws Exception {
+//		return sqlSession.selectOne("mapper.missionlike.selectMissionLike", param);
+//	}
+//
+//	// 좋아요 추가
+//
+//	@Override
+//	public void insertMissionLike(Map<String, Object> param) throws Exception {
+//		sqlSession.insert("mapper.missionlike.insertMissionLike", param);
+//		sqlSession.commit();
+//
+//	}
+//
+//	// 좋아요 제거
+//	@Override
+//	public void deleteMissionLike(Map<String, Object> param) throws Exception {
+//		sqlSession.delete("mapper.missionlike.deleteMissionLike", param);
+//		sqlSession.commit();
+//	}
 
 	@Override
 	public void insertBookmark(Bookmark bookmark) throws Exception {
