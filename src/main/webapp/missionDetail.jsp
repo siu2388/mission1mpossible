@@ -51,6 +51,18 @@ body {
   background-color: #F3AA9F;
 }
 
+/* .success-text {
+  color: #FFFFFF !important;
+  border-radius: 5px;
+  background-color: #556B2F;
+}
+
+.fail-text {
+  color: #FFFFFF !important;
+  border-radius: 5px;
+  background-color: #800020;
+} */
+
 .custom-btn {
 	background-color: #4AC98C !important;
 	border-color: #4AC98C !important;
@@ -73,7 +85,7 @@ body {
 	border-radius: 10px;
 }
 
-.custom-btn-modify {
+.custom-btn-update {
 	background-color: #AAA9AD !important;
 	color: #ffffff !important;
 	border-radius: 10px;
@@ -92,10 +104,11 @@ body {
 	position: relative;
 }
 
-.custom-text {
+.card .card-title {
 	font-size: 35px;
 	font-weight: bold;
 	background-color: #CBC65E;
+	margin: 0;
 }
 
 .custom-text2 {
@@ -126,20 +139,23 @@ body {
   left: 0;
 }
 
-/* img.img-fluid {
-	width: 400px;
-	height: 300px;
-	object-fit: cover;
-} */
-
-.card-title {
-	margin: 0;
+.btn-box {
+  position: relative;
+  top: 25px;
 }
 
 .mission-img-default {
 	object-fit: cover;
 	width: 250px;
 	height: 250px;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.no-padding {
+    padding: 0 !important;
 }
 
 </style>
@@ -160,7 +176,7 @@ body {
 		
 			<div class="py-1 px-2 custom-currentDate-div text-center">
 				<span id="createdAt" class="custom-bg">${formattedDate}</span>
-				<div id="missionStatus" class="mb-1 mt-2 d-flex align-items-center justify-content-center">
+				<div id="missionStatus" class="mb-2 mt-2 d-flex align-items-center justify-content-center">
 					<!-- 성공/실패/진행중에따라 보여지는 값 -->
 					<!-- 진행중: success가 null, createdAt이 오늘인 경우 -->
 					<!-- 성공: success가 성공, createdAt == updatedAt인 경우 -->
@@ -185,7 +201,7 @@ body {
 				
 
 				<div class="card mx-auto w-70">
-					<div class="card-title text-center custom-text">${mission.title}</div>
+					<div class="card-title text-center">${mission.title}</div>
 					<c:if test="${mission.miImg ne null}">
 						<img class="card-img-top rounded-0 mission-img-default" src="image?miImg=${mission.miImg}" />
 					</c:if>
@@ -197,24 +213,38 @@ body {
 				<div
 					class="mx-auto w-70 d-flex justify-content-end align-items-center">
 					<span class="mr-2 custom-text-color"></span>
-					<i class="fas fa-heart mx-1 custom-icon-color"></i>
+					<i class="fas fa-heart mx-1 mt-2 custom-icon-color"></i>
 				</div>
 				
 			</div>
 			
 		</div>
 		
-		<div class="d-flex justify-content-center" id="btnBox">
-			<!-- 성공 / 실패 -->
-			<form action="success-fail?idx=${mission.idx}" method="post">
-				<input type="hidden" name="idx" value="${mission.idx}">
-				<input class="btn py-1 px-3 mx-2 mt-2 custom-btn-success" type="submit" name="success" value="성공" />
-				<input class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail" type="submit" name="success" value="실패" />
-			</form>
-			<!--  -->
-			<c:if test="${user.idx eq mission.userIdx}">
-				<a href="update-mission?idx=${mission.idx}" class="btn py-1 px-3 mt-2 custom-btn-modify" type="button">수정</a>
-			</c:if>
+		<div class="btn-box d-flex justify-content-between">
+		  <!-- 버튼 배치를 위한 그리드 -->
+		  <div class="container no-padding">
+		    <div class="row">
+		      <!-- 왼쪽 공백 -->
+		      <div class="col-md-2 no-padding"></div>
+		      
+		      <!-- 성공, 실패 버튼 -->
+		      <div class="col-md-8 no-padding">
+						<form action="success-fail?idx=${mission.idx}" method="post" class="text-center">
+							<input type="hidden" name="idx" value="${mission.idx}">
+							<input class="btn py-1 px-3 mx-2 mt-2 custom-btn-success" type="submit" name="success" value="성공" />
+							<input class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail" type="submit" name="success" value="실패" />
+						</form>
+		      </div>
+		      
+		      <!-- 수정 버튼 -->
+		      <div class="col-md-2 no-padding d-flex justify-content-end">
+						<c:if test="${user.idx eq mission.userIdx}">
+							<a href="update-mission?idx=${mission.idx}" class="btn py-1 px-3 mx-2 mt-2 custom-btn-update" type="button">수정</a>
+						</c:if>
+		      </div>
+		      
+		    </div> <!-- row -->
+		  </div> <!-- container (그리드 끝) -->
 		</div>
 		
 	</div>
@@ -224,11 +254,14 @@ body {
 	  $(document).ready(function () {
       let success = '${mission.success}';
       let missionBox = $('.missionbox');
+      /* let missionStatusText = '${missionStatusText}'; */
 
       if (success == '성공') {
         missionBox.addClass('success-background');
+        /* $('#missionStatus').addClass('success-text'); */
       } else if (success == '실패') {
         missionBox.addClass('fail-background');
+        /* $('#missionStatus').addClass('fail-text'); */
       }
 	  });
 	</script>
