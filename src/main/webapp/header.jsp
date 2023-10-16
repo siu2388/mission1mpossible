@@ -151,7 +151,7 @@ hr {
 									오늘의 미션 </a></li>
 							<li><a class="dropdown-item" href="my-missions">&nbsp;📔
 									나의 미션기록 </a></li>
-							<li><a class="dropdown-item" href="#">&nbsp;🏷 북마크한 미션 </a>
+							<li><a class="dropdown-item" href="my-bookmarks">&nbsp;🏷 북마크한 미션 </a>
 							</li>
 						</ul>
 					</c:otherwise>

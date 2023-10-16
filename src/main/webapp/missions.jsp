@@ -255,7 +255,7 @@ div.card.bg-secondary-subtle {
 								</div>
 							</div>
 							<div class="card-text">
-								<div class="card-title">${mission.title}</div>
+								<div class="card-title"><a href="mission?idx=${mission.idx}">${mission.title }</a></div>
 								<div class="card-date">${mission.createdAt}</div>
 								<c:choose>
 									<c:when test="${mission.miImg ne null}">
