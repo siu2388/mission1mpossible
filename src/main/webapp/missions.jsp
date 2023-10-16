@@ -43,6 +43,7 @@ header {
 .join {
 	float: left;
 	margin: 20px;
+	margin-top: 50px;
 	border: 10px solid rgb(157, 217, 174);
 	border-radius: 30px;
 	width: 200px;
@@ -50,6 +51,7 @@ header {
 	font-weight: 500;
 	padding: 12px;
 	background-color: rgb(221, 241, 228);
+	border: 10px solid rgb(157, 217, 174);
 }
 
 .join-text {
@@ -81,16 +83,6 @@ header {
 	transition: 0.5s ease-in-out;
 }
 
-.col {
-	width: 250px;
-	height: 250px;
-}
-
-.card {
-	border: 1px solid black;
-	background-color: rgb(251, 247, 238);
-}
-
 .card:hover {
 	transform: scale(1.1);
 	transition: 0.5s ease-in-out;
@@ -114,8 +106,18 @@ div.card .card-top {
 	margin-right: 10px;
 }
 
+div.card.bg-secondary-subtle {
+	width: 250px;
+	height: 250px;
+	margin-top: 30px;
+	margin-left: 20px;
+}
+
 .card-text {
 	margin-left: 2px;
+	padding-top: 50px;
+	width: 250px;
+	height: 230px;
 }
 
 .card-title {
@@ -128,22 +130,30 @@ div.card .card-top {
 .card-date {
 	border: 1px solid black;
 	border-radius: 5px;
-	width: 81px;
+	width: 82px;
 	margin-left: 20px;
 	font-size: 13px;
-	padding-left: 10px;
+	padding-left: 5px;
 }
 
 .card-img {
-	width: 180px;
-	height: 95px;
-	margin: 10px 20px 10px 20px;
+	width: 160px;
+	height: 90px;
+	margin: 15px 20px 10px 30px;
+	padding-top: 0px;
 }
 
 .card-user {
-	display: flex;
-	justify-content: center;
-	margin-left: 15px;
+	margin-top: 10px;
+	margin: 0;
+	width: 50px;
+}
+
+.user-info {
+	width: 35px;
+	height: 35px;
+	margin-top: -7px;
+	margin-left: 30px;
 }
 
 .user-img {
@@ -154,6 +164,7 @@ div.card .card-top {
 	margin-right: 5px;
 	margin-bottom: 10px;
 	padding: 0;
+	margin-right: 5px;
 }
 
 .card-text {
@@ -161,15 +172,22 @@ div.card .card-top {
 	padding-top: 7px;
 }
 
+.user-card-text {
+	width: 120px;
+	font-size: 14px;
+	text-align: right;
+	font-size: 14px;
+	margin-right: 0;
+	margin-left: 70px;
+	margin-top: -30px;
+}
+
 .pagination .page-link {
 	margin-top: 4rem;
 	text-decoration: none;
-	/* 밑줄 스타일을 없앱니다. */
 	color: black;
 	background-color: transparent;
-	/* 페이지 번호의 배경 색상을 투명으로 설정합니다. */
 	border-color: transparent;
-	/* 페이지 번호의 테두리 색상을 투명으로 설정합니다. */
 }
 
 .pagination .page-link:hover {
@@ -178,15 +196,25 @@ div.card .card-top {
 	background-color: transparent;
 	border-color: transparent;
 }
+
+.container {
+	height: 600px; /* 페이지네이션에 충분한 높이 조정 */
+	position: relative;
+}
+
+.select {
+	margin: 0;
+}
+
 </style>
 <script>
-function callBtn(num) {
-  if(keyword != null && keyword.trim() != '') {
-    $('#page').val(num);
-    $('#searchform').submit();
-  }
-}
-</script>
+        function callBtn(num) {
+            if (keyword != null && keyword.trim() != '') {
+                $('#page').val(num);
+                $('#searchform').submit();
+            }
+        }
+    </script>
 
 </head>
 
@@ -213,11 +241,9 @@ function callBtn(num) {
 			</c:otherwise>
 		</c:choose>
 
-		<c:forEach
-			items="${result.missionList }"
-			var="mission">
-			<div class="cards">
-				<div class="row row-cols-1 row-cols-md-4 g-4">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-md-4 g-4 justify-content-start">
+				<c:forEach items="${result.missionList}" var="mission">
 					<div class="col">
 						<div class="card bg-secondary-subtle">
 							<div class="card-top">
@@ -229,49 +255,47 @@ function callBtn(num) {
 								</div>
 							</div>
 							<div class="card-text">
-								<div class="card-title">
-									<a href="mission?idx=${mission.idx}">${mission.title }</a>
-								</div>
-								<div class="card-date">${mission.createdAt }</div>
+								<div class="card-title">${mission.title}</div>
+								<div class="card-date">${mission.createdAt}</div>
 								<c:choose>
 									<c:when test="${mission.miImg ne null}">
-										<img
-											class="card-img"
-											src="image?miImg=${mission.miImg}" />
+										<img class="card-img" src="image?miImg=${mission.miImg}"
+											style="width: 180px" />
 									</c:when>
 									<c:otherwise>
 										<img
-											src="<%=request.getContextPath()%>/images/defaultMission.jpg"
-											class="card-img"
-											alt="미션기본이미지">
+											src="${pageContext.request.contextPath}/images/defaultMission.jpg"
+											class="card-img" alt="미션기본이미지" style="width: 180px">
 									</c:otherwise>
 								</c:choose>
 
 								<div class="card-user">
 									<c:choose>
 										<c:when test="${mission.uprofileImg ne null}">
-											<img
-												class="user-img"
-												src="image?miImg=${mission.uprofileImg }" />
+											<div class="user-info">
+												<img class="card-img-top rounded-circle"
+													src="image?miImg=${mission.uprofileImg}" />
+											</div>
 										</c:when>
 										<c:otherwise>
-											<img
-												src="<%=request.getContextPath()%>/images/defaultProfile.png"
-												class="user-img"
-												alt="프로필기본이미지">
+											<div class="user-info">
+												<img
+													src="${pageContext.request.contextPath}/images/defaultProfile.png"
+													class="card-img-top rounded-circle" alt="미션기본이미지" />
+											</div>
 										</c:otherwise>
 									</c:choose>
-									<div class="card-text">${mission.unickname }님도전중!</div>
 								</div>
+								<div class="user-card-text">${mission.unickname}님도전중!</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</c:forEach>
 			</div>
-		</c:forEach>
+		</div>
 		<!--  페이지네이션 -->
 		<div class="d-flex justify-content-center mt-4">
-		  
+
 			<c:choose>
 				<c:when test="${result.pageInfo.curPage>1 }">
 					<a href="missions?page=${result.pageInfo.curPage-1}">&lt;</a>

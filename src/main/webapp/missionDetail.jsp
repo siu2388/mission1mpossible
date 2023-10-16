@@ -177,6 +177,11 @@ body {
 .no-padding {
 		padding: 0 !important;
 }
+
+.no-padding {
+    padding: 0 !important;
+}
+
 </style>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>

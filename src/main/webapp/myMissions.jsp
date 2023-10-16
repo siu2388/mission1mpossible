@@ -73,7 +73,7 @@ header {
             <c:choose>
               <c:when test="${mission.miImg ne null}">
                 <img src="image?miImg=${mission.miImg}" class="mission-img" style="width:198px; height:200px;"/>
-             </c:when>
+              </c:when>
             <c:otherwise>
               <img src="./images/defaultMissionBears.jpg" class="mission-img"/>
             </c:otherwise>

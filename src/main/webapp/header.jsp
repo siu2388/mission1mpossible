@@ -1,17 +1,11 @@
-<%@ page
-	language="java"
-	contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib
-	prefix="c"
-	uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
-<meta
-	name="viewport"
-	content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <%-- bootstrap 5 적용 --%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -23,7 +17,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
-
 body {
 	width: 70%;
 	margin: 0 auto;
@@ -91,22 +84,30 @@ hr {
 	padding: 10px 20px;
 	color: black;
 }
+
 .nav-link.active {
-  background-color: #946be2;
-  }
+	background-color: #946be2;
+	
+}
 </style>
+<script>
+	console.log(${catId});
+	$(document).ready(function() {
+		$(".nav-link").click(function() {
+			$(".nav-link").removeClass("active")
+			console.log($(this))
+			$(this).addClass("active");
+		});
+		
+	});
+</script>
 </head>
 <body>
 	<div class="outer">
 		<div class="logo-container">
-			<a
-				href="missions"
-				class="logo-a">
-				<img
-					src="${pageContext.request.contextPath}/images/miplogo.png"
-					alt="홈으로이동-프로젝트로고"
-					width="50%"
-					height="60%" />
+			<a href="missions" class="logo-a"> <img
+				src="${pageContext.request.contextPath}/images/miplogo.png"
+				alt="홈으로이동-프로젝트로고" width="50%" height="60%" />
 			</a>
 		</div>
 		<div class="home-btns">
@@ -114,31 +115,21 @@ hr {
 				<c:when test="${empty sessionScope.user}">
 					<div class="btn-container">
 						<div class="h-left">
-							<a
-								class="btn disabled"
-								role="button">오늘의 미션🖋</a>
+							<a class="btn disabled" role="button">오늘의 미션🖋</a>
 						</div>
 						<div class="h-right">
-							<a
-								href="login"
-								class="btn"
-								role="button">로그인</a>
+							<a href="login" class="btn" role="button">로그인</a>
 						</div>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="btn-container">
 						<div class="h-left">
-							<a
-								href="today-mission-reg"
-								class="btn"
-								role="button">오늘의 미션🖋</a>
+							<a href="today-mission-reg" class="btn" role="button">오늘의
+								미션🖋</a>
 						</div>
 						<div class="h-right">
-							<a
-								href="logout"
-								class="btn"
-								role="button">로그아웃</a>
+							<a href="logout" class="btn" role="button">로그아웃</a>
 						</div>
 					</div>
 				</c:otherwise>
@@ -147,76 +138,40 @@ hr {
 	</div>
 	<hr />
 	<div id="navbox">
-		<ul
-			class="nav nav-pills nav-justified"
-			id="pills-tab"
-			role="tablist">
-			<li class="nav-item dropup-center dropup">
-				<c:choose>
+		<ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
+			<li class="nav-item dropup-center dropup"><c:choose>
 					<c:when test="${empty sessionScope.user}">
-						<a
-							class="nav-link disabled"
-							href="#">My</a>
+						<a class="nav-link disabled" href="#">My</a>
 					</c:when>
 					<c:otherwise>
-						<a
-							class="nav-link dropdown-toggle"
-							data-bs-toggle="dropdown"
-							href="#"
-							role="button"
-							aria-expanded="false">My</a>
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+							href="#" role="button" aria-expanded="false">My</a>
 						<ul class="dropdown-menu">
-							<li>
-								<a
-									class="dropdown-item"
-									href="today-mission-reg">&nbsp;🏆 오늘의 미션 </a>
-							</li>
-							<li>
-								<a
-									class="dropdown-item"
-									href="my-missions">&nbsp;📔 나의 미션기록 </a>
-							</li>
-							<li>
-								<a
-									class="dropdown-item"
-									href="my-bookmarks">&nbsp;🏷 북마크한 미션 </a>
+							<li><a class="dropdown-item" href="today-mission-reg">&nbsp;🏆
+									오늘의 미션 </a></li>
+							<li><a class="dropdown-item" href="my-missions">&nbsp;📔
+									나의 미션기록 </a></li>
+							<li><a class="dropdown-item" href="#">&nbsp;🏷 북마크한 미션 </a>
 							</li>
 						</ul>
 					</c:otherwise>
-				</c:choose>
+				</c:choose></li>
+			<li class="nav-item">
+				<a class='${catId == 0 ? "nav-link active" :"nav-link" }' href="missions">전체</a>
 			</li>
 			<li class="nav-item">
-				<a
-					class="nav-link"
-					href="missions">전체</a>
+				<a class='${catId == 1 ? "nav-link active" :"nav-link" }' href="missions-by?catId=1">건강</a>
 			</li>
 			<li class="nav-item">
-				<a
-					class="nav-link"
-					href="missions-by?catId=1">건강</a>
+				<a class='${catId == 2 ? "nav-link active" :"nav-link" }' href="missions-by?catId=2">생활</a></li>
+			<li class="nav-item">
+				<a class='${catId == 3 ? "nav-link active" :"nav-link" }' href="missions-by?catId=3">취미</a>
 			</li>
 			<li class="nav-item">
-				<a
-					class="nav-link"
-					href="missions-by?catId=2">생활</a>
+				<a class='${catId == 4 ? "nav-link active" :"nav-link" }' href="missions-by?catId=4">공부</a>
 			</li>
 			<li class="nav-item">
-				<a
-					class="nav-link"
-					href="missions-by?catId=3">취미</a>
-			</li>
-			<li class="nav-item">
-				<a
-					class="nav-link"
-					href="missions-by?catId=4">공부</a>
-			</li>
-			<li class="nav-item">
-				<a
-					class="nav-link"
-					href="missions-by?catId=5">기타</a>
-			</li>
-
-
+				<a class='${catId == 5? "nav-link active" :"nav-link" }' href="missions-by?catId=5">기타</a></li>
 		</ul>
 	</div>
 	<hr />
