@@ -25,7 +25,7 @@
   <mappers>
     <mapper resource="mapper/User.xml"/>
     <mapper resource="mapper/Mission.xml"/>
-    <mapper resource="mapper/MissionLike.xml"/>
+    <mapper resource="mapper/Goodidea.xml"/>
     <mapper resource="mapper/Bookmark.xml"/>
     
   </mappers>

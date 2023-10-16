@@ -313,12 +313,7 @@ function callBtn(num) {
 			</c:choose>
 			
 		</div>
-		
 		<!--  end -->
-
-
-
-
 	</div>
 
 	<script

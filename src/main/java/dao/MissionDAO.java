@@ -39,22 +39,19 @@ public interface MissionDAO {
 	// 성공률 계산
 	Integer calculateSuccessRate(Integer userIdx) throws Exception;
 
-	// 좋아요 여부, 수 계산
-	// mission.xml
-
-	Integer selectMissionLikeCount(Integer idx) throws Exception;
-
+	// 좋아요 수 증/감/조히 
 	void plusMissionLikeCount(Integer idx) throws Exception;
 
 	void minusMissionLikeCount(Integer idx) throws Exception;
 
-	// missionLike.xml 좋아요 삽입 여부
+	Integer selectMissionLikeCount(Integer idx) throws Exception;
+	
+	//미션 좋아요 테이블에 추가시 
+	Integer selectMissionLike(Map<String, Object> params) throws Exception;
 
-	Integer selectMissionLike(Map<String, Object> param) throws Exception;
+	void insertMissionLike(Map<String, Object> params) throws Exception;
 
-	void insertMissionLike(Map<String, Object> param) throws Exception;
-
-	void deleteMissionLike(Map<String, Object> param) throws Exception;
+	void deleteMissionLike(Map<String, Object> params) throws Exception;
 
 	// 좋아요 수 끝
 
