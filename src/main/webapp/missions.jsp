@@ -37,7 +37,7 @@ header {
 .join {
 	float: left;
 	margin: 20px;
-	margin-top: 40px;
+	margin-top: 50px;
 	border: 10px solid rgb(157, 217, 174);
 	border-radius: 30px;
 	width: 200px;
@@ -261,7 +261,7 @@ div.card.bg-secondary-subtle {
 												<div class="user-info">
 													<img class="card-img-top rounded-circle"
 														src="image?miImg=${mission.uprofileImg}"
-														style="width: 35px; height: 35px; margin-top:-7px; " />
+														style="width: 35px; height: 35px; margin-top:-7px; margin-left:27px;" />
 												</div>
 											</div>
 										</c:when>
@@ -271,7 +271,7 @@ div.card.bg-secondary-subtle {
 													<img
 														src="${pageContext.request.contextPath}/images/defaultProfile.png"
 														class="card-img rounded-circle" alt="미션기본이미지"
-														style="width: 35px; height: 35px; margin-top:-7px;" />
+														style="width: 35px; height: 35px; margin-top:-7px; " />
 												</div>
 											</div>
 										</c:otherwise>
