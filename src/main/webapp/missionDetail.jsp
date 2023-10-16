@@ -243,11 +243,12 @@ body {
 
 				<div class="card mx-auto w-70">
 					<div class="card-title text-center">${mission.title}</div>
+					<c:if test="${mission.miImg eq null}">
+						<img class="card-img-top rounded-0 mission-img-default"
+						  src="${pageContext.request.contextPath}/images/defaultMission.jpg" />
+					</c:if>
 					<c:if test="${mission.miImg ne null}">
-						<img
-							class="card-img-top rounded-0 mission-img-default"
-							src="image?miImg=${mission.miImg}"
-						/>
+						<img class="card-img-top rounded-0 mission-img-default" src="image?miImg=${mission.miImg}" />
 					</c:if>
 
 					<c:if test="${mission.context ne null}">
