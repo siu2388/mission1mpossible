@@ -1,12 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page
+	language="java"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib
+	prefix="c"
+	uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1" />
 <title>MISSION 1'M POSSIBLE</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
 
 <style>
 html, body {
@@ -91,7 +100,14 @@ html, body {
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
-					<img class="img-fluid" src="${pageContext.request.contextPath}/images/miplogo.png" alt="logo" />
+					<a
+						href="missions"
+						class="logo-a">
+						<img
+							class="img-fluid"
+							src="${pageContext.request.contextPath}/images/miplogo.png"
+							alt="logo" />
+					</a>
 				</div>
 				<div class="col-md-3"></div>
 			</div>
@@ -103,47 +119,100 @@ html, body {
 
 				<!-- 좌 이미지 -->
 				<div class="col-md-3">
-					<img class="img-fluid" src="${pageContext.request.contextPath}/images/mainImg2.png" alt="MainImg1" />
+					<img
+						class="img-fluid"
+						src="${pageContext.request.contextPath}/images/mainImg2.png"
+						alt="MainImg1" />
 				</div>
 
 				<!-- 중앙, 우 회원가입 폼 -->
-				<div class="col-md-5 custom-form d-flex align-items-center justify-content-center">
-					<form class="px-1" action="join" method="post" enctype="multipart/form-data">
+				<div
+					class="col-md-5 custom-form d-flex align-items-center justify-content-center">
+					<form
+						class="px-1"
+						action="join"
+						method="post"
+						enctype="multipart/form-data">
 						<div class="row">
-							<div class="col-md-5 d-flex align-items-center justify-content-center" id="imgUploadBundle">
+							<div
+								class="col-md-5 d-flex align-items-center justify-content-center"
+								id="imgUploadBundle">
 								<div class="px-4">
 									<div class="d-flex justify-content-center mb-4">
-										<img src="${pageContext.request.contextPath}/images/defaultProfile.png" class="rounded-circle user-img-default"
-										  id="imagePreview" alt="defaultProfile" />
+										<img
+											src="${pageContext.request.contextPath}/images/defaultProfile.png"
+											class="rounded-circle user-img-default"
+											id="imagePreview"
+											alt="defaultProfile" />
 									</div>
-									<div class="d-flex justify-content-center mb-2 custom-text-title">프로필사진</div>
+									<div
+										class="d-flex justify-content-center mb-2 custom-text-title">프로필사진</div>
 									<div class="d-flex justify-content-center align-items-center">
-										<div class="btn w-30 custom-btn d-flex justify-content-center align-items-center">
-											<label class="form-label m-0" for="pofileImgUpload">선택</label>
-											<input type="file" class="form-control d-none custom-btn" id="pofileImgUpload" name="profileImg"
-												accept="profile-image/*" onchange="previewImg(event)" />
+										<div
+											class="btn w-30 custom-btn d-flex justify-content-center align-items-center">
+											<label
+												class="form-label m-0"
+												for="pofileImgUpload">선택</label> <input
+												type="file"
+												class="form-control d-none custom-btn"
+												id="pofileImgUpload"
+												name="profileImg"
+												accept="profile-image/*"
+												onchange="previewImg(event)" />
 										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="col-md-7" id="joinFormBundle">
+							<div
+								class="col-md-7"
+								id="joinFormBundle">
 								<div class="mb-4 text-center custom-text-title-2">회원가입</div>
 								<div class="form-floating mb-2">
-									<input type="text" class="form-control-sm" id="floatingInput" name="userId" placeholder="아이디" />
-									<input type="button" class="btn btn-secondary btn-sm" value="중복확인" onclick="checkDuplicate('userId')" />
+									<input
+										type="text"
+										class="form-control-sm"
+										id="floatingInput"
+										name="userId"
+										placeholder="아이디" /> <input
+										type="button"
+										class="btn btn-secondary btn-sm"
+										value="중복확인"
+										onclick="checkDuplicate('userId')" />
 								</div>
 								<div class="form-floating mb-2">
-									<input type="text" class="form-control-sm" id="floatingInput" name="nickname" placeholder="닉네임" />
-									<input type="button" class="btn btn-secondary btn-sm" value="중복확인" onclick="checkDuplicate('nickname')"/>
+									<input
+										type="text"
+										class="form-control-sm"
+										id="floatingInput"
+										name="nickname"
+										placeholder="닉네임" /> <input
+										type="button"
+										class="btn btn-secondary btn-sm"
+										value="중복확인"
+										onclick="checkDuplicate('nickname')" />
 								</div>
 								<div class="form-floating mb-2">
-									<input type="password" class="form-control-sm" id="floatingPassword" name="pwd" placeholder="비밀번호" />
+									<input
+										type="password"
+										class="form-control-sm"
+										id="floatingPassword"
+										name="pwd"
+										placeholder="비밀번호" />
 								</div>
 								<div class="form-floating mb-2">
-									<input type="password" class="form-control-sm" id="floatingPasswordCheck" name="pwdCheck" placeholder="비밀번호확인" />
+									<input
+										type="password"
+										class="form-control-sm"
+										id="floatingPasswordCheck"
+										name="pwdCheck"
+										placeholder="비밀번호확인" />
 								</div>
-								<input class="btn w-100 py-2 mt-3 custom-btn-join" type="submit" value="가입하기" id="joinBtn" />
+								<input
+									class="btn w-100 py-2 mt-3 custom-btn-join"
+									type="submit"
+									value="가입하기"
+									id="joinBtn" />
 							</div>
 						</div>
 					</form>
@@ -154,18 +223,20 @@ html, body {
 		</div>
 	</main>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 		// 비밀번호 일치 유효성 검사
-		document.getElementById('joinBtn').addEventListener('click', function(event) {
-			let pwd = document.querySelector('input[name=pwd]').value;
-			let pwdCheck = document.querySelector('input[name=pwdCheck]').value;
+		document.getElementById('joinBtn').addEventListener('click',
+				function(event) {
+					let pwd = document.querySelector('input[name=pwd]').value;
+					let pwdCheck = document.querySelector('input[name=pwdCheck]').value;
 
-			if (pwd != pwdCheck) {
-				alert('비밀번호가 일치하지 않습니다.');
-				event.preventDefault(); // 폼 제출 막음
-			}
-		});
+					if (pwd != pwdCheck) {
+						alert('비밀번호가 일치하지 않습니다.');
+						event.preventDefault(); // 폼 제출 막음
+					}
+				});
 
 		// 회원 가입 전 프로필사진 첨부했을 때 미리보기
 		function previewImg(event) {
@@ -184,7 +255,7 @@ html, body {
 				imagePreview.src = '${pageContext.request.contextPath}/images/defaultProfile.png';
 			}
 		}
-		
+
 		// 중복체크 함수
 		function checkDuplicate(type) {
 			let value = document.querySelector('input[name="' + type + '"]').value;
@@ -192,8 +263,7 @@ html, body {
 			// AJAX 요청 보내기
 			let xhr = new XMLHttpRequest();
 			xhr.open('POST', 'check-duplicate', true); // 서블릿 URL
-			xhr.setRequestHeader('Content-Type',
-					'application/x-www-form-urlencoded');
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState === 4 && xhr.status === 200) {
 					// 서버 응답을 확인하여 중복 여부를 처리

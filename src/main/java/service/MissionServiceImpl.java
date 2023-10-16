@@ -59,10 +59,9 @@ public class MissionServiceImpl implements MissionService {
 
 	// 페이징 처리 서비스
 	@Override
-	public Map<String, Object> getPageInfo(int page) throws Exception {
+	public Map<String, Object> getPageInfo(int page, int totalCounts) throws Exception {
 		PageInfo pageInfo = new PageInfo();
 
-		int totalCounts = missionDao.countAllMissions();
 		int maxPage = (int) Math.ceil((double) totalCounts / 10);
 		int startPage = (page - 1) / 10 * 10 + 1;
 		int endPage = startPage + 10 - 1;
@@ -77,6 +76,8 @@ public class MissionServiceImpl implements MissionService {
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 
+		System.out.println("페이징처리에서 받은 토탈카운트:"+totalCounts);
+		
 		int row = (page - 1) * 10 + 1;
 
 		Map<String, Object> paging = new HashMap<>();
@@ -89,21 +90,51 @@ public class MissionServiceImpl implements MissionService {
 //전체 미션 조회
 	@Override
 	public Map<String, Object> findAllMissions(Integer page) throws Exception {
-		// pageInfo
 
-		Map<String, Object> pageInfoResult = getPageInfo(page);
+
+		int totalCounts = missionDao.countAllMissions();
+		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
 
-		List<Mission> missionList = missionDao.selectMissionList(row - 1);
+		List<Mission> missionList = missionDao.selectMissionList(row-1);
 		System.out.println(missionList);
+
+		Map<String, Object> result = new HashMap<>();
+		result.put("pageInfo", pageInfoResult.get("pageInfo"));
+		result.put("missionList", missionList);
+		
+		return result;
+	}
+	
+	//카테고리별 미션 리스트조회 
+	@Override
+	public Map<String, Object> findhMissionsByCat(Integer page, Integer catId) throws Exception {
+		
+		int totalCounts = missionDao.countMissions(catId);
+		System.out.println("미션 총개수:" + totalCounts);
+		
+		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
+		int row = (int) pageInfoResult.get("startRow");
+		System.out.println("row :"+row);
+		
+		String strcatId = catId.toString();
+		
+		Map<String, Object> params = new HashMap<>();
+	  params.put("catId", strcatId);
+	  params.put("row", row -1);
+	  System.out.println("params를 찍으면:" +params);
+
+		List<Mission> missionListByCat = missionDao.selectMissionsByCat(params);
+		System.out.println(missionListByCat);
 
 		// 맵에 담아서 전달
 		Map<String, Object> result = new HashMap<>();
 		result.put("pageInfo", pageInfoResult.get("pageInfo"));
-		result.put("missionList", missionList);
+		result.put("missionList", missionListByCat);
+		
 		return result;
-
 	}
+
 
 	@Override
 	public String getMissionLikeStatus(Integer userIdx, Integer missionIdx) throws Exception {
@@ -158,5 +189,8 @@ public class MissionServiceImpl implements MissionService {
 		missionDao.insertBookmark(bookmark);
 		
 	}
+
+	
+	
 
 }

@@ -13,16 +13,16 @@ import service.MissionService;
 import service.MissionServiceImpl;
 
 /**
- * Servlet implementation class MissionsHealth
+ * Servlet implementation class MissionsByCat
  */
-@WebServlet("/missions-health")
-public class MissionsHealth extends HttpServlet {
+@WebServlet("/missions-by")
+public class MissionsByCat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MissionsHealth() {
+	public MissionsByCat() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,6 +32,8 @@ public class MissionsHealth extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 
 		String page = req.getParameter("page");
+		Integer catId = Integer.parseInt(req.getParameter("catId"));
+
 		int curPage = 1; // 페이지를 안가져왔을 때 기본 1 페이지
 		if (page != null) {
 			curPage = Integer.parseInt(page);
@@ -39,10 +41,11 @@ public class MissionsHealth extends HttpServlet {
 
 		try {
 			MissionService missionService = new MissionServiceImpl();
-			Map<String, Object> result = missionService.findAllMissions(curPage);
+			Map<String, Object> result = missionService.findhMissionsByCat(curPage, catId);
 			req.setAttribute("result", result);
 
-			// resp.sendRedirect("/missions");
+			System.out.println(req.getAttribute("result"));
+		
 			req.getRequestDispatcher("missions.jsp").forward(req, resp);
 
 		} catch (Exception e) {
@@ -52,7 +55,5 @@ public class MissionsHealth extends HttpServlet {
 			req.getRequestDispatcher("error.jsp").forward(req, resp);
 
 		}
-
 	}
-
 }
