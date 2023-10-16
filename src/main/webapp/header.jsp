@@ -23,9 +23,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
-* {
-	margin: 0 auto;
-}
 
 body {
 	width: 70%;
@@ -37,6 +34,7 @@ body {
 	padding-top: 10px;
 	margin-top: 10px;
 	display: flex;
+	justify-content: center;
 }
 
 .logo-container {
@@ -44,7 +42,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 60%;
-	padding-top: 20px;
+	padding-top: 20px
 }
 
 .logo-container>img {
