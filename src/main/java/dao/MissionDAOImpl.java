@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dto.Bookmark;
 import dto.Mission;
 import util.MybatisSqlSessionFactory;
 
@@ -112,47 +111,44 @@ public class MissionDAOImpl implements MissionDAO {
 	public void insertMissionLike(Map<String, Object> params) throws Exception {
 		sqlSession.insert("mapper.goodidea.insertMissionLike", params);
 		sqlSession.commit();
-
 	}
 
 	@Override
 	public void deleteMissionLike(Map<String, Object> params) throws Exception {
 		sqlSession.delete("mapper.goodidea.deleteMissionLike", params);
 		sqlSession.commit();
-
 	}
 
-//	// 좋아요 누른 여부
-//	@Override
-//	public Integer selectMissionLike(Map<String, Object> param) throws Exception {
-//		return sqlSession.selectOne("mapper.missionlike.selectMissionLike", param);
-//	}
-//
-//	// 좋아요 추가
-//
-//	@Override
-//	public void insertMissionLike(Map<String, Object> param) throws Exception {
-//		sqlSession.insert("mapper.missionlike.insertMissionLike", param);
-//		sqlSession.commit();
-//
-//	}
-//
-//	// 좋아요 제거
-//	@Override
-//	public void deleteMissionLike(Map<String, Object> param) throws Exception {
-//		sqlSession.delete("mapper.missionlike.deleteMissionLike", param);
-//		sqlSession.commit();
-//	}
-
+	// 북마크한 여부 조회
 	@Override
-	public void insertBookmark(Bookmark bookmark) throws Exception {
-		sqlSession.insert("mapper.bookmark.insertBookmark", bookmark);
+	public Integer selectBookmarked(Map<String, Object> params) throws Exception {
+		return sqlSession.selectOne("mapper.bookmark.selectBookmarked", params);
+	}
+
+	// 북마크테이블에 추가
+	@Override
+	public void insertBookmark(Map<String, Object> params) throws Exception {
+		sqlSession.insert("mapper.bookmark.insertBookmark", params);
 		sqlSession.commit();
 	}
 
+	// 북마크테이블에서 삭제
 	@Override
-	public List<Bookmark> getBookmark(int userIdx) throws Exception {
-		return sqlSession.selectList("mapper.bookmark.getBookmark", userIdx);
+	public void deleteBookmark(Map<String, Object> params) throws Exception {
+		sqlSession.delete("mapper.bookmark.deleteBookmark", params);
+		sqlSession.commit();
+	}
+
+	// 내가 북마크한리스트 조회
+	@Override
+	public List<Mission> selectBookmarks(Map<String, Object> params) throws Exception {
+		return sqlSession.selectList("mapper.mission.selectMyBookmarks", params);
+	}
+
+	// 북마크한개수
+	@Override
+	public Integer countBookmarks(Integer userIdx) throws Exception {
+		return sqlSession.selectOne("mapper.mission.countMyBookmarks", userIdx);
 	}
 
 }

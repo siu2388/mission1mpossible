@@ -116,4 +116,35 @@
 		resultType="Integer">
 		SELECT likecount FROM mission WHERE idx=#{idx}
 	</select>
+	
+	<!-- 내가 북마크한 목록 불러오기 북마크 조회 : 최신순 -->
+  <select id="selectMyBookmarks" resultType="hashmap">
+        <![CDATA[
+  SELECT 
+  m.idx as idx, 
+  m.title as title, 
+  m.createdAt as createdAt, 
+  m.miImg as miImg, 
+  u.profileImg as uprofileImg, 
+  u.nickname as unickname
+FROM 
+  bookmark b
+  JOIN mission m ON b.missionIdx = m.idx
+  JOIN user u ON m.userIdx = u.idx
+WHERE 
+  b.userIdx = #{userIdx}
+ORDER BY 
+  m.createdAt DESC
+  limit #{row},8
+        ]]>
+  </select>
+  
+  <!--  내가 북마크한 개수 조회  -->
+  <select id="countMyBookmarks" parameterType="Integer"
+    resultType="Integer">
+     <![CDATA[
+      select count(missionIdx) from bookmark where userIdx=#{userIdx}
+      ]]>
+  </select>
+	
 </mapper>

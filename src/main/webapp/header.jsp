@@ -181,7 +181,7 @@ hr {
 							<li>
 								<a
 									class="dropdown-item"
-									href="#">&nbsp;🏷 북마크한 미션 </a>
+									href="my-bookmarks">&nbsp;🏷 북마크한 미션 </a>
 							</li>
 						</ul>
 					</c:otherwise>

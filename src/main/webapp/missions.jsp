@@ -230,7 +230,7 @@ function callBtn(num) {
 							</div>
 							<div class="card-text">
 								<div class="card-title">
-									<a href="mission?idx=${mission.idx}"}>${mission.title }</a>
+									<a href="mission?idx=${mission.idx}">${mission.title }</a>
 								</div>
 								<div class="card-date">${mission.createdAt }</div>
 								<c:choose>

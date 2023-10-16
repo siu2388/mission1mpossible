@@ -1,6 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page
+	language="java"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
+%>
+<%@ taglib
+	prefix="c"
+	uri="http://java.sun.com/jsp/jstl/core"
+%>
+<%@ taglib
+	prefix="fmt"
+	uri="http://java.sun.com/jsp/jstl/fmt"
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -53,13 +63,13 @@ body {
 }
 
 .success-background {
-  border: 2px solid #9BD6AF;
-  background-color: #9BD6AF;
+		border: 2px solid #9BD6AF;
+		background-color: #9BD6AF;
 }
 
 .fail-background {
-  border: 2px solid #F3AA9F;
-  background-color: #F3AA9F;
+		border: 2px solid #F3AA9F;
+		background-color: #F3AA9F;
 }
 
 /* .success-text {
@@ -73,7 +83,6 @@ body {
   border-radius: 5px;
   background-color: #800020;
 } */
-
 .custom-btn {
 		background-color: #4AC98C !important;
 		border-color: #4AC98C !important;
@@ -97,9 +106,9 @@ body {
 }
 
 .custom-btn-update {
-	background-color: #AAA9AD !important;
-	color: #ffffff !important;
-	border-radius: 10px;
+		background-color: #AAA9AD !important;
+		color: #ffffff !important;
+		border-radius: 10px;
 }
 
 .custom-form {
@@ -109,23 +118,23 @@ body {
 }
 
 .custom-currentDate-div {
-	border-radius: 10px;
-	/* background-color: #49339A; */
-	color: #ffffff !important;
-	position: relative;
+		border-radius: 10px;
+		/* background-color: #49339A; */
+		color: #ffffff !important;
+		position: relative;
 }
 
 .card .card-title {
-	font-size: 35px;
-	font-weight: bold;
-	background-color: #CBC65E;
-	margin: 0;
+		font-size: 35px;
+		font-weight: bold;
+		background-color: #CBC65E;
+		margin: 0;
 }
 
 .custom-text2 {
-	font-weight: bold;
-	color: #49339A;
-	margin-top: 20px;
+		font-weight: bold;
+		color: #49339A;
+		margin-top: 20px;
 }
 
 .custom-text3 {
@@ -141,18 +150,18 @@ body {
 }
 
 .custom-bg {
-  background-color: #49339A;
-  color: #ffffff;
-  padding: 5px;
-  border-radius: 8px;
-  position: absolute;
-  top: 0;
-  left: 0;
+		background-color: #49339A;
+		color: #ffffff;
+		padding: 5px;
+		border-radius: 8px;
+		position: absolute;
+		top: 0;
+		left: 0;
 }
 
 .btn-box {
-  position: relative;
-  top: 25px;
+		position: relative;
+		top: 25px;
 }
 
 .mission-img-default {
@@ -162,13 +171,12 @@ body {
 }
 
 .w-70 {
-  width: 70%;
+		width: 70%;
 }
 
 .no-padding {
-    padding: 0 !important;
+		padding: 0 !important;
 }
-
 </style>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -189,15 +197,36 @@ body {
 						$("#likeheart").attr("src", "<%=request.getContextPath()%>/images/likeFull.png")
 					} else {
 						$("#likeheart").attr("src", "<%=request.getContextPath()%>/images/likeEmpty.png")
-											}
-											$("#likecount").text(
-													res.likecount)
-										},
-										error : function(err) {
+					}
+					$("#likecount").text(res.likecount)
+				},
+				error : function(err) {
 											console.log(err);
 										}
-									})
-						})
+			})
+		})
+						 
+		$('#bookmarked').click(function() {
+      $.ajax({
+        url: 'bookmark',
+        type: 'post',
+        dataType: 'json',
+        data: {
+          'idx': '<c:out value="${mission.idx}"/>'
+        },
+        success: function(res) {
+          console.log(res.bselected);
+          if (res.bselected) {
+            $("#bookmarked").attr("src", "<%=request.getContextPath()%>/images/bmFull.png")
+          } else {
+            $("#bookmarked").attr("src", "<%=request.getContextPath()%>/images/bmEmpty.png")
+					}
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			})
+		})
 	})
 </script>
 </head>
@@ -206,40 +235,57 @@ body {
 	<header>
 		<jsp:include page="header.jsp" />
 	</header>
-	
-  <!-- 좌 프로필카드 -->
+
+	<!-- 좌 프로필카드 -->
 	<div class="profilebox">
 		<jsp:include page="profilecard.jsp" />
 	</div>
-		
+
 	<div class="missionbox">
 		<div class="py-2 mx-auto w-90">
-		
+
 			<div class="py-1 px-2 custom-currentDate-div text-center">
-				<span id="createdAt" class="custom-bg">${formattedDate}</span>
-				<div id="missionStatus" class="mb-2 mt-2 d-flex align-items-center justify-content-center">
+				<span
+					id="createdAt"
+					class="custom-bg"
+				>${formattedDate}</span>
+				<div
+					id="missionStatus"
+					class="mb-2 mt-2 d-flex align-items-center justify-content-center"
+				>
 					<!-- 성공/실패/진행중에따라 보여지는 값 -->
 					<!-- 진행중: success가 null, createdAt이 오늘인 경우 -->
 					<!-- 성공: success가 성공, createdAt == updatedAt인 경우 -->
 					<!-- 실패: 기타 모든 경우 -->
-					<c:set var="now" value='<%=new java.util.Date()%>' />
-					<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
-			    <c:set var="missionStatusText">
-		        <c:choose>
-	            <c:when test="${mission.success == null && mission.createdAt == today}">
+					<c:set
+						var="now"
+						value='<%=new java.util.Date()%>'
+					/>
+					<fmt:formatDate
+						var="today"
+						value="${now}"
+						pattern="yyyy-MM-dd"
+					/>
+					<c:set var="missionStatusText">
+						<c:choose>
+							<c:when
+								test="${mission.success == null && mission.createdAt == today}"
+							>
 	              진행중인 미션!
 	            </c:when>
-	            <c:when test="${'성공' eq mission.success && mission.createdAt == mission.updatedAt}">
+							<c:when
+								test="${'성공' eq mission.success && mission.createdAt == mission.updatedAt}"
+							>
 	              성공한 미션🤩
 	            </c:when>
-	            <c:otherwise>
+							<c:otherwise>
 	              실패한 미션😭
 	            </c:otherwise>
-		        </c:choose>
-			    </c:set>
+						</c:choose>
+					</c:set>
 					<div class="custom-text2">${missionStatusText}</div>
 				</div>
-				
+
 
 				<div class="card mx-auto w-70">
 					<div class="card-title text-center">${mission.title}</div>
@@ -261,9 +307,9 @@ body {
 				>
 					<c:if test="${user ne Empty }">
 						<c:choose>
-							<c:when test="${selected == true }">
+							<c:when test="${bselected == true }">
 								<img
-								  id="bookmarked"
+									id="bookmarked"
 									alt="선택한북마크"
 									src="<%=request.getContextPath()%>/images/bmFull.png"
 									width="20px"
@@ -272,7 +318,7 @@ body {
 							</c:when>
 							<c:otherwise>
 								<img
-								  id="bookmarked"
+									id="bookmarked"
 									alt="선택안된북마크"
 									src="<%=request.getContextPath()%>/images/bmEmpty.png"
 									width="20px"
@@ -280,10 +326,8 @@ body {
 								>
 							</c:otherwise>
 						</c:choose>
-					</c:if>
 
-					<!--  좋아요 -->
-					<c:if test="${user ne Empty }">
+						<!--  좋아요 -->
 						<c:choose>
 							<c:when test="${selected==true}">
 								<img
@@ -310,56 +354,79 @@ body {
 					</span>
 					&nbsp;&nbsp;
 				</div>
-
-
 			</div>
-			
 		</div>
-		
+
 		<div class="btn-box d-flex justify-content-between">
-		  <!-- 버튼 배치를 위한 그리드 -->
-		  <div class="container no-padding">
-		    <div class="row">
-		      <!-- 왼쪽 공백 -->
-		      <div class="col-md-2 no-padding"></div>
-		      
-		      <!-- 성공, 실패 버튼 -->
-		      <div class="col-md-8 no-padding">
-						<form action="success-fail?idx=${mission.idx}" method="post" class="text-center">
-							<input type="hidden" name="idx" value="${mission.idx}">
-							<input class="btn py-1 px-3 mx-2 mt-2 custom-btn-success" type="submit" name="success" value="성공" />
-							<input class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail" type="submit" name="success" value="실패" />
+			<!-- 버튼 배치를 위한 그리드 -->
+			<div class="container no-padding">
+				<div class="row">
+					<!-- 왼쪽 공백 -->
+					<div class="col-md-2 no-padding"></div>
+
+					<!-- 성공, 실패 버튼 -->
+					<div class="col-md-8 no-padding">
+						<form
+							action="success-fail?idx=${mission.idx}"
+							method="post"
+							class="text-center"
+						>
+							<input
+								type="hidden"
+								name="idx"
+								value="${mission.idx}"
+							>
+							<input
+								class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
+								type="submit"
+								name="success"
+								value="성공"
+							/>
+							<input
+								class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail"
+								type="submit"
+								name="success"
+								value="실패"
+							/>
 						</form>
-		      </div>
-		      
-		      <!-- 수정 버튼 -->
-		      <div class="col-md-2 no-padding d-flex justify-content-end">
+					</div>
+
+					<!-- 수정 버튼 -->
+					<div class="col-md-2 no-padding d-flex justify-content-end">
 						<c:if test="${user.idx eq mission.userIdx}">
-							<a href="update-mission?idx=${mission.idx}" class="btn py-1 px-3 mx-2 mt-2 custom-btn-update" type="button">수정</a>
+							<a
+								href="update-mission?idx=${mission.idx}"
+								class="btn py-1 px-3 mx-2 mt-2 custom-btn-update"
+								type="button"
+							>수정</a>
 						</c:if>
-		      </div>
-		      
-		    </div> <!-- row -->
-		  </div> <!-- container (그리드 끝) -->
+					</div>
+
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container (그리드 끝) -->
 		</div>
-		
+
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	></script>
 	<script>
-	  $(document).ready(function () {
-      let success = '${mission.success}';
-      let missionBox = $('.missionbox');
-      /* let missionStatusText = '${missionStatusText}'; */
+		$(document).ready(function() {
+			let success = '${mission.success}';
+			let missionBox = $('.missionbox');
+			/* let missionStatusText = '${missionStatusText}'; */
 
-      if (success == '성공') {
-        missionBox.addClass('success-background');
-        /* $('#missionStatus').addClass('success-text'); */
-      } else if (success == '실패') {
-        missionBox.addClass('fail-background');
-        /* $('#missionStatus').addClass('fail-text'); */
-      }
-	  });
+			if (success == '성공') {
+				missionBox.addClass('success-background');
+				/* $('#missionStatus').addClass('success-text'); */
+			} else if (success == '실패') {
+				missionBox.addClass('fail-background');
+				/* $('#missionStatus').addClass('fail-text'); */
+			}
+		});
 	</script>
 </body>
 
