@@ -37,7 +37,7 @@ header {
 .join {
 	float: left;
 	margin: 20px;
-	margin-top: 50px;
+	margin-top: 40px;
 	border: 10px solid rgb(157, 217, 174);
 	border-radius: 30px;
 	width: 200px;
@@ -100,8 +100,16 @@ div.card .card-top {
 	margin-right: 10px;
 }
 
+div.card.bg-secondary-subtle {
+	width: 250px;
+	height: 250px;
+}
+
 .card-text {
 	margin-left: 2px;
+	padding-top: 50px;
+	width: 250px;
+	height: 230px;
 }
 
 .card-title {
@@ -123,15 +131,13 @@ div.card .card-top {
 .card-img {
 	width: 180px;
 	height: 95px;
-	margin: 10px 20px 10px 30px;
+	margin: 15px 20px 10px 30px;
 }
 
 .card-user {
 	margin-top: 10px;
-	margin-left: 20px;
-	margin-right: 0;
+	margin: 0;
 	width: 50px;
-	margin-left: 20px;
 }
 
 .user-img {
@@ -151,11 +157,11 @@ div.card .card-top {
 }
 
 .user-card-text {
-	width: 120px; 
-	font-size : 14px;
+	width: 120px;
+	font-size: 14px;
 	text-align: right;
 	font-size: 14px;
-	margin-right:0;
+	margin-right: 0;
 	margin-left: 90px;
 }
 
@@ -175,7 +181,7 @@ div.card .card-top {
 }
 
 .container {
-	height: 730px; /* 페이지네이션에 충분한 높이 조정 */
+	height: 600px; /* 페이지네이션에 충분한 높이 조정 */
 	position: relative;
 }
 
@@ -237,13 +243,14 @@ div.card .card-top {
 								<c:choose>
 									<c:when test="${mission.miImg ne null}">
 										<img class="card-img-top rounded-0"
-											src="image?miImg=${mission.miImg}" />
+											src="image?miImg=${mission.miImg}"
+											style="width: 180px; height: 100px; margin: 15px 20px 10px 30px;" />
 									</c:when>
 									<c:otherwise>
 										<img
 											src="${pageContext.request.contextPath}/images/defaultMission.jpg"
 											class="card-img" alt="미션기본이미지"
-											style="width: 180px; height: 100px;">
+											style="width: 180px; height: 100px; padding-top: 0px;">
 									</c:otherwise>
 								</c:choose>
 
@@ -254,7 +261,7 @@ div.card .card-top {
 												<div class="user-info">
 													<img class="card-img-top rounded-circle"
 														src="image?miImg=${mission.uprofileImg}"
-														style="width: 50px; height: 50px;" />
+														style="width: 35px; height: 35px; margin-top:-7px; " />
 												</div>
 											</div>
 										</c:when>
@@ -264,13 +271,13 @@ div.card .card-top {
 													<img
 														src="${pageContext.request.contextPath}/images/defaultProfile.png"
 														class="card-img rounded-circle" alt="미션기본이미지"
-														style="width: 50px; height: 50px;" />
+														style="width: 35px; height: 35px; margin-top:-7px;" />
 												</div>
 											</div>
 										</c:otherwise>
 									</c:choose>
 								</div>
-								<div class="user-card-text">${mission.unickname}님 도전중!</div>
+								<div class="user-card-text" style="margin-top:-30px; margin-left:70px">${mission.unickname}님 도전 중!</div>
 							</div>
 						</div>
 					</div>
