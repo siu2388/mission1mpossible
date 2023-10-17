@@ -78,25 +78,42 @@
       order by createdAt desc
       ]]>
 	</select>
+
+
 	<!-- 총 미션 수 조회 -->
-	<select id="selectTotalMissions" parameterType="Integer"
-		resultType="Integer">
-    <![CDATA[
-    SELECT COUNT(*) FROM mission m
-   JOIN user u ON m.userIdx = u.idx
-   WHERE u.idx = #{userIdx}
-    ]]>
+
+	<select id="countTotalMissions" resultType="int">
+        <![CDATA[
+        SELECT 
+            COUNT(*) AS totalMissions
+        FROM 
+            mission
+        WHERE 
+            DATE(createdAt) = CURDATE() - INTERVAL 1 DAY
+            AND useridx = #{userIdx}
+        ]]>
 	</select>
+
+
 	<!-- 성공률 계산 -->
-	<select id="calculateSuccessRate" parameterType="Integer"
-		resultType="Integer">
-    <![CDATA[
-   SELECT COALESCE(ROUND((SUM(CASE WHEN m.success = 1 THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)) * 100), 0) AS successRate
-   FROM mission m
-   JOIN user u ON m.userIdx = u.idx
-   WHERE u.idx = #{userIdx}
-    ]]>
+	<select id="calculateMissionSuccessRate" resultType="map"
+		parameterType="int">
+        <![CDATA[
+        SELECT 
+            COUNT(*) AS totalMissions,
+            SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) AS successfulMissions,
+            ROUND((SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS successRate
+        FROM 
+            mission
+        WHERE 
+            DATE(createdAt) = CURDATE() - INTERVAL 1 DAY
+            AND (success = '성공' OR success IS NULL OR success = '실패')
+            AND userIdx = #{userIdx}
+        ]]>
 	</select>
+
+
+
 	<!-- like 증가 (update) -->
 	<update id="plusMissionLikeCount" parameterType="Integer">
         <![CDATA[

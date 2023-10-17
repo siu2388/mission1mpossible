@@ -15,38 +15,74 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta
-	name="viewport"
-	content="width=device-width, initial-scale=1"
->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MISSION 1'M POSSIBLE</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
->
+	rel="stylesheet">
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-	rel="stylesheet"
->
+	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
 	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-	crossorigin="anonymous"
-></script>
+	crossorigin="anonymous"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
 	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-	crossorigin="anonymous"
-></script>
+	crossorigin="anonymous"></script>
 <style>
 body {
-		height: 100%;
-		background-image: url(./images/bg.jpg);
+	height: 100%;
+	background-image: url(./images/bg.jpg);
 }
 
 .profilebox {
-		float: left;
+	float: left;
+}
+
+.join {
+	float: left;
+	margin: 20px;
+	margin-top: 50px;
+	border: 10px solid rgb(157, 217, 174);
+	border-radius: 30px;
+	width: 200px;
+	height: 250px;
+	font-weight: 500;
+	padding: 12px;
+	background-color: rgb(221, 241, 228);
+	border: 10px solid rgb(157, 217, 174);
+}
+
+.join-text {
+	font-size: 18px;
+	font-weight: 900;
+}
+
+.join-button {
+	display: flex;
+	justify-content: center;
+	text-decoration: none;
+	width: 155px;
+	height: 40px;
+	font-size: 17px;
+	font-weight: 600;
+	color: white;
+	background-color: #49339A;
+	border: none;
+	border-radius: 45px;
+	cursor: pointer;
+	margin-top: 25px;
+	transition: 0.5s ease-in-out;
+}
+
+.join-button:hover {
+	background-color: white;
+	color: #49339A;
+	box-shadow: 10px 10px 10px #49339A;
+	transition: 0.5s ease-in-out;
 }
 .join {
     float: left;
@@ -92,16 +128,16 @@ body {
 }
 
 .missionbox {
-		border: 2px solid #EFD915;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-		border-radius: 10px;
-		background-color: #E5D689;
-		background-size: contain;
-		width: 60%;
-		float: right;
-		height: 500px;
-		padding: 10px;
-		margin: 2rem 5rem 0 0;
+	border: 2px solid #EFD915;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	background-color: #E5D689;
+	background-size: contain;
+	width: 60%;
+	float: right;
+	height: 500px;
+	padding: 10px;
+	margin: 2rem 5rem 0 0;
 }
 
 .success-background {
@@ -126,25 +162,25 @@ body {
   background-color: #800020;
 } */
 .custom-btn {
-		background-color: #4AC98C !important;
-		border-color: #4AC98C !important;
-		color: black !important;
-		font-weight: bold;
-		border-radius: 20px;
+	background-color: #4AC98C !important;
+	border-color: #4AC98C !important;
+	color: black !important;
+	font-weight: bold;
+	border-radius: 20px;
 }
 
 .custom-btn-success {
-		background-color: #556B2F !important;
-		color: #ffffff !important;
-		font-weight: bold;
-		border-radius: 10px;
+	background-color: #556B2F !important;
+	color: #ffffff !important;
+	font-weight: bold;
+	border-radius: 10px;
 }
 
 .custom-btn-fail {
-		background-color: #800020 !important;
-		color: #ffffff !important;
-		font-weight: bold;
-		border-radius: 10px;
+	background-color: #800020 !important;
+	color: #ffffff !important;
+	font-weight: bold;
+	border-radius: 10px;
 }
 
 .custom-btn-update {
@@ -154,9 +190,9 @@ body {
 }
 
 .custom-form {
-		border-radius: 10px;
-		box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-		background-color: #E5D689;
+	border-radius: 10px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+	background-color: #E5D689;
 }
 
 .custom-currentDate-div {
@@ -180,15 +216,15 @@ body {
 }
 
 .custom-text3 {
-		font-size: 14px;
+	font-size: 14px;
 }
 
 .custom-text-color {
-		color: #49339A;
+	color: #49339A;
 }
 
 .custom-icon-color {
-		color: #49339A;
+	color: #49339A;
 }
 
 .custom-bg {
@@ -207,21 +243,35 @@ body {
 }
 
 .mission-img-default {
-		object-fit: cover;
-		width: 250px;
-		height: 250px;
+	object-fit: cover;
+	width: 250px;
+	height: 250px;
 }
 
 .w-70 {
-		width: 70%;
+	width: 70%;
 }
 
 .no-padding {
-		padding: 0 !important;
+	padding: 0 !important;
 }
 
 .no-padding {
-		padding: 0 !important;
+	padding: 0 !important;
+}
+
+#bookmarked {
+	margin-right: 28rem;
+	margin-top: 4px;
+}
+
+#likeheart {
+	margin-top: 5px;
+}
+
+#likecount{
+
+margin-top: 12px;
 }
 </style>
 <!-- 제이쿼리 -->
@@ -359,10 +409,8 @@ body {
 						/>
 					</c:if>
 					<c:if test="${mission.miImg ne null}">
-						<img
-							class="card-img-top rounded-0 mission-img-default"
-							src="image?miImg=${mission.miImg}"
-						/>
+						<img class="card-img-top rounded-0 mission-img-default"
+							src="image?miImg=${mission.miImg}" />
 					</c:if>
 
 					<c:if test="${mission.context ne null}">
@@ -381,47 +429,64 @@ body {
 									id="bookmarked"
 									alt="선택한북마크"
 									src="<%=request.getContextPath()%>/images/bmFull.png"
-									width="20px"
-									height="20px"
-								>
+									width="20px" height="20px">
 							</c:when>
 							<c:otherwise>
 								<img
 									id="bookmarked"
 									alt="선택안된북마크"
 									src="<%=request.getContextPath()%>/images/bmEmpty.png"
-									width="20px"
-									height="20px"
-								>
+									width="20px" height="20px">
 							</c:otherwise>
 						</c:choose>
 
 						<!--  좋아요 -->
 						<c:choose>
 							<c:when test="${selected==true}">
-								<img
-									id="likeheart"
+								<img id="likeheart"
 									src="<%=request.getContextPath()%>/images/likeFull.png"
-									width="20px"
-									height="20px"
-								>
+									width="20px" height="20px">
 							</c:when>
 							<c:otherwise>
-								<img
-									id="likeheart"
+								<img id="likeheart"
 									src="<%=request.getContextPath()%>/images/likeEmpty.png"
-									width="20px"
-									height="20px"
-								>
+									width="20px" height="20px">
 							</c:otherwise>
 						</c:choose>
 					</c:if>
-					<span>
-						좋아요(
-						<span id="likecount">${mission.likecount}</span>
-						)
-					</span>
-					&nbsp;&nbsp;
+					<span>(<span id="likecount">${mission.likecount}</span>)
+					</span> &nbsp;&nbsp;
+				</div>
+			</div>
+		</div>
+
+		<div class="btn-box d-flex justify-content-between">
+			<!-- 버튼 배치를 위한 그리드 -->
+			<div class="container no-padding">
+				<div class="row">
+					<!-- 왼쪽 공백 -->
+					<div class="col-md-2 no-padding"></div>
+
+					<!-- 성공, 실패 버튼 -->
+					<c:if test="${user.idx eq mission.userIdx}">
+						<div class="col-md-8 no-padding">
+							<form action="success-fail?idx=${mission.idx}" method="post"
+								class="text-center">
+								<input type="hidden" name="idx" value="${mission.idx}">
+								<input class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
+									type="submit" name="success" value="성공" /> <input
+									class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail" type="submit"
+									name="success" value="실패" />
+							</form>
+						</div>
+
+						<!-- 수정 버튼 -->
+						<div class="col-md-2 no-padding d-flex justify-content-end">
+
+							<a href="update-mission?idx=${mission.idx}"
+								class="btn py-1 px-3 mx-2 mt-2 custom-btn-update" type="button">수정</a>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

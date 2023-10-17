@@ -46,16 +46,6 @@ public class MissionServiceImpl implements MissionService {
 		return missionDao.selectMyMissions(userIdx);
 	}
 
-	@Override
-	public Integer selectTotalMissions(Integer userIdx) throws Exception {
-		return missionDao.selectTotalMissions(userIdx);
-	}
-
-	@Override
-	public Integer calculateSuccessRate(Integer userIdx) throws Exception {
-		return missionDao.calculateSuccessRate(userIdx);
-	}
-
 	// 페이징 처리 서비스
 	@Override
 	public Map<String, Object> getPageInfo(int page, int totalCounts) throws Exception {
@@ -276,5 +266,28 @@ public class MissionServiceImpl implements MissionService {
 		result.put("missionList", bookmarkList);
 
 		return result;
+	}
+
+	// 프로필카드 총 미션수
+	@Override
+	public Integer countTotalMissions(Integer userIdx) throws Exception {
+		return missionDao.countTotalMissions(userIdx);
+	}
+
+	// 프로필카드 성공률
+	@Override
+	public Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception {
+		// 특정 사용자의 어제 미션 성공률과 총 미션 수를 가져옴
+		Map<String, Object> missionSuccessRate = missionDao.calculateMissionSuccessRate(userIdx);
+
+		// 성공률 계산 로직
+		Integer totalMissions = ((Number) missionSuccessRate.get("totalMissions")).intValue();
+		Integer successfulMissions = ((Number) missionSuccessRate.get("successfulMissions")).intValue();
+		Integer successRate = totalMissions == 0 ? 0 : (successfulMissions * 100) / totalMissions;
+
+		// 성공률을 맵에 추가
+		missionSuccessRate.put("successRate", successRate);
+
+		return missionSuccessRate;
 	}
 }

@@ -18,7 +18,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         align-items: center;
         border-radius: 0.2rem;
         border: 0.5px solid blueviolet;
-        margin: 2rem 0 0 2rem;
+        margin: 3.4rem 0 0 2rem;
         padding-top: 2rem;
       }
 

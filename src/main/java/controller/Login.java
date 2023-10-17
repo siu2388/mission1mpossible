@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,6 @@ public class Login extends HttpServlet {
 
 	}
 
-	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String userId = req.getParameter("userId");
@@ -46,17 +46,18 @@ public class Login extends HttpServlet {
 			UserService userService = new UserServiceImpl();
 			User user = userService.login(userId, pwd);
 
-			int userIdx = user.getIdx();
+			Integer userIdx = user.getIdx();
 
 			MissionService missionService = new MissionServiceImpl();
-			Integer totalMissions = missionService.selectTotalMissions(userIdx);
-			Integer successRate = missionService.calculateSuccessRate(userIdx);
+			Integer totalMissions = missionService.countTotalMissions(userIdx);
+			Map<String, Object> missionSuccessRate = missionService.calculateMissionSuccessRate(userIdx);
+			Integer successRate = ((Number) missionSuccessRate.get("successRate")).intValue();
 
 			HttpSession session = req.getSession();
 			session.setAttribute("user", user);
 			session.setAttribute("totalMissions", totalMissions);
 			session.setAttribute("successRate", successRate);
-			
+
 			resp.sendRedirect("missions");
 
 		} catch (Exception e) {
@@ -64,5 +65,4 @@ public class Login extends HttpServlet {
 			req.getRequestDispatcher("error.jsp").forward(req, resp);
 		}
 	}
-
 }
