@@ -17,6 +17,6 @@ public interface UserDAO {
 	// nickname으로 user 선택
 	User selectUserByNickname(String nickname) throws Exception;
 
-	// 좋아요한 유저
+	// 좋아요한 유저목록 조회 
 	List<User> selectMissionLikeUser(Integer missionIdx) throws Exception;
 }

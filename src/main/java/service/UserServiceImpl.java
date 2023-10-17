@@ -66,10 +66,12 @@ public class UserServiceImpl implements UserService {
 		return findUser != null; // 중복이면 true, 아니면 false 반환
 	}
 
-	// 좋아요한 유저
+	// 좋아요한 유저 목록 조회 
 	@Override
 	public List<User> findMissionLikeUser(Integer missionIdx) throws Exception {
-		return userDao.selectMissionLikeUser(missionIdx);
+		List<User> userList = userDao.selectMissionLikeUser(missionIdx);
+		System.out.println("좋아요 누른 유저 목록:" + userList);
+		return userList;
 	}
 
 }

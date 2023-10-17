@@ -23,6 +23,6 @@ public interface UserService {
 	// 아이디로 회원정보 가져오기
 	User getUserById(String userId) throws Exception;
 
-	// 좋아요한 유저
+	// 좋아요한 유저 목록 조회 
 	List<User> findMissionLikeUser(Integer missionIdx) throws Exception;
 }

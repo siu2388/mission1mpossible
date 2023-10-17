@@ -349,10 +349,7 @@ div.card.bg-secondary-subtle {
 		</div>
 		<!--  페이지네이션 -->
 		<div class="d-flex justify-content-center mt-4">
-			<c:choose>
-				<c:when test=""></c:when>
-				<c:otherwise></c:otherwise>
-			</c:choose>
+			
 			<c:choose>
 				<c:when test="${result.pageInfo.curPage>1 }">
 					<a href="${pagingPath}${result.pageInfo.curPage-1}">&lt;</a>

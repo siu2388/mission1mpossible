@@ -31,14 +31,14 @@
       ]]>
   </select>
   
-  <!-- 좋아요한 유저 -->
+  <!-- 좋아요한 유저 목록 조회 -->
   <select id="selectMissionLikeUser" parameterType="Integer"
-    resultType="user">
+    resultType="User">
   <![CDATA[
-      SELECT u.profileImg, u.nickname
+      SELECT u.profileImg as profileImg, u.nickname as nickname
       FROM user u
       JOIN goodidea g ON u.idx = g.userIdx
-      WHERE g.missionIdx = #{missionIdx};
+      WHERE g.missionIdx = #{missionIdx}
       ]]>
   </select>
   

@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 
-	// 좋아요한 유저
+	// 좋아요한 유저 목록 조회 
 	@Override
 	public List<User> selectMissionLikeUser(Integer missionIdx) throws Exception {
 		return sqlSession.selectList("mapper.user.selectMissionLikeUser", missionIdx);
