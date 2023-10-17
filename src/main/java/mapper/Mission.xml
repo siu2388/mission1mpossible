@@ -89,7 +89,7 @@
         FROM 
             mission
         WHERE 
-            DATE(createdAt) BETWEEN CURDATE() - INTERVAL 8 DAY AND CURDATE() - INTERVAL 1 DAY
+            DATE(createdAt) BETWEEN CURDATE() - INTERVAL 100 DAY AND CURDATE() - INTERVAL 1 DAY
             AND useridx = #{userIdx}
         ]]>
 	</select>
@@ -107,7 +107,7 @@
     FROM 
         mission
     WHERE 
-        DATE(createdAt) BETWEEN CURDATE() - INTERVAL 8 DAY AND CURDATE() - INTERVAL 1 DAY
+        DATE(createdAt) BETWEEN CURDATE() - INTERVAL 100 DAY AND CURDATE() - INTERVAL 1 DAY
         AND (success = '성공' OR success IS NULL OR success = '실패')
         AND userIdx = #{userIdx}
     ]]>
