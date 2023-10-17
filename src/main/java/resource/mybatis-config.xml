@@ -4,33 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<typeAliases>
-		<!-- 특정 파일에 대한 임포트 역할 -->
-		<typeAlias type="dto.User" alias="User" />
-		<typeAlias type="dto.Mission" alias="Mission" />
-		<typeAlias type="dto.Bookmark" alias="Bookmark" />
-		<typeAlias type="dto.Category" alias="Category" />
-		<typeAlias type="dto.Goodidea" alias="Goodidea" />
-	</typeAliases>
-
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC" />
-			<dataSource type="POOLED">
-				<property name="driver" value="org.mariadb.jdbc.Driver" />
-				<property name="url"
-					value="jdbc:mariadb://localhost:3306/mipdb" />
-				<property name="username" value="root" />
-				<property name="password" value="1234" />
-			</dataSource>
-		</environment>
-	</environments>
-
-	<mappers>
-		<mapper resource="mapper/User.xml" />
-		<mapper resource="mapper/Mission.xml" />
-		<mapper resource="mapper/Goodidea.xml" />
-		<mapper resource="mapper/Bookmark.xml" />
-
-	</mappers>
+  <typeAliases>
+  <!-- 특정 파일에 대한 임포트 역할  -->
+    <typeAlias type="dto.User" alias="User"/>
+    <typeAlias type="dto.Mission" alias="Mission"/>
+    <typeAlias type="dto.Bookmark" alias="Bookmark"/>
+    <typeAlias type="dto.Category" alias="Category"/>
+    <typeAlias type="dto.Goodidea" alias="Goodidea"/>
+  </typeAliases>
+  
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC" />
+      <dataSource type="POOLED">
+        <property name="driver" value="org.mariadb.jdbc.Driver"/>
+        <property name="url" value="jdbc:mariadb://localhost:3306/mipdb"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <mappers>
+    <mapper resource="mapper/User.xml"/>
+    <mapper resource="mapper/Mission.xml"/>
+    <mapper resource="mapper/Goodidea.xml"/>
+    <mapper resource="mapper/Bookmark.xml"/>
+    
+  </mappers>
 </configuration>

@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 
 import dao.MissionDAO;
 import dao.MissionDAOImpl;
-import dto.Bookmark;
 import dto.Mission;
 import util.PageInfo;
 
@@ -47,27 +46,19 @@ public class MissionServiceImpl implements MissionService {
 		return missionDao.selectMyMissions(userIdx);
 	}
 
-	@Override
-	public Integer selectTotalMissions(Integer userIdx) throws Exception {
-		return missionDao.selectTotalMissions(userIdx);
-	}
-
-	@Override
-	public Integer calculateSuccessRate(Integer userIdx) throws Exception {
-		return missionDao.calculateSuccessRate(userIdx);
-	}
-
 	// 페이징 처리 서비스
 	@Override
 	public Map<String, Object> getPageInfo(int page, int totalCounts) throws Exception {
 		PageInfo pageInfo = new PageInfo();
+
 		Map<String, Object> paging = new HashMap<>();
-		int maxPage = (int) Math.ceil((double) totalCounts / 10);
-		
-		if(maxPage==0) {
+		int maxPage = (int) Math.ceil((double) totalCounts / 8);
+		if (maxPage == 0) { // 검색결과가 0인경우 처리
 			paging.put("pageInfo", pageInfo);
 			paging.put("startRow", 1);
+
 			return paging;
+
 		}
 		int startPage = (page - 1) / 10 * 10 + 1;
 		int endPage = startPage + 10 - 1;
@@ -83,9 +74,10 @@ public class MissionServiceImpl implements MissionService {
 		pageInfo.setEndPage(endPage);
 
 		System.out.println("페이징처리에서 받은 토탈카운트:" + totalCounts);
+		System.out.println("페이징처리에서 받은 maxPage:" + maxPage);
+		System.out.println("startPage:" + startPage + " endPage:" + endPage);
 
-		int row = (page - 1) * 10 + 1;
-
+		int row = (page - 1) * 8 + 1;
 
 		paging.put("pageInfo", pageInfo);
 		paging.put("startRow", row);
@@ -100,6 +92,7 @@ public class MissionServiceImpl implements MissionService {
 		int totalCounts = missionDao.countAllMissions();
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
+//		missionService.isMissionLiked(idx, userIdx);
 
 		List<Mission> missionList = missionDao.selectMissionList(row - 1);
 		System.out.println(missionList);
@@ -137,22 +130,7 @@ public class MissionServiceImpl implements MissionService {
 		result.put("pageInfo", pageInfoResult.get("pageInfo"));
 		result.put("missionList", missionListByCat);
 
-
 		return result;
-	}
-
-	// 북마크 가져오기
-	@Override
-	public List<Bookmark> getBookmark(int userIdx) throws Exception {
-		return missionDao.getBookmark(userIdx);
-
-	}
-
-	// 북마크 추가
-	@Override
-	public void insertBookmark(Bookmark bookmark) throws Exception {
-		missionDao.insertBookmark(bookmark);
-
 	}
 
 	// 좋아요
@@ -196,12 +174,12 @@ public class MissionServiceImpl implements MissionService {
 		return jsonObj.toJSONString(); // 최종 string 타입으로 응답
 	}
 
+	// 좋아요 했는지 확인
 	@Override
 	public Boolean isMissionLiked(Integer idx, Integer userIdx) throws Exception {
 		Map<String, Object> params = new HashMap<>();
 		params.put("userIdx", userIdx);
 		params.put("idx", idx);
-		// Integer likenum = missionDao.selectMissionLike(params);
 
 		Integer likenum = missionDao.selectMissionLike(params);
 		System.out.println(missionDao.selectMissionLike(params));
@@ -212,9 +190,105 @@ public class MissionServiceImpl implements MissionService {
 		} else {
 			return false;
 		}
-//		if (likenum == null)
-//			return false;
-//		return true;
+	}
+
+	// 북마크 여부 조회
+	@Override
+	public Boolean isBookmarked(Integer idx, Integer userIdx) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+		params.put("userIdx", userIdx);
+		params.put("idx", idx);
+
+		Integer bmcheck = missionDao.selectBookmarked(params);
+
+		if (bmcheck > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	// 북마크 여부 조회서비스 호출하고 없으면
+	@Override
+	public String aboutBookmark(Integer idx, Integer userIdx) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+		params.put("idx", idx);
+		params.put("userIdx", userIdx);
+
+		System.out.println("서비스idx: " + idx);
+		System.out.println("userIdx:" + userIdx);
+
+		// 북마크 테이블에 데이터 있는지 확인 (
+		Integer bmcheck = missionDao.selectBookmarked(params);
+
+		// 북마크 없을 경우 처리
+		if (bmcheck == null)
+			bmcheck = 0;
+		System.out.println("서비스bmcheck :" + bmcheck);
+		Map<String, Object> result = new HashMap<>();
+
+		// 없으면 bookmark테이블에 추가
+		if (bmcheck == 0) {
+			missionDao.insertBookmark(params);
+			result.put("bselected", true); // 북마크 추가했다고 전달
+		} else { // 없으면 북마크테이블에서 삭제
+			missionDao.deleteBookmark(params);
+			result.put("bselected", false);
+		}
+
+		// 북마크 여부 리턴
+		JSONObject jsonObj = new JSONObject(result); // by JSON.simple json으로
+		System.out.println("toJSON" + jsonObj.toString());
+		return jsonObj.toJSONString(); // 최종 string 타입으로 응답
+	}
+
+	// 나의 북마크리스트 조회
+	@Override
+	public Map<String, Object> findMyBookmarks(Integer page, Integer userIdx) throws Exception {
+		int totalCounts = missionDao.countBookmarks(userIdx);
+		System.out.println("북마크 총개수:" + totalCounts);
+
+		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
+		int row = (int) pageInfoResult.get("startRow");
+		System.out.println("row :" + row);
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("userIdx", userIdx);
+		params.put("row", row - 1);
+		System.out.println("params를 찍으면:" + params);
+
+		List<Mission> bookmarkList = missionDao.selectBookmarks(params);
+		System.out.println(bookmarkList);
+
+		// 맵에 담아서 전달
+		Map<String, Object> result = new HashMap<>();
+		result.put("pageInfo", pageInfoResult.get("pageInfo"));
+		result.put("missionList", bookmarkList);
+
+		return result;
+	}
+
+	// 프로필카드 총 미션수
+	@Override
+	public Integer countTotalMissions(Integer userIdx) throws Exception {
+		return missionDao.countTotalMissions(userIdx);
+	}
+
+	// 프로필카드 성공률
+	@Override
+	public Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception {
+		// 특정 사용자의 어제 미션 성공률과 총 미션 수를 가져옴
+		Map<String, Object> missionSuccessRate = missionDao.calculateMissionSuccessRate(userIdx);
+
+		// 성공률 계산 로직
+		Integer totalMissions = ((Number) missionSuccessRate.get("totalMissions")).intValue();
+		Integer successfulMissions = ((Number) missionSuccessRate.get("successfulMissions")).intValue();
+		Integer successRate = totalMissions == 0 ? 0 : (successfulMissions * 100) / totalMissions;
+
+		// 성공률을 맵에 추가
+		missionSuccessRate.put("successRate", successRate);
+
+		return missionSuccessRate;
 	}
 
 }

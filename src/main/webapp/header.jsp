@@ -35,7 +35,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 60%;
-	padding-top: 20px
+	padding-top: 20px;
 }
 
 .logo-container>img {
@@ -87,20 +87,19 @@ hr {
 
 .nav-link.active {
 	background-color: #946be2;
-	
 }
 </style>
 <script>
-	console.log(${catId});
-	$(document).ready(function() {
-		$(".nav-link").click(function() {
-			$(".nav-link").removeClass("active")
-			console.log($(this))
-			$(this).addClass("active");
-		});
-		
-	});
-</script>
+      console.log(${catId});
+      $(document).ready(function() {
+      	$(".nav-link").click(function() {
+      		$(".nav-link").removeClass("active")
+      		console.log($(this))
+      		$(this).addClass("active");
+      	});
+
+      });
+    </script>
 </head>
 <body>
 	<div class="outer">
@@ -115,7 +114,8 @@ hr {
 				<c:when test="${empty sessionScope.user}">
 					<div class="btn-container">
 						<div class="h-left">
-							<a class="btn disabled" role="button">오늘의 미션🖋</a>
+							<a class="btn disabled" role="button">오늘의
+								미션🖋</a>
 						</div>
 						<div class="h-right">
 							<a href="login" class="btn" role="button">로그인</a>
@@ -151,27 +151,29 @@ hr {
 									오늘의 미션 </a></li>
 							<li><a class="dropdown-item" href="my-missions">&nbsp;📔
 									나의 미션기록 </a></li>
-							<li><a class="dropdown-item" href="#">&nbsp;🏷 북마크한 미션 </a>
-							</li>
+							<li><a class="dropdown-item" href="my-bookmarks">&nbsp;🏷
+									북마크한 미션 </a></li>
 						</ul>
 					</c:otherwise>
-				</c:choose></li>
-			<li class="nav-item">
-				<a class='${catId == 0 ? "nav-link active" :"nav-link" }' href="missions">전체</a>
-			</li>
-			<li class="nav-item">
-				<a class='${catId == 1 ? "nav-link active" :"nav-link" }' href="missions-by?catId=1">건강</a>
-			</li>
-			<li class="nav-item">
-				<a class='${catId == 2 ? "nav-link active" :"nav-link" }' href="missions-by?catId=2">생활</a></li>
-			<li class="nav-item">
-				<a class='${catId == 3 ? "nav-link active" :"nav-link" }' href="missions-by?catId=3">취미</a>
-			</li>
-			<li class="nav-item">
-				<a class='${catId == 4 ? "nav-link active" :"nav-link" }' href="missions-by?catId=4">공부</a>
-			</li>
-			<li class="nav-item">
-				<a class='${catId == 5? "nav-link active" :"nav-link" }' href="missions-by?catId=5">기타</a></li>
+				</c:choose>
+			<li class="nav-item"><a
+				class="${catId == 0 ? 'nav-link active' : 'nav-link' }"
+				href="missions">전체</a></li>
+			<li class="nav-item"><a
+				class="${catId == 1 ? 'nav-link active' : 'nav-link' }"
+				href="missions-by?catId=1">건강</a></li>
+			<li class="nav-item"><a
+				class="${catId == 2 ? 'nav-link active' : 'nav-link' }"
+				href="missions-by?catId=2">생활</a></li>
+			<li class="nav-item"><a
+				class="${catId == 3 ? 'nav-link active' : 'nav-link' }"
+				href="missions-by?catId=3">취미</a></li>
+			<li class="nav-item"><a
+				class="${catId == 4 ? 'nav-link active' : 'nav-link' }"
+				href="missions-by?catId=4">공부</a></li>
+			<li class="nav-item"><a
+				class="${catId == 5 ? 'nav-link active' : 'nav-link' }"
+				href="missions-by?catId=5">기타</a></li>
 		</ul>
 	</div>
 	<hr />

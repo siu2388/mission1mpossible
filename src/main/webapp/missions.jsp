@@ -27,7 +27,7 @@ body {
 }
 
 header {
-	margin-bottom: 30px;
+	margin-bottom: 1.875rem; /* 30px를 rem으로 변환 */
 }
 
 .profilebox {
@@ -36,20 +36,19 @@ header {
 
 .join {
 	float: left;
-	margin: 20px;
-	margin-top: 50px;
-	border: 10px solid rgb(157, 217, 174);
-	border-radius: 30px;
-	width: 200px;
-	height: 250px;
+	margin: 1.25rem; /* 20px를 rem으로 변환 */
+	margin-top: 3.125rem; /* 50px를 rem으로 변환 */
+	border: 0.625rem solid rgb(157, 217, 174); /* 10px를 rem으로 변환 */
+	border-radius: 1.875rem; /* 30px를 rem으로 변환 */
+	width: 12.5rem; /* 200px를 rem으로 변환 */
+	height: 15.625rem; /* 250px를 rem으로 변환 */
 	font-weight: 500;
-	padding: 12px;
+	padding: 0.75rem; /* 12px를 rem으로 변환 */
 	background-color: rgb(221, 241, 228);
-	border: 10px solid rgb(157, 217, 174);
 }
 
 .join-text {
-	font-size: 18px;
+	font-size: 1.125rem; /* 18px를 rem으로 변환 */
 	font-weight: 900;
 }
 
@@ -57,16 +56,16 @@ header {
 	display: flex;
 	justify-content: center;
 	text-decoration: none;
-	width: 155px;
-	height: 40px;
-	font-size: 17px;
+	width: 9.6875rem; /* 155px를 rem으로 변환 */
+	height: 2.5rem; /* 40px를 rem으로 변환 */
+	font-size: 1.0625rem; /* 17px를 rem으로 변환 */
 	font-weight: 600;
 	color: white;
 	background-color: #49339A;
 	border: none;
-	border-radius: 45px;
+	border-radius: 2.8125rem; /* 45px를 rem으로 변환 */
 	cursor: pointer;
-	margin-top: 25px;
+	margin-top: 1.5625rem; /* 25px를 rem으로 변환 */
 	transition: 0.5s ease-in-out;
 }
 
@@ -168,11 +167,10 @@ div.card.bg-secondary-subtle {
 
 .user-card-text {
 	width: 120px;
-	font-size: 14px;
+	font-size: 12.5px;
 	text-align: right;
-	font-size: 14px;
 	margin-right: 0;
-	margin-left: 70px;
+	margin-left: 50px;
 	margin-top: -30px;
 }
 
@@ -192,14 +190,13 @@ div.card.bg-secondary-subtle {
 }
 
 .container {
-	height: 600px; /* 페이지네이션에 충분한 높이 조정 */
+	height: 37.5rem; /* 600px를 rem으로 변환 */
 	position: relative;
 }
 
 .select {
 	margin: 0;
 }
-
 </style>
 <script>
         function callBtn(num) {
@@ -247,7 +244,9 @@ div.card.bg-secondary-subtle {
 								</div>
 							</div>
 							<div class="card-text">
-								<div class="card-title">${mission.title}</div>
+								<div class="card-title">
+									<a href="mission?idx=${mission.idx}" class="stretched-link">${mission.title }</a>
+								</div>
 								<div class="card-date">${mission.createdAt}</div>
 								<c:choose>
 									<c:when test="${mission.miImg ne null}">
@@ -278,7 +277,7 @@ div.card.bg-secondary-subtle {
 										</c:otherwise>
 									</c:choose>
 								</div>
-								<div class="user-card-text">${mission.unickname}님도전중!</div>
+								<div class="user-card-text">${mission.unickname}님 도전중!</div>
 							</div>
 						</div>
 					</div>
@@ -328,14 +327,6 @@ div.card.bg-secondary-subtle {
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
