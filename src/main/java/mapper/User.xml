@@ -31,4 +31,15 @@
       ]]>
   </select>
   
+  <!-- 좋아요한 유저 -->
+  <select id="selectMissionLikeUser" parameterType="Integer"
+    resultType="user">
+  <![CDATA[
+      SELECT u.profileImg, u.nickname
+      FROM user u
+      JOIN goodidea g ON u.idx = g.userIdx
+      WHERE g.missionIdx = #{missionIdx};
+      ]]>
+  </select>
+  
 </mapper>

@@ -33,10 +33,11 @@ public interface MissionDAO {
 	List<Mission> selectMyMissions(Integer userIdx) throws Exception;
 
 	// 총 미션 수 조회 (프로필카드용)_
-	Integer selectTotalMissions(Integer userIdx) throws Exception;
-
-	// 성공률 계산
-	Integer calculateSuccessRate(Integer userIdx) throws Exception;
+//	
+//	Integer countTotalMissions(Integer userIdx) throws Exception;
+//
+//	// 성공률 계산
+//	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
 
 	// 좋아요 수 증/감/조회
 	void plusMissionLikeCount(Integer idx) throws Exception;
@@ -68,4 +69,6 @@ public interface MissionDAO {
 	// 카테고리별 미션 총 개수 반환 ( for 페이지네이션 적용)
 	Integer countBookmarks(Integer userIdx) throws Exception;
 
+	// 오늘 날짜의 미션 조회
+	Mission getMissionRegToday(Integer userIdx) throws Exception;
 }

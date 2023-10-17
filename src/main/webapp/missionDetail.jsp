@@ -49,6 +49,92 @@ body {
 		float: left;
 }
 
+.join {
+		float: left;
+		margin: 20px;
+		margin-top: 50px;
+		border: 10px solid rgb(157, 217, 174);
+		border-radius: 30px;
+		width: 200px;
+		height: 250px;
+		font-weight: 500;
+		padding: 12px;
+		background-color: rgb(221, 241, 228);
+		border: 10px solid rgb(157, 217, 174);
+}
+
+.join-text {
+		font-size: 18px;
+		font-weight: 900;
+}
+
+.join-button {
+		display: flex;
+		justify-content: center;
+		text-decoration: none;
+		width: 155px;
+		height: 40px;
+		font-size: 17px;
+		font-weight: 600;
+		color: white;
+		background-color: #49339A;
+		border: none;
+		border-radius: 45px;
+		cursor: pointer;
+		margin-top: 25px;
+		transition: 0.5s ease-in-out;
+}
+
+.join-button:hover {
+		background-color: white;
+		color: #49339A;
+		box-shadow: 10px 10px 10px #49339A;
+		transition: 0.5s ease-in-out;
+}
+
+.join {
+		float: left;
+		margin: 20px;
+		margin-top: 50px;
+		border: 10px solid rgb(157, 217, 174);
+		border-radius: 30px;
+		width: 200px;
+		height: 250px;
+		font-weight: 500;
+		padding: 12px;
+		background-color: rgb(221, 241, 228);
+		border: 10px solid rgb(157, 217, 174);
+}
+
+.join-text {
+		font-size: 18px;
+		font-weight: 900;
+}
+
+.join-button {
+		display: flex;
+		justify-content: center;
+		text-decoration: none;
+		width: 155px;
+		height: 40px;
+		font-size: 17px;
+		font-weight: 600;
+		color: white;
+		background-color: #49339A;
+		border: none;
+		border-radius: 45px;
+		cursor: pointer;
+		margin-top: 25px;
+		transition: 0.5s ease-in-out;
+}
+
+.join-button:hover {
+		background-color: white;
+		color: #49339A;
+		box-shadow: 10px 10px 10px #49339A;
+		transition: 0.5s ease-in-out;
+}
+
 .missionbox {
 		border: 2px solid #EFD915;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -179,9 +265,30 @@ body {
 }
 
 .no-padding {
-    padding: 0 !important;
+		padding: 0 !important;
 }
 
+#bookmarked {
+		margin-right: 28rem;
+		margin-top: 4px;
+}
+
+#likeheart {
+		margin-top: 5px;
+}
+
+#likecount {
+		margin-top: 12px;
+}
+/* 좋아요한 유저 */
+.modal-content {
+		background-image: url("./images/bg2.png");
+}
+
+.btn77 {
+		width: 2.5rem;
+		height: 2.5rem;
+}
 </style>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -232,6 +339,7 @@ body {
 				}
 			})
 		})
+			
 	})
 </script>
 </head>
@@ -243,7 +351,23 @@ body {
 
 	<!-- 좌 프로필카드 -->
 	<div class="profilebox">
-		<jsp:include page="profilecard.jsp" />
+		<c:choose>
+			<c:when test="${empty sessionScope.user}">
+				<div class="join">
+					<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
+						이용하실 수 있습니다!</div>
+					<a
+						href="./join"
+						class="join-button"
+					>회원가입 </a>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="profilebox">
+					<jsp:include page="profilecard.jsp" />
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 
 	<div class="missionbox">
@@ -295,11 +419,16 @@ body {
 				<div class="card mx-auto w-70">
 					<div class="card-title text-center">${mission.title}</div>
 					<c:if test="${mission.miImg eq null}">
-						<img class="card-img-top rounded-0 mission-img-default"
-						  src="${pageContext.request.contextPath}/images/defaultMission.jpg" />
+						<img
+							class="card-img-top rounded-0 mission-img-default"
+							src="${pageContext.request.contextPath}/images/defaultMission.jpg"
+						/>
 					</c:if>
 					<c:if test="${mission.miImg ne null}">
-						<img class="card-img-top rounded-0 mission-img-default" src="image?miImg=${mission.miImg}" />
+						<img
+							class="card-img-top rounded-0 mission-img-default"
+							src="image?miImg=${mission.miImg}"
+						/>
 					</c:if>
 
 					<c:if test="${mission.context ne null}">
@@ -311,7 +440,7 @@ body {
 				<div
 					class="mx-auto w-70 d-flex justify-content-end align-items-center"
 				>
-					<c:if test="${user ne Empty }">
+					<c:if test="${user ne Empty && user.idx ne mission.userIdx}">
 						<c:choose>
 							<c:when test="${bselected == true }">
 								<img
@@ -354,9 +483,13 @@ body {
 						</c:choose>
 					</c:if>
 					<span>
-						좋아요(
-						<span id="likecount">${mission.likecount}</span>
-						)
+						<!-- 좋아요한 유저 버튼 -->
+						<button
+							type="button"
+							class="btn btn77 modal-btn"
+							data-bs-toggle="modal"
+							data-bs-target="#Modal"
+						>${mission.likecount}</button>
 					</span>
 					&nbsp;&nbsp;
 				</div>
@@ -371,49 +504,100 @@ body {
 					<div class="col-md-2 no-padding"></div>
 
 					<!-- 성공, 실패 버튼 -->
-					<div class="col-md-8 no-padding">
-						<form
-							action="success-fail?idx=${mission.idx}"
-							method="post"
-							class="text-center"
-						>
-							<input
-								type="hidden"
-								name="idx"
-								value="${mission.idx}"
+					<c:if test="${user.idx eq mission.userIdx}">
+						<div class="col-md-8 no-padding">
+							<form
+								action="success-fail?idx=${mission.idx}"
+								method="post"
+								class="text-center"
 							>
-							<input
-								class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
-								type="submit"
-								name="success"
-								value="성공"
-							/>
-							<input
-								class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail"
-								type="submit"
-								name="success"
-								value="실패"
-							/>
-						</form>
-					</div>
+								<input
+									type="hidden"
+									name="idx"
+									value="${mission.idx}"
+								>
+								<input
+									class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
+									type="submit"
+									name="success"
+									value="성공"
+								/>
+								<input
+									class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail"
+									type="submit"
+									name="success"
+									value="실패"
+								/>
+							</form>
+						</div>
 
-					<!-- 수정 버튼 -->
-					<div class="col-md-2 no-padding d-flex justify-content-end">
-						<c:if test="${user.idx eq mission.userIdx}">
+						<!-- 수정 버튼 -->
+						<div class="col-md-2 no-padding d-flex justify-content-end">
+
 							<a
 								href="update-mission?idx=${mission.idx}"
 								class="btn py-1 px-3 mx-2 mt-2 custom-btn-update"
 								type="button"
 							>수정</a>
-						</c:if>
-					</div>
-
+					</c:if>
 				</div>
-				<!-- row -->
-			</div>
-			<!-- container (그리드 끝) -->
-		</div>
 
+			</div>
+			<!-- row -->
+		</div>
+		<!-- container (그리드 끝) -->
+	</div>
+	<!-- 좋아요한 유저 모달 -->
+	<div
+		class="modal fade"
+		id="Modal"
+		tabindex="-1"
+	>
+		<div
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+		>
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1
+						class="modal-title fs-5"
+						style="color: blueviolet; font-weight: bold"
+					>좋아요한 유저 ${mission.likecount}명 💜</h1>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					></button>
+				</div>
+				<div
+					class="modal-body"
+					style="text-align: center"
+				>
+					<!-- 사용자 정보를 출력하는 반복문 -->
+					<c:forEach
+						var="user"
+						items="${users}"
+					>
+						<div class="line">
+							<div class="user-container">
+								<div
+									class="users"
+									style="background-image: url('<c:url value='${user.profileImg}'/>')"
+								></div>
+								<div class="username">${user.nickname}</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<div class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-secondary"
+						data-bs-dismiss="modal"
+					>확인</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<script
@@ -433,6 +617,34 @@ body {
 				/* $('#missionStatus').addClass('fail-text'); */
 			}
 		});
+		
+		/* 좋아요한 유저 */
+	    const myModal = document.getElementById('myModal')
+	    const myInput = document.getElementById('myInput')
+
+	    myModal.addEventListener('shown.bs.modal', () => {
+	      myInput.focus()
+	    })
+	    
+	    $(function() {
+	    $('.heart-icon').click(function() {
+	      $.ajax({
+	        url : 'like',
+	        type : 'get',
+	        dataType : 'json',
+	        data : {
+	          'idx' : '<c:out value="${mission.idx}"/>'
+	        },
+	        success : function(res) {
+	          console.log(res.likecount);
+	          $('#likecount').text(res.likecount);
+	        },
+	        error : function(err) {
+	          console.log(err);
+	        }
+	      });
+	    });
+	  });
 	</script>
 </body>
 

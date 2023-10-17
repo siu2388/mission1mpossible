@@ -46,16 +46,18 @@ public class MissionDAOImpl implements MissionDAO {
 	}
 
 	// 총 미션수 계산 by userIdx
-	@Override
-	public Integer selectTotalMissions(Integer userIdx) throws Exception {
-		return sqlSession.selectOne("mapper.mission.selectTotalMissions", userIdx);
-	}
 
-	// 성공률 계산
-	@Override
-	public Integer calculateSuccessRate(Integer userIdx) throws Exception {
-		return sqlSession.selectOne("mapper.mission.calculateSuccessRate", userIdx);
-	}
+//	@Override
+//	public Integer countTotalMissions(Integer userIdx) throws Exception {
+//
+//		return sqlSession.selectOne("mapper.mission.countTotalMissions", userIdx);
+//	}
+//
+//	// 성공률 계산
+//	@Override
+//	public Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception {
+//		return sqlSession.selectOne("mapper.mission.calculateMissionSuccessRate", userIdx);
+//	}
 
 	// 미션 전체 리스트 조회
 	@Override
@@ -101,7 +103,7 @@ public class MissionDAOImpl implements MissionDAO {
 		sqlSession.commit();
 	}
 
-//미션에서 좋아요 눌러서 파라미터로 
+	// 좋아요 여부 조회 있으면 1 없으면 0
 	@Override
 	public Integer selectMissionLike(Map<String, Object> params) throws Exception {
 		return sqlSession.selectOne("mapper.goodidea.selectMissionLiked", params);
@@ -110,13 +112,6 @@ public class MissionDAOImpl implements MissionDAO {
 	@Override
 	public void insertMissionLike(Map<String, Object> params) throws Exception {
 		sqlSession.insert("mapper.goodidea.insertMissionLike", params);
-		sqlSession.commit();
-
-	}
-
-	@Override
-	public void deleteMissionLike(Map<String, Object> params) throws Exception {
-		sqlSession.delete("mapper.goodidea.deleteMissionLike", params);
 		sqlSession.commit();
 
 	}
@@ -159,4 +154,9 @@ public class MissionDAOImpl implements MissionDAO {
 		return sqlSession.selectOne("mapper.mission.countMyBookmarks", userIdx);
 	}
 
+	// 오늘 날짜의 미션 조회
+	@Override
+	public Mission getMissionRegToday(Integer userIdx) throws Exception {
+		return sqlSession.selectOne("mapper.mission.getMissionRegToday", userIdx);
+	}
 }

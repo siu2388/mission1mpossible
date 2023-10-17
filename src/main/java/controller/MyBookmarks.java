@@ -48,6 +48,7 @@ public class MyBookmarks extends HttpServlet {
 			MissionService missionService = new MissionServiceImpl();
 			Map<String, Object> result = missionService.findMyBookmarks(curPage, userIdx);
 			req.setAttribute("result", result);
+			req.setAttribute("catId", -1);
 
 			System.out.println(req.getAttribute("result"));
 

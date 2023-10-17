@@ -29,10 +29,10 @@
 	<select id="selectAllMissions" parameterType="Integer"
 		resultType="hashmap">
       <![CDATA[
-      SELECT m.idx as idx, m.title as title, m.createdAt as createdAt, m.miImg as miImg, u.profileImg as uprofileImg, u.nickname as unickname
+      SELECT m.idx as idx, m.title as title, m.createdAt as createdAt, m.miImg as miImg, m.likecount as likecount, u.profileImg as uprofileImg, u.nickname as unickname
       FROM mission m
       JOIN user u ON m.userIdx = u.idx
-      ORDER BY m.createdAt DESC
+      ORDER BY m.idx DESC
       limit #{row},8
       ]]>
 	</select>
@@ -45,11 +45,11 @@
 	<!-- 카테고리별 미션리스트 조회 : 최신순 -->
 	<select id="selectMissionsByCat" resultType="hashmap">
       <![CDATA[
-      SELECT  m.idx as idx, m.title as title, m.createdAt as createdAt, m.miImg as miImg, u.profileImg as uprofileImg, u.nickname as unickname
+      SELECT  m.idx as idx, m.title as title, m.createdAt as createdAt, m.miImg as miImg, m.likecount as likecount, u.profileImg as uprofileImg, u.nickname as unickname
       FROM mission m
       JOIN user u ON m.userIdx = u.idx
       where m.catId = #{catId}
-      ORDER BY m.createdAt DESC
+      ORDER BY m.idx DESC
       limit #{row},8
       ]]>
 	</select>
@@ -67,7 +67,7 @@
       select * from mission where idx=#{idx}
       ]]>
 	</select>
-	
+
 	<!-- 나의 미션기록 조회 -->
 	<select id="selectMyMissions" parameterType="Integer"
 		resultType="Mission">
@@ -78,25 +78,42 @@
       order by createdAt desc
       ]]>
 	</select>
+
+
 	<!-- 총 미션 수 조회 -->
-	<select id="selectTotalMissions" parameterType="Integer"
-		resultType="Integer">
-    <![CDATA[
-    SELECT COUNT(*) FROM mission m
-   JOIN user u ON m.userIdx = u.idx
-   WHERE u.idx = #{userIdx}
-    ]]>
+
+	<select id="countTotalMissions" resultType="int">
+        <![CDATA[
+        SELECT 
+            COUNT(*) AS totalMissions
+        FROM 
+            mission
+        WHERE 
+            DATE(createdAt) = CURDATE() - INTERVAL 1 DAY
+            AND useridx = #{userIdx}
+        ]]>
 	</select>
+
+
 	<!-- 성공률 계산 -->
-	<select id="calculateSuccessRate" parameterType="Integer"
-		resultType="Integer">
-    <![CDATA[
-   SELECT COALESCE(ROUND((SUM(CASE WHEN m.success = 1 THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)) * 100), 0) AS successRate
-   FROM mission m
-   JOIN user u ON m.userIdx = u.idx
-   WHERE u.idx = #{userIdx}
-    ]]>
+	<select id="calculateMissionSuccessRate" resultType="map"
+		parameterType="int">
+        <![CDATA[
+        SELECT 
+            COUNT(*) AS totalMissions,
+            SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) AS successfulMissions,
+            ROUND((SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS successRate
+        FROM 
+            mission
+        WHERE 
+            DATE(createdAt) = CURDATE() - INTERVAL 1 DAY
+            AND (success = '성공' OR success IS NULL OR success = '실패')
+            AND userIdx = #{userIdx}
+        ]]>
 	</select>
+
+
+
 	<!-- like 증가 (update) -->
 	<update id="plusMissionLikeCount" parameterType="Integer">
         <![CDATA[
@@ -114,15 +131,16 @@
 		resultType="Integer">
 		SELECT likecount FROM mission WHERE idx=#{idx}
 	</select>
-	
+
 	<!-- 내가 북마크한 목록 불러오기 북마크 조회 : 최신순 -->
-  <select id="selectMyBookmarks" resultType="hashmap">
+	<select id="selectMyBookmarks" resultType="hashmap">
         <![CDATA[
   SELECT 
   m.idx as idx, 
   m.title as title, 
   m.createdAt as createdAt, 
   m.miImg as miImg, 
+  m.likecount as likecount,
   u.profileImg as uprofileImg, 
   u.nickname as unickname
 FROM 
@@ -132,17 +150,24 @@ FROM
 WHERE 
   b.userIdx = #{userIdx}
 ORDER BY 
-  m.createdAt DESC
+  m.idx DESC
   limit #{row},8
         ]]>
-  </select>
-  
-  <!--  내가 북마크한 개수 조회  -->
-  <select id="countMyBookmarks" parameterType="Integer"
-    resultType="Integer">
+	</select>
+
+	<!-- 내가 북마크한 개수 조회 -->
+	<select id="countMyBookmarks" parameterType="Integer"
+		resultType="Integer">
      <![CDATA[
       select count(missionIdx) from bookmark where userIdx=#{userIdx}
       ]]>
   </select>
 	
+  <!-- 오늘 날짜의 미션 조회 -->
+  <select id="getMissionRegToday" parameterType="Integer" resultType="Mission">
+    <![CDATA[
+      SELECT * FROM mission
+      WHERE userIdx = #{userIdx} AND createdAt = CURDATE();
+    ]]>
+  </select>
 </mapper>
