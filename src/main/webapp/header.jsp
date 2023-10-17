@@ -114,7 +114,8 @@ hr {
             <c:when test="${empty sessionScope.user}">
                <div class="btn-container">
                   <div class="h-left">
-                     <a class="btn disabled" role="button">오늘의 미션🖋</a>
+                     <a class="btn disabled" role="button">오늘의
+                        미션🖋</a>
                   </div>
                   <div class="h-right">
                      <a href="login" class="btn" role="button">로그인</a>
@@ -141,18 +142,18 @@ hr {
       <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
          <li class="nav-item dropup-center dropup">
             <c:choose>
-               <c:when test="${empty sessionScope.user}">
-                  <a class="nav-link disabled" href="#">MY</a>
-               </c:when>
+            <c:when test="${empty sessionScope.user}">
+               <a class="nav-link disabled" href="#">MY</a>
+            </c:when>
                <c:otherwise>
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                     href="#" role="button" aria-expanded="false">MY</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="update-user">&nbsp;✏ 내 정보 수정</a></li>
-										<li><a class="dropdown-item" href="my-missions">&nbsp;📔 나의 미션기록 </a></li>
-										<li><a class="dropdown-item" href="#">&nbsp;🏷 북마크한 미션</a></li>
-									</ul>
-					     </c:otherwise>
+               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                  href="#" role="button" aria-expanded="false">MY</a>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="update-user">&nbsp;✏ 내 정보 수정</a></li>
+                     <li><a class="dropdown-item" href="my-missions">&nbsp;📔 나의 미션기록 </a></li>
+                     <li><a class="dropdown-item" href="#">&nbsp;🏷 북마크한 미션</a></li>
+                  </ul>
+               </c:otherwise>
             </c:choose>
          <li class="nav-item"><a
             class="${catId == 0 ? 'nav-link active' : 'nav-link' }"
@@ -176,9 +177,7 @@ hr {
    </div>
    <hr />
    <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-  
-  </script>
+   <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
