@@ -478,6 +478,26 @@ height: 2.5rem;
 		myModal.addEventListener('shown.bs.modal', () => {
 		  myInput.focus()
 		})
+		
+		$(function() {
+    $('.heart-icon').click(function() {
+      $.ajax({
+        url : 'like',
+        type : 'get',
+        dataType : 'json',
+        data : {
+          'idx' : '<c:out value="${mission.idx}"/>'
+        },
+        success : function(res) {
+          console.log(res.likecount);
+          $('#likecount').text(res.likecount);
+        },
+        error : function(err) {
+          console.log(err);
+        }
+      });
+    });
+  });
 	</script>
 </body>
 
