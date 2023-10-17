@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Mission;
+import dto.User;
 import util.MybatisSqlSessionFactory;
 
 public class MissionDAOImpl implements MissionDAO {
@@ -121,12 +122,6 @@ public class MissionDAOImpl implements MissionDAO {
 
 	}
 
-	@Override
-	public void deleteMissionLike(Map<String, Object> params) throws Exception {
-		sqlSession.delete("mapper.goodidea.deleteMissionLike", params);
-		sqlSession.commit();
-	}
-
 	// 북마크한 여부 조회
 	@Override
 	public Integer selectBookmarked(Map<String, Object> params) throws Exception {
@@ -157,6 +152,12 @@ public class MissionDAOImpl implements MissionDAO {
 	@Override
 	public Integer countBookmarks(Integer userIdx) throws Exception {
 		return sqlSession.selectOne("mapper.mission.countMyBookmarks", userIdx);
+	}
+
+	// 좋아요한 유저
+	@Override
+	public List<User> selectMissionLikeUser(Integer missionIdx) throws Exception {
+		return sqlSession.selectList("mapper.mission.selectMissionLikeUser", missionIdx);
 	}
 
 }

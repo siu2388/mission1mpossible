@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import dto.Mission;
+import dto.User;
 
 public interface MissionDAO {
 	void insertMission(Mission mission) throws Exception;
@@ -67,5 +68,8 @@ public interface MissionDAO {
 
 	// 카테고리별 미션 총 개수 반환 ( for 페이지네이션 적용)
 	Integer countBookmarks(Integer userIdx) throws Exception;
+
+	// 좋아요한 유저
+	List<User> selectMissionLikeUser(Integer missionIdx) throws Exception;
 
 }

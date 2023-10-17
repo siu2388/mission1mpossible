@@ -182,6 +182,17 @@ body {
     padding: 0 !important;
 }
 
+/* 좋아요한 유저 */
+.modal-content {
+  background-image:
+    url("./images/bg2.png");
+}
+
+.btn77 {
+width: 2.5rem;
+height: 2.5rem;
+}
+
 </style>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -309,8 +320,7 @@ body {
 				<!--  북마크 & 좋아요 -->
 				<!--  북마크 -->
 				<div
-					class="mx-auto w-70 d-flex justify-content-end align-items-center"
-				>
+					class="mx-auto w-70 d-flex justify-content-end align-items-center">
 					<c:if test="${user ne Empty }">
 						<c:choose>
 							<c:when test="${bselected == true }">
@@ -354,16 +364,17 @@ body {
 						</c:choose>
 					</c:if>
 					<span>
-						좋아요(
-						<span id="likecount">${mission.likecount}</span>
-						)
-					</span>
+            <!-- 좋아요한 유저 버튼 -->            
+            <button type="button" class="btn btn77 modal-btn" data-bs-toggle="modal" data-bs-target="#Modal">
+            ${mission.likecount}
+            </button>
+          </span>
 					&nbsp;&nbsp;
 				</div>
 			</div>
 		</div>
-
-		<div class="btn-box d-flex justify-content-between">
+    <c:if test="${today eq mission.createdAt}">
+    <div class="btn-box d-flex justify-content-between">
 			<!-- 버튼 배치를 위한 그리드 -->
 			<div class="container no-padding">
 				<div class="row">
@@ -413,8 +424,34 @@ body {
 			</div>
 			<!-- container (그리드 끝) -->
 		</div>
+		</c:if>
+  </div>
 
-	</div>
+<!-- 좋아요한 유저 모달 -->
+<div class="modal fade" id="Modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" style="color:blueviolet;  font-weight:bold">좋아요한 유저 ${mission.likecount}명 💜</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="text-align: center">
+        <!-- 사용자 정보를 출력하는 반복문 -->
+        <c:forEach var="user" items="${users}">
+          <div class="line">
+            <div class="user-container">
+              <div class="users" style="background-image: url('<c:url value='${user.profileImg}'/>')"></div>
+              <div class="username">${user.nickname}</div>
+            </div>
+          </div>
+        </c:forEach>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -433,6 +470,14 @@ body {
 				/* $('#missionStatus').addClass('fail-text'); */
 			}
 		});
+		
+		/* 좋아요한 유저 */
+		const myModal = document.getElementById('myModal')
+		const myInput = document.getElementById('myInput')
+
+		myModal.addEventListener('shown.bs.modal', () => {
+		  myInput.focus()
+		})
 	</script>
 </body>
 

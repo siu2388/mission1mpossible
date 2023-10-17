@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import dto.Mission;
+import dto.User;
 
 public interface MissionService {
 	// 미션등록
@@ -50,5 +51,8 @@ public interface MissionService {
 
 	// 나의 북마크리스트 조회
 	Map<String, Object> findMyBookmarks(Integer page, Integer userIdx) throws Exception;
+
+	// 좋아요한 유저
+	List<User> findMissionLikeUser(Integer missionIdx) throws Exception;
 
 }
