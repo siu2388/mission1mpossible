@@ -101,7 +101,7 @@ public class MissionDAOImpl implements MissionDAO {
 		sqlSession.commit();
 	}
 
-//미션에서 좋아요 눌러서 파라미터로 
+	// 좋아요 여부 조회 있으면 1 없으면 0
 	@Override
 	public Integer selectMissionLike(Map<String, Object> params) throws Exception {
 		return sqlSession.selectOne("mapper.goodidea.selectMissionLiked", params);
@@ -110,13 +110,6 @@ public class MissionDAOImpl implements MissionDAO {
 	@Override
 	public void insertMissionLike(Map<String, Object> params) throws Exception {
 		sqlSession.insert("mapper.goodidea.insertMissionLike", params);
-		sqlSession.commit();
-
-	}
-
-	@Override
-	public void deleteMissionLike(Map<String, Object> params) throws Exception {
-		sqlSession.delete("mapper.goodidea.deleteMissionLike", params);
 		sqlSession.commit();
 
 	}

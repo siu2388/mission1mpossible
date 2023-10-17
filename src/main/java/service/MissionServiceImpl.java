@@ -62,8 +62,8 @@ public class MissionServiceImpl implements MissionService {
 		PageInfo pageInfo = new PageInfo();
 
 		Map<String, Object> paging = new HashMap<>();
-		int maxPage = (int) Math.ceil((double) totalCounts / 10);
-		if (maxPage == 0) {
+		int maxPage = (int) Math.ceil((double) totalCounts / 8);
+		if (maxPage == 0) { // 검색결과가 0인경우 처리
 			paging.put("pageInfo", pageInfo);
 			paging.put("startRow", 1);
 
@@ -84,8 +84,10 @@ public class MissionServiceImpl implements MissionService {
 		pageInfo.setEndPage(endPage);
 
 		System.out.println("페이징처리에서 받은 토탈카운트:" + totalCounts);
+		System.out.println("페이징처리에서 받은 maxPage:" + maxPage);
+		System.out.println("startPage:" + startPage + " endPage:" + endPage);
 
-		int row = (page - 1) * 10 + 1;
+		int row = (page - 1) * 8 + 1;
 
 		paging.put("pageInfo", pageInfo);
 		paging.put("startRow", row);
@@ -100,6 +102,7 @@ public class MissionServiceImpl implements MissionService {
 		int totalCounts = missionDao.countAllMissions();
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
+//		missionService.isMissionLiked(idx, userIdx);
 
 		List<Mission> missionList = missionDao.selectMissionList(row - 1);
 		System.out.println(missionList);
@@ -231,7 +234,7 @@ public class MissionServiceImpl implements MissionService {
 		// 북마크 없을 경우 처리
 		if (bmcheck == null)
 			bmcheck = 0;
-		System.out.println("서비스bmcheck" + bmcheck);
+		System.out.println("서비스bmcheck :" + bmcheck);
 		Map<String, Object> result = new HashMap<>();
 
 		// 없으면 bookmark테이블에 추가
@@ -239,7 +242,7 @@ public class MissionServiceImpl implements MissionService {
 			missionDao.insertBookmark(params);
 			result.put("bselected", true); // 북마크 추가했다고 전달
 		} else { // 없으면 북마크테이블에서 삭제
-			missionDao.deleteMissionLike(params);
+			missionDao.deleteBookmark(params);
 			result.put("bselected", false);
 		}
 
