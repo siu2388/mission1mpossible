@@ -145,4 +145,11 @@ ORDER BY
       ]]>
   </select>
 	
+  <!-- 오늘 날짜의 미션 조회 -->
+  <select id="getMissionRegToday" parameterType="Integer" resultType="Mission">
+    <![CDATA[
+      SELECT * FROM mission
+      WHERE userIdx = #{userIdx} AND createdAt = CURDATE();
+    ]]>
+  </select>
 </mapper>

@@ -159,4 +159,9 @@ public class MissionDAOImpl implements MissionDAO {
 		return sqlSession.selectOne("mapper.mission.countMyBookmarks", userIdx);
 	}
 
+		// 오늘 날짜의 미션 조회
+		@Override
+		public Mission getMissionRegToday(Integer userIdx) throws Exception {
+			return sqlSession.selectOne("mapper.mission.getMissionRegToday", userIdx);
+		}
 }

@@ -68,4 +68,6 @@ public interface MissionDAO {
 	// 카테고리별 미션 총 개수 반환 ( for 페이지네이션 적용)
 	Integer countBookmarks(Integer userIdx) throws Exception;
 
+	// 오늘 날짜의 미션 조회
+	Mission getMissionRegToday(Integer userIdx) throws Exception;
 }
