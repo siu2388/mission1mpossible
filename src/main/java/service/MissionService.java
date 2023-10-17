@@ -54,4 +54,6 @@ public interface MissionService {
 	// 나의 북마크리스트 조회
 	Map<String, Object> findMyBookmarks(Integer page, Integer userIdx) throws Exception;
 
+	// 오늘 날짜의 미션 조회
+	Mission getMissionRegToday(Integer userIdx) throws Exception;	
 }

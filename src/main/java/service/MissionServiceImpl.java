@@ -290,4 +290,10 @@ public class MissionServiceImpl implements MissionService {
 
 		return missionSuccessRate;
 	}
+
+	// 오늘 날짜의 미션 조회
+	@Override
+	public Mission getMissionRegToday(Integer userIdx) throws Exception {
+		return missionDao.getMissionRegToday(userIdx);
+	}
 }
