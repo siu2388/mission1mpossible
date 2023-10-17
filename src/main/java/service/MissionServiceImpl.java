@@ -295,7 +295,7 @@ public class MissionServiceImpl implements MissionService {
 		Integer successfulMissions = ((Number) missionSuccessRate.get("successfulMissions")).intValue();
 		Integer successRate = totalMissions == 0 ? 0 : (successfulMissions * 100) / totalMissions;
 		System.out.println("총 미션수 : " + totalMissions);
-		System.out.println("총 미션수 : " + successfulMissions);
+		System.out.println("성공한 미션 : " + successfulMissions);
 
 		// 성공률을 맵에 추가
 		missionSuccessRate.put("successRate", successRate);

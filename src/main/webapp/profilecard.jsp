@@ -134,6 +134,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   </head>
   <body>
     <div class="card card1">
+      <a
+        href="update-user"
+        type="button"
+        class="user-update-btn"
+        >정보수정</a
+      >
       <div>
         <c:choose>
           <c:when test="${user.profileImg ne null}">
