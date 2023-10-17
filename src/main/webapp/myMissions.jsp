@@ -68,6 +68,7 @@ header {
   <div class="row row-cols-5 g-4">
     <c:forEach items="${missions}" var="mission">
       <div class="col col77">
+      
           <div class='${mission.success eq "성공"? "card card77 bg-success bg-opacity-75":"card card77 bg-danger bg-opacity-75"}' href="missions" role="button">
             <div>
             <c:choose>
@@ -84,12 +85,12 @@ header {
             </div>
             <div class="card-body">
               <h5 class="card-title">
-              <a href="mission?idx=${mission.idx}" style="color:white; text-decoration: none;">
-                
+                              
+                    <a href="mission?idx=${mission.idx}" style="text-decoration: none; color: white" class="stretched-link">
                     <br>${mission.title }
+                    </a>
                     <br>
                     <br>
-              </a>      
               </h5>
             </div>
             <div class="card-footer">
@@ -98,6 +99,7 @@ header {
             </div>
             </div>
           </div>
+          
         <script>
       </script>
       </div>

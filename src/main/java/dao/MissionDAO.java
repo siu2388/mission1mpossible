@@ -33,11 +33,11 @@ public interface MissionDAO {
 	List<Mission> selectMyMissions(Integer userIdx) throws Exception;
 
 	// 총 미션 수 조회 (프로필카드용)_
-	
-	Integer countTotalMissions(Integer userIdx) throws Exception;
-
-	// 성공률 계산
-	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
+//	
+//	Integer countTotalMissions(Integer userIdx) throws Exception;
+//
+//	// 성공률 계산
+//	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
 
 	// 좋아요 수 증/감/조회
 	void plusMissionLikeCount(Integer idx) throws Exception;

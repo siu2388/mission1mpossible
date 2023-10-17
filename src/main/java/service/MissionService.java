@@ -29,15 +29,12 @@ public interface MissionService {
 
 	// 나의 미션기록 조회
 	List<Mission> findMyMissions(Integer userIdx) throws Exception;
-
-	// 총 미션 수(프로필카드)
-	
-	Integer countTotalMissions(Integer userIdx) throws Exception;
-	
-	//성공률 계산(프로필카드)
-	
-	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
-	
+//
+//	// 총 미션 수(프로필카드)
+//	Integer countTotalMissions(Integer userIdx) throws Exception;
+//
+//	// 성공률 계산(프로필카드)
+//	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
 
 	// 좋아요 세가지를 하나로 묶어서 서비스
 	String missionLike(Integer idx, Integer userIdx) throws Exception;
@@ -55,5 +52,5 @@ public interface MissionService {
 	Map<String, Object> findMyBookmarks(Integer page, Integer userIdx) throws Exception;
 
 	// 오늘 날짜의 미션 조회
-	Mission getMissionRegToday(Integer userIdx) throws Exception;	
+	Mission getMissionRegToday(Integer userIdx) throws Exception;
 }
