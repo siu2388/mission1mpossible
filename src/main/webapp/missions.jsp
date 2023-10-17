@@ -182,12 +182,12 @@ div.card.bg-secondary-subtle {
 }
 
 .user-card-text {
-	width: 120px;
+	width: 150px;
 	font-size: 12.5px;
-	text-align: right;
 	margin-right: 0;
 	margin-left: 50px;
 	margin-top: -30px;
+	padding-left: 22px;
 }
 
 .pagination .page-link {

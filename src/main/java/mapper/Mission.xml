@@ -84,13 +84,7 @@
 
 	<select id="countTotalMissions" resultType="Integer">
         <![CDATA[
-        SELECT 
-            COUNT(*) AS totalMissions
-        FROM 
-            mission
-        WHERE 
-            DATE(createdAt) BETWEEN CURDATE() - INTERVAL 100 DAY AND CURDATE() - INTERVAL 1 DAY
-            AND useridx = #{userIdx}
+        SELECT COUNT(idx) from mission WHERE userIdx = #{userIdx} AND CURDATE() > createdAt;
         ]]>
 	</select>
 
