@@ -45,19 +45,6 @@ public class MissionDAOImpl implements MissionDAO {
 		return sqlSession.selectList("mapper.mission.selectMyMissions", userIdx);
 	}
 
-	// 총 미션수 계산 by userIdx
-
-//	@Override
-//	public Integer countTotalMissions(Integer userIdx) throws Exception {
-//
-//		return sqlSession.selectOne("mapper.mission.countTotalMissions", userIdx);
-//	}
-//
-//	// 성공률 계산
-//	@Override
-//	public Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception {
-//		return sqlSession.selectOne("mapper.mission.calculateMissionSuccessRate", userIdx);
-//	}
 
 	// 미션 전체 리스트 조회
 	@Override
@@ -159,4 +146,16 @@ public class MissionDAOImpl implements MissionDAO {
 	public Mission getMissionRegToday(Integer userIdx) throws Exception {
 		return sqlSession.selectOne("mapper.mission.getMissionRegToday", userIdx);
 	}
+	
+	// 총 미션수 계산 by userIdx
+	
+	@Override
+	public Integer countTotalMissions(Integer userIdx) throws Exception {
+		return sqlSession.selectOne("mapper.mission.countTotalMissions", userIdx);
+	}
+
+	// 성공률 계산
+	@Override
+	public Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception {
+		return sqlSession.selectOne("mapper.mission.calculateMissionSuccessRate", userIdx);	}
 }

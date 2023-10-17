@@ -82,58 +82,57 @@
 
 	<!-- 총 미션 수 조회 -->
 
-	<select id="countTotalMissions" resultType="int">
+	<select id="countTotalMissions" resultType="Integer">
         <![CDATA[
         SELECT 
             COUNT(*) AS totalMissions
         FROM 
             mission
         WHERE 
-            DATE(createdAt) = CURDATE() - INTERVAL 1 DAY
+            DATE(createdAt) BETWEEN CURDATE() - INTERVAL 100 DAY AND CURDATE() - INTERVAL 1 DAY
             AND useridx = #{userIdx}
         ]]>
 	</select>
 
 
 	<!-- 성공률 계산 -->
+
 	<select id="calculateMissionSuccessRate" resultType="map"
-		parameterType="int">
-        <![CDATA[
-        SELECT 
-            COUNT(*) AS totalMissions,
-            SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) AS successfulMissions,
-            ROUND((SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS successRate
-        FROM 
-            mission
-        WHERE 
-            DATE(createdAt) = CURDATE() - INTERVAL 1 DAY
-            AND (success = '성공' OR success IS NULL OR success = '실패')
-            AND userIdx = #{userIdx}
-        ]]>
-	</select>
+		parameterType="Integer">
+    <![CDATA[
+    SELECT 
+        COUNT(*) AS totalMissions,
+        SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) AS successfulMissions,
+        ROUND((SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS successRate
+    FROM 
+        mission
+    WHERE 
+        DATE(createdAt) BETWEEN CURDATE() - INTERVAL 100 DAY AND CURDATE() - INTERVAL 1 DAY
+        AND (success = '성공' OR success IS NULL OR success = '실패')
+        AND userIdx = #{userIdx}
+    ]]>
+    </select>
 
-
-
-	<!-- like 증가 (update) -->
-	<update id="plusMissionLikeCount" parameterType="Integer">
+		<!-- like 증가 (update) -->
+		<update id="plusMissionLikeCount" parameterType="Integer">
         <![CDATA[
         UPDATE mission SET likecount = likecount + 1 WHERE idx = #{idx}
         ]]>
-	</update>
-	<!--like 감소 (update) -->
-	<update id="minusMissionLikeCount" parameterType="Integer">
+		</update>
+		<!--like 감소 (update) -->
+		<update id="minusMissionLikeCount" parameterType="Integer">
         <![CDATA[
         UPDATE mission SET likecount = likecount - 1 WHERE idx = #{idx}
         ]]>
-	</update>
-	<!-- 좋아요 수 조회 -->
-	<select id="selectMissionLikeCount" parameterType="Integer"
-		resultType="Integer">
-		SELECT likecount FROM mission WHERE idx=#{idx}
-	</select>
+		</update>
+		<!-- 좋아요 수 조회 -->
+		<select id="selectMissionLikeCount" parameterType="Integer"
+			resultType="Integer">
+			SELECT likecount FROM mission WHERE idx=#{idx}
+		</select>
 
-	<!-- 내가 북마크한 목록 불러오기 북마크 조회 : 최신순 -->
-	<select id="selectMyBookmarks" resultType="hashmap">
+		<!-- 내가 북마크한 목록 불러오기 북마크 조회 : 최신순 -->
+		<select id="selectMyBookmarks" resultType="hashmap">
         <![CDATA[
   SELECT 
   m.idx as idx, 
@@ -153,21 +152,22 @@ ORDER BY
   m.idx DESC
   limit #{row},8
         ]]>
-	</select>
+		</select>
 
-	<!-- 내가 북마크한 개수 조회 -->
-	<select id="countMyBookmarks" parameterType="Integer"
-		resultType="Integer">
+		<!-- 내가 북마크한 개수 조회 -->
+		<select id="countMyBookmarks" parameterType="Integer"
+			resultType="Integer">
      <![CDATA[
       select count(missionIdx) from bookmark where userIdx=#{userIdx}
       ]]>
-  </select>
-	
-  <!-- 오늘 날짜의 미션 조회 -->
-  <select id="getMissionRegToday" parameterType="Integer" resultType="Mission">
+		</select>
+
+		<!-- 오늘 날짜의 미션 조회 -->
+		<select id="getMissionRegToday" parameterType="Integer"
+			resultType="Mission">
     <![CDATA[
       SELECT * FROM mission
       WHERE userIdx = #{userIdx} AND createdAt = CURDATE();
     ]]>
-  </select>
+		</select>
 </mapper>
