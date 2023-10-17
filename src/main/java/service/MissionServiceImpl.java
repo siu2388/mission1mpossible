@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import dao.MissionDAO;
 import dao.MissionDAOImpl;
 import dto.Mission;
+import dto.User;
 import util.PageInfo;
 
 public class MissionServiceImpl implements MissionService {
@@ -44,6 +45,16 @@ public class MissionServiceImpl implements MissionService {
 	@Override
 	public List<Mission> findMyMissions(Integer userIdx) throws Exception {
 		return missionDao.selectMyMissions(userIdx);
+	}
+
+	@Override
+	public Integer selectTotalMissions(Integer userIdx) throws Exception {
+		return missionDao.selectTotalMissions(userIdx);
+	}
+
+	@Override
+	public Integer calculateSuccessRate(Integer userIdx) throws Exception {
+		return missionDao.calculateSuccessRate(userIdx);
 	}
 
 	// 페이징 처리 서비스
@@ -85,7 +96,7 @@ public class MissionServiceImpl implements MissionService {
 		return paging;
 	}
 
-//전체 미션 조회
+	// 전체 미션 조회
 	@Override
 	public Map<String, Object> findAllMissions(Integer page) throws Exception {
 

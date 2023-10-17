@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import dto.Mission;
+import dto.User;
 
 public interface MissionService {
 	// 미션등록

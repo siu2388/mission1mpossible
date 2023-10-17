@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Mission;
+import dto.User;
 import util.MybatisSqlSessionFactory;
 
 public class MissionDAOImpl implements MissionDAO {
