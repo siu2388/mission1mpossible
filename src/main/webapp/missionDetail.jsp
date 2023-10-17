@@ -208,6 +208,20 @@ body {
 .no-padding {
 	padding: 0 !important;
 }
+
+#bookmarked {
+	margin-right: 28rem;
+	margin-top: 4px;
+}
+
+#likeheart {
+	margin-top: 5px;
+}
+
+#likecount{
+
+margin-top: 12px;
+}
 </style>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -366,8 +380,7 @@ body {
 							</c:otherwise>
 						</c:choose>
 					</c:if>
-					<span> 좋아요( <span id="likecount">${mission.likecount}</span>
-						)
+					<span>(<span id="likecount">${mission.likecount}</span>)
 					</span> &nbsp;&nbsp;
 				</div>
 			</div>
