@@ -33,7 +33,6 @@ public interface MissionDAO {
 	List<Mission> selectMyMissions(Integer userIdx) throws Exception;
 
 	// 총 미션 수 조회 (프로필카드용)_
-	
 	Integer countTotalMissions(Integer userIdx) throws Exception;
 
 	// 성공률 계산
