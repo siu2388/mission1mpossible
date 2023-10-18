@@ -50,7 +50,7 @@ header {
 		float: left;
 }
 
-.join {
+.join-box {
 	float: left;
 	margin: 1.25rem; /* 20px를 rem으로 변환 */
 	margin-top: 3.125rem; /* 50px를 rem으로 변환 */
@@ -251,16 +251,15 @@ div.card.bg-secondary-subtle {
 		</c:otherwise>
 	</c:choose>
 	<!-- end -->
-	<div>
+	<div class="container">
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
-				<div class="join">
-					<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
-						이용하실 수 있습니다!</div>
-					<a
-						href="./join"
-						class="join-button"
-					>회원가입 </a>
+				<div class="join-box">
+					<div class="join-text">
+						회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
+						이용하실 수 있습니다!
+					</div>
+					<a href="join" class="join-button">회원가입</a>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -270,7 +269,6 @@ div.card.bg-secondary-subtle {
 			</c:otherwise>
 		</c:choose>
 
-		<div class="container">
 			<div class="row row-cols-1 row-cols-md-4 g-4 justify-content-start">
 				<c:forEach
 					items="${result.missionList}"
@@ -278,8 +276,6 @@ div.card.bg-secondary-subtle {
 				>
 					<div class="col">
 						<div class="card bg-secondary-subtle">
-
-
 							<div class="card-top">
 								<div class="bookmark">
 									<i class="fa-solid fa-bookmark"></i>
@@ -346,7 +342,7 @@ div.card.bg-secondary-subtle {
 					</div>
 				</c:forEach>
 			</div>
-		</div>
+
 		<!--  페이지네이션 -->
 		<div class="d-flex justify-content-center mt-4">
 			<c:choose>
@@ -399,7 +395,7 @@ div.card.bg-secondary-subtle {
 
 		</div>
 		<!--  end -->
-	</div>
+	</div> <!-- container 끝 -->
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
