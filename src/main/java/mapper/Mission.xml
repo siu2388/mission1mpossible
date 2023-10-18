@@ -64,7 +64,8 @@
 	<select id="selectMission" parameterType="Integer"
 		resultType="Mission">
   <![CDATA[
-      select * from mission where idx=#{idx}
+      SELECT m.*, c.cat as catname FROM mission m JOIN category c ON m.catId = c.id where m.idx=#{idx}
+      
       ]]>
 	</select>
 

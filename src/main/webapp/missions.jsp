@@ -153,7 +153,7 @@ div.card.bg-secondary-subtle {
 }
 
 .card-user {
-		margin-top: 10px;
+		padding-top: 5px;
 		margin: 0;
 		width: 50px;
 }
@@ -186,7 +186,7 @@ div.card.bg-secondary-subtle {
 		font-size: 12.5px;
 		margin-right: 0;
 		margin-left: 50px;
-		margin-top: -30px;
+		margin-top: -23px;
 		padding-left: 22px;
 }
 
