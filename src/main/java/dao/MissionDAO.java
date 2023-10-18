@@ -30,8 +30,12 @@ public interface MissionDAO {
 	// 미션 상세보기 by missionIdx
 	Mission selectMission(Integer idx) throws Exception;
 
-	// 나의 미션기록 조회
-	List<Mission> selectMyMissions(Integer userIdx) throws Exception;
+//	// 나의 미션기록 조회
+//	List<Mission> selectMyMissions(Integer userIdx) throws Exception;
+	
+	// 내 미션(myMission) 총 개수 조회 (for 페이지네이션 적용)
+	
+	Integer countMyMissions(Integer userIdx) throws Exception;
 
 	// 총 미션 수 조회 (프로필카드용)_
 	Integer countTotalMissions(Integer userIdx) throws Exception;
@@ -72,6 +76,8 @@ public interface MissionDAO {
 	// 오늘 날짜의 미션 조회
 	Mission getMissionRegToday(Integer userIdx) throws Exception;
 
+	// 나의 미션기록 조회
+	List<Mission> selectMyMissions(Map<String, Object> params) throws Exception;
 	// 좋아요한 유저목록 조회
 	List<User> selectMissionLikeUser(Integer missionIdx) throws Exception;
 }

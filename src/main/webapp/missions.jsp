@@ -206,8 +206,8 @@ div.card.bg-secondary-subtle {
 }
 
 .container {
-		height: 37.5rem; /* 600px를 rem으로 변환 */
-		position: relative;
+	height: 37.5rem; /* 600px를 rem으로 변환 */
+	
 }
 
 .page-selected {
@@ -366,7 +366,7 @@ ead>
 				var="i"
 			>
 				<c:choose>
-					<c:when test="${result.pageInfo.curPage ==i }">
+					<c:when test="${result.pageInfo.curPage == i }">
 						<a
 							href="${pagingPath}${i }"
 							class="page-selected"

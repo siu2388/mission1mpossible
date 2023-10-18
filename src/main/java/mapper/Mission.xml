@@ -69,13 +69,14 @@
 	</select>
 
 	<!-- 나의 미션기록 조회 -->
-	<select id="selectMyMissions" parameterType="Integer"
-		resultType="Mission">
+	<select id="selectMyMissions" parameterType="map"
+		resultType="hashmap">
   <![CDATA[
       select idx, title, miImg, createdAt, likecount, success
       from mission
       where userIdx=#{userIdx}
       order by createdAt desc
+      limit #{row}, 5
       ]]>
 	</select>
 
@@ -96,27 +97,26 @@
         ]]>
   </select>
 
-
-		<!-- like 증가 (update) -->
-		<update id="plusMissionLikeCount" parameterType="Integer">
+	<!-- like 증가 (update) -->
+	<update id="plusMissionLikeCount" parameterType="Integer">
         <![CDATA[
         UPDATE mission SET likecount = likecount + 1 WHERE idx = #{idx}
         ]]>
-		</update>
-		<!--like 감소 (update) -->
-		<update id="minusMissionLikeCount" parameterType="Integer">
+	</update>
+	<!--like 감소 (update) -->
+	<update id="minusMissionLikeCount" parameterType="Integer">
         <![CDATA[
         UPDATE mission SET likecount = likecount - 1 WHERE idx = #{idx}
         ]]>
-		</update>
-		<!-- 좋아요 수 조회 -->
-		<select id="selectMissionLikeCount" parameterType="Integer"
-			resultType="Integer">
-			SELECT likecount FROM mission WHERE idx=#{idx}
-		</select>
+	</update>
+	<!-- 좋아요 수 조회 -->
+	<select id="selectMissionLikeCount" parameterType="Integer"
+		resultType="Integer">
+		SELECT likecount FROM mission WHERE idx=#{idx}
+	</select>
 
-		<!-- 내가 북마크한 목록 불러오기 북마크 조회 : 최신순 -->
-		<select id="selectMyBookmarks" resultType="hashmap">
+	<!-- 내가 북마크한 목록 불러오기 북마크 조회 : 최신순 -->
+	<select id="selectMyBookmarks" resultType="hashmap">
         <![CDATA[
   SELECT 
   m.idx as idx, 
@@ -139,33 +139,41 @@ ORDER BY
         ]]>
 		</select>
 
-		<!-- 내가 북마크한 개수 조회 -->
-		<select id="countMyBookmarks" parameterType="Integer"
-			resultType="Integer">
+	<!-- 내가 북마크한 개수 조회 -->
+	<select id="countMyBookmarks" parameterType="Integer"
+		resultType="Integer">
      <![CDATA[
       select count(missionIdx) from bookmark where userIdx=#{userIdx}
       ]]>
-		</select>
+	</select>
 
-		<!-- 오늘 날짜의 미션 조회 -->
-		<select id="getMissionRegToday" parameterType="Integer"
-			resultType="Mission">
+	<!-- 오늘 날짜의 미션 조회 -->
+	<select id="getMissionRegToday" parameterType="Integer"
+		resultType="Mission">
     <![CDATA[
       SELECT * FROM mission
-      WHERE userIdx = #{userIdx} AND createdAt = CURDATE();
+      WHERE userIdx = #{userIdx} AND createdAt = CURDATE()
     ]]>
-		</select>
-		
-		
-		  <!-- 좋아요한 유저 목록 조회 -->
+	</select>
+
+	<!--내 미션 총 개수 조회 -->
+	<select id="countMyMissions" parameterType="Integer"
+		resultType="Integer">
+    <![CDATA[
+	select count(idx) from mission 
+	where userIdx = #{userIdx}
+	]]>
+	</select>
+
+	<!-- 좋아요한 유저 목록 조회 -->
   <select id="selectMissionLikeUser" parameterType="Integer"
     resultType="User">
   <![CDATA[
       SELECT u.profileImg as profileImg, u.nickname as nickname
-FROM user u
-JOIN goodidea g ON u.idx = g.userIdx
-JOIN mission m ON m.idx = g.missionIdx
-WHERE m.idx = #{missionIdx}
+		FROM user u
+		JOIN goodidea g ON u.idx = g.userIdx
+		JOIN mission m ON m.idx = g.missionIdx
+		WHERE m.idx = #{missionIdx}
       ]]>
   </select>
 		

@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,6 +65,11 @@ header {
 .like {
    color: #49339A;
 }
+
+.page-selected {
+		margin: 0;
+		background-color: yellow;
+}
 </style>
 </head>
 
@@ -71,46 +78,83 @@ header {
       <jsp:include page="header.jsp" />
    </header>
 
-<main>
-  <div class="profile">
-    <jsp:include page="profilecard.jsp" />
-  </div>
-  <div class="row row-cols-5 g-4">
-    <c:forEach items="${missions}" var="mission">
-      <div class="col col77">
-          <div class='${mission.success eq "성공"? "card card77 bg-success bg-opacity-75":"card card77 bg-danger bg-opacity-75"}' href="missions" role="button">
-            <div>
-            <c:choose>
-              <c:when test="${mission.miImg ne null}">
-                <img src="image?miImg=${mission.miImg}" class="mission-img" style="width:198px; height:200px;"/>
-              </c:when>
+	<main>
+		<div class="profile">
+			<jsp:include page="profilecard.jsp" />
+		</div>
+		<div class="row row-cols-5 g-4">
+			<c:forEach items="${result.myMissionList}" var="mission">
+				<div class="col col77">
+
+					<div
+						class='${mission.success eq "성공"? "card card77 bg-success bg-opacity-75":"card card77 bg-danger bg-opacity-75"}'
+						href="missions" role="button">
+						<div>
+							<c:choose>
+								<c:when test="${mission.miImg ne null}">
+									<img src="image?miImg=${mission.miImg}" class="mission-img"
+										style="width: 198px; height: 200px;" />
+								</c:when>
+								<c:otherwise>
+									<img src="./images/defaultMissionBears.jpg" class="mission-img" />
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="card-header">${mission.createdAt}</div>
+						<div class="card-body">
+							<h5 class="card-title">
+
+								<a href="mission?idx=${mission.idx}"
+									style="text-decoration: none; color: white"
+									class="stretched-link"> <br>${mission.title }
+								</a> <br> <br>
+							</h5>
+						</div>
+						<div class="card-footer">
+							<div class="like">
+								${mission.likecount} <i class="fa-solid fa-heart"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</main>
+	<!-- 페이지네이션 -->
+<div class="d-flex justify-content-center mt-4">
+
+    <c:choose>
+        <c:when test="${result.pageInfo.curPage > 1}">
+            <a href="${pagingPath}?page=${result.pageInfo.curPage - 1}">&lt;</a>
+        </c:when>
+        <c:otherwise>
+            &lt;
+        </c:otherwise>
+    </c:choose>
+    &nbsp;&nbsp;
+
+    <c:forEach begin="${result.pageInfo.startPage}" end="${result.pageInfo.endPage}" var="i">
+        <c:choose>
+            <c:when test="${result.pageInfo.curPage == i}">
+                <a href="${pagingPath}?page=${i}" class="page-selected" onClick="callBtn(${i}); return ${result.keyword == null};">${i}</a>&nbsp;&nbsp;
+            </c:when>
             <c:otherwise>
-              <img src="./images/defaultMissionBears.jpg" class="mission-img"/>
+                <a href="${pagingPath}?page=${i}" class="page-num" onClick="callBtn(${i}); return ${result.keyword == null};">${i}</a>&nbsp;&nbsp;
             </c:otherwise>
-            </c:choose>
-          </div>
-            <div class="card-header">
-              ${mission.createdAt}
-            </div>
-            <div class="card-body">
-              <h5 class="card-title" style="width:10rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;">
-                <a href="mission?idx=${mission.idx}" style="text-decoration: none; color: white" class="stretched-link">
-                <br>${mission.title}
-                </a>
-                <br>
-                <br>
-              </h5>
-            </div>
-            <div class="card-footer">
-              <div class="like">
-                ${mission.likecount} <i class="fa-solid fa-heart"></i>
-            </div>
-            </div>
-          </div>
-      </div>
+        </c:choose>
     </c:forEach>
-  </div>
-</main>
+
+    <c:choose>
+        <c:when test="${result.pageInfo.curPage < result.pageInfo.totalPages}">
+            <a href="${pagingPath}?page=${result.pageInfo.curPage + 1}">&gt;</a>
+        </c:when>
+        <c:otherwise>
+            &gt;
+        </c:otherwise>
+    </c:choose>
+
+</div>
+<!-- end -->
 
 </body>
 

@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dto.Mission;
 import dto.User;
 import service.MissionService;
 import service.MissionServiceImpl;
@@ -25,16 +24,25 @@ public class myMissions extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		System.out.println("----------------나의미션리스트서블릿호출");
 
 		try {
 			HttpSession session = req.getSession();
 			User user = (User) session.getAttribute("user");
 			Integer userIdx = user.getIdx();
+			
+			String page = req.getParameter("page");
+
+			int curPage = 1; // 페이지를 안가져왔을 때 기본 1 페이지
+			if (page != null) {
+				curPage = Integer.parseInt(page);
+			}
 
 			MissionService missionService = new MissionServiceImpl();
-			List<Mission> missions = missionService.findMyMissions(userIdx);
-			req.setAttribute("missions", missions);
-			System.out.println(missions);
+			Map<String, Object> result = missionService.findMyMissions(curPage, userIdx);
+			req.setAttribute("result", result);
+			
+			System.out.println("------mymission.java 콘트롤러: " + req.getAttribute("result"));
 
 			req.getRequestDispatcher("myMissions.jsp").forward(req, resp);
 

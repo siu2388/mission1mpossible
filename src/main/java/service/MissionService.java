@@ -29,7 +29,7 @@ public interface MissionService {
 	Mission detailTodayMission(Integer idx) throws Exception;
 
 	// 나의 미션기록 조회
-	List<Mission> findMyMissions(Integer userIdx) throws Exception;
+	//List<Mission> findMyMissions(Integer userIdx) throws Exception;
 
 	// 좋아요 세가지를 하나로 묶어서 서비스
 	String missionLike(Integer idx, Integer userIdx) throws Exception;
@@ -58,5 +58,11 @@ public interface MissionService {
 	//좋아요한 유저 목록 조회 
 	List<User> findMissionLikeUser(Integer missionIdx) throws Exception;
 
+
+	// 내 미션기록 조회
+	Map<String, Object> findMyMissions(Integer page, Integer userIdx) throws Exception;
+
+	// 내 미션기록 한정 페이징 서비스
+	Map<String, Object> getPageInfoMyMission(int page, int totalCounts) throws Exception;
 
 }
