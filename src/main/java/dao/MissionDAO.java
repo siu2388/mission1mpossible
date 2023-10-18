@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import dto.Mission;
+import dto.User;
 
 public interface MissionDAO {
 	void insertMission(Mission mission) throws Exception;
@@ -39,8 +40,8 @@ public interface MissionDAO {
 	// 총 미션 수 조회 (프로필카드용)_
 	Integer countTotalMissions(Integer userIdx) throws Exception;
 
-	// 성공률 계산
-	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
+	// 성공한 미션 수 조회
+	Integer countSuccessMissions(Integer userIdx) throws Exception;
 
 	// 좋아요 수 증/감/조회
 	void plusMissionLikeCount(Integer idx) throws Exception;
@@ -77,4 +78,6 @@ public interface MissionDAO {
 
 	// 나의 미션기록 조회
 	List<Mission> selectMyMissions(Map<String, Object> params) throws Exception;
+	// 좋아요한 유저목록 조회
+	List<User> selectMissionLikeUser(Integer missionIdx) throws Exception;
 }

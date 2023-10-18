@@ -524,7 +524,7 @@ body {
 		id="Modal"
 		tabindex="-1">
 		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1
@@ -541,19 +541,19 @@ body {
 					class="modal-body"
 					style="text-align: center">
 					<!-- 사용자 정보를 출력하는 반복문 -->
-					<c:forEach
+					<%-- <c:forEach
 						items="${users}"
 						var="user">
 						<div class="line">
 							<div class="user-container">
 								<div
-								  id="liker-profileImg"
+								   id="liker-profileImg"
 									class="users"
 									style="background-image: url('<c:url value='${user.profileImg}'/>')"></div>
 								<div id="liker-nickname" class="username">${user.nickname}</div>
 							</div>
 						</div>
-					</c:forEach>
+					</c:forEach> --%>
 				</div>
 				<div class="modal-footer">
 					<button
@@ -583,11 +583,12 @@ body {
 		});
 		
 		/* 좋아요한 유저 */
+		/*
 	  const myModal = document.getElementById('myModal')
 	  const myInput = document.getElementById('myInput')
     myModal.addEventListener('shown.bs.modal', () => {
 	    myInput.focus()
-    })
+    })*/
 	    
     $(function() {
     $('.modal-btn').click(function() {
@@ -599,10 +600,19 @@ body {
           'idx' : '<c:out value="${mission.idx}"/>'
         },
         success : function(res) {
-          console.log(res.users);
-          $('#liker-profileImg').text(res.profileImg);
-          console.log(res.nickname);
-          $('#liker-nickname').text(res.nickname);
+        	var body = $(".modal-body");
+          for(user of res) {
+        	  var div = `<div class="line">
+                  <div class="user-container">
+                  <div
+                    id="liker-profileImg"
+                    class="users"
+                    style="background-image: url('\${user.profileImg}')"></div>
+                  <div id="liker-nickname" class="username">\${user.nickname}</div>
+                </div>
+                </div>`;
+                body.append(div);
+          }
         },
         error : function(err) {
           console.log(err);

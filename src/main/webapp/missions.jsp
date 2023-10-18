@@ -43,46 +43,47 @@ a.custom-link {
 }
 
 header {
-	margin-bottom: 1.875rem; /* 30px를 rem으로 변환 */
+		margin-bottom: 1.875rem; /* 30px를 rem으로 변환 */
 }
 
 .profilebox {
 		float: left;
 }
 
-.join {
-	float: left;
-	margin: 1.25rem; /* 20px를 rem으로 변환 */
-	margin-top: 3.125rem; /* 50px를 rem으로 변환 */
-	border: 0.625rem solid rgb(157, 217, 174); /* 10px를 rem으로 변환 */
-	border-radius: 1.875rem; /* 30px를 rem으로 변환 */
-	width: 12.5rem; /* 200px를 rem으로 변환 */
-	height: 15.625rem; /* 250px를 rem으로 변환 */
-	font-weight: 500;
-	padding: 0.75rem; /* 12px를 rem으로 변환 */
-	background-color: rgb(221, 241, 228);
+.join-box {
+		float: left;
+		margin: 1.25rem; /* 20px를 rem으로 변환 */
+		margin-top: 3.125rem; /* 50px를 rem으로 변환 */
+		border: 0.625rem solid rgb(157, 217, 174); /* 10px를 rem으로 변환 */
+		border-radius: 1.875rem; /* 30px를 rem으로 변환 */
+		width: 12.5rem; /* 200px를 rem으로 변환 */
+		height: 15.625rem; /* 250px를 rem으로 변환 */
+		font-weight: 500;
+		padding: 0.75rem; /* 12px를 rem으로 변환 */
+		background-color: rgb(221, 241, 228);
 }
 
 .join-text {
-	font-size: 1.125rem; /* 18px를 rem으로 변환 */
-	font-weight: 900;
+		font-size: 1.125rem; /* 18px를 rem으로 변환 */
+		font-weight: 900;
 }
 
 .join-button {
-	display: flex;
-	justify-content: center;
-	text-decoration: none;
-	width: 9.6875rem; /* 155px를 rem으로 변환 */
-	height: 2.5rem; /* 40px를 rem으로 변환 */
-	font-size: 1.0625rem; /* 17px를 rem으로 변환 */
-	font-weight: 600;
-	color: white;
-	background-color: #49339A;
-	border: none;
-	border-radius: 2.8125rem; /* 45px를 rem으로 변환 */
-	cursor: pointer;
-	margin-top: 1.5625rem; /* 25px를 rem으로 변환 */
-	transition: 0.5s ease-in-out;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-decoration: none;
+		width: 9.6875rem; /* 155px를 rem으로 변환 */
+		height: 2.5rem; /* 40px를 rem으로 변환 */
+		font-size: 1.0625rem; /* 17px를 rem으로 변환 */
+		font-weight: 600;
+		color: white;
+		background-color: #49339A;
+		border: none;
+		border-radius: 2.8125rem; /* 45px를 rem으로 변환 */
+		cursor: pointer;
+		margin-top: 1.5625rem; /* 25px를 rem으로 변환 */
+		transition: 0.5s ease-in-out;
 }
 
 .join-button:hover {
@@ -106,7 +107,6 @@ div.card .card-top {
 }
 
 .bookmark {
-		color: #FAF009;
 		margin-left: 10px;
 }
 
@@ -182,12 +182,12 @@ div.card.bg-secondary-subtle {
 }
 
 .user-card-text {
-	width: 150px;
-	font-size: 12.5px;
-	margin-right: 0;
-	margin-left: 50px;
-	margin-top: -30px;
-	padding-left: 22px;
+		width: 150px;
+		font-size: 12.5px;
+		margin-right: 0;
+		margin-left: 50px;
+		margin-top: -30px;
+		padding-left: 22px;
 }
 
 .pagination .page-link {
@@ -212,7 +212,7 @@ div.card.bg-secondary-subtle {
 
 .page-selected {
 		margin: 0;
-		background-color: yellow;
+		font-weight:bold;
 }
 </style>
 <script>
@@ -223,8 +223,8 @@ div.card.bg-secondary-subtle {
         }
     </script>
 
-</head>
-
+</h
+ead>
 <body>
 	<header>
 		<jsp:include page="header.jsp" />
@@ -251,16 +251,16 @@ div.card.bg-secondary-subtle {
 		</c:otherwise>
 	</c:choose>
 	<!-- end -->
-	<div>
+	<div class="container">
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
-				<div class="join">
+				<div class="join-box">
 					<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
 						이용하실 수 있습니다!</div>
 					<a
-						href="./join"
+						href="join"
 						class="join-button"
-					>회원가입 </a>
+					>회원가입</a>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -270,89 +270,89 @@ div.card.bg-secondary-subtle {
 			</c:otherwise>
 		</c:choose>
 
-		<div class="container">
-			<div class="row row-cols-1 row-cols-md-4 g-4 justify-content-start">
-				<c:forEach
-					items="${result.missionList}"
-					var="mission"
-				>
-					<div class="col">
-						<div class="card bg-secondary-subtle">
-
-
-							<div class="card-top">
-								<div class="bookmark">
-									<i class="fa-solid fa-bookmark"></i>
-								</div>
-								<div class="like">
-									<span class="likecount">${mission.likecount}</span>
-									<img
-										src="<%=request.getContextPath()%>/images/likeFull.png"
-										width="20px"
-										height="20px"
-									>
-								</div>
+		<div class="row row-cols-1 row-cols-md-4 g-4 justify-content-start">
+			<c:forEach
+				items="${result.missionList}"
+				var="mission"
+			>
+				<div class="col">
+					<div class="card bg-secondary-subtle">
+						<div class="card-top">
+							<div class="bookmark">
+								<c:if test="${mission.success=='성공'}">
+									<span>🏆</span>
+								</c:if>
 							</div>
-							<div class="card-text">
-								<div class="card-title">
-									<a
-										href="mission?idx=${mission.idx}"
-										class="stretched-link"
-									>${mission.title }</a>
-								</div>
-								<div class="card-date">${mission.createdAt}</div>
-								<c:choose>
-									<c:when test="${mission.miImg ne null}">
-										<img
-											class="card-img"
-											src="image?miImg=${mission.miImg}"
-											style="width: 180px"
-										/>
-									</c:when>
-									<c:otherwise>
-										<img
-											src="${pageContext.request.contextPath}/images/defaultMission.jpg"
-											class="card-img"
-											alt="미션기본이미지"
-											style="width: 180px"
-										>
-									</c:otherwise>
-								</c:choose>
-
-								<div class="card-user">
-									<c:choose>
-										<c:when test="${mission.uprofileImg ne null}">
-											<div class="user-info">
-												<img
-													class="card-img-top rounded-circle"
-													src="image?miImg=${mission.uprofileImg}"
-												/>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="user-info">
-												<img
-													src="${pageContext.request.contextPath}/images/defaultProfile.png"
-													class="card-img-top rounded-circle"
-													alt="미션기본이미지"
-												/>
-											</div>
-										</c:otherwise>
-									</c:choose>
-								</div>
-								<div class="user-card-text">${mission.unickname}님 도전중!</div>
+							<div class="like">
+								<span class="likecount">${mission.likecount}</span>
+								<img
+									src="<%=request.getContextPath()%>/images/likeFull.png"
+									width="20px"
+									height="20px"
+								>
 							</div>
 						</div>
+						<div class="card-text">
+							<div class="card-title">
+								<a
+									href="mission?idx=${mission.idx}"
+									class="stretched-link"
+									style="text-decoration: none; color: black"
+								>${mission.title }</a>
+							</div>
+							<div class="card-date">${mission.createdAt}</div>
+							<c:choose>
+								<c:when test="${mission.miImg ne null}">
+									<img
+										class="card-img"
+										src="image?miImg=${mission.miImg}"
+										style="width: 180px"
+									/>
+								</c:when>
+								<c:otherwise>
+									<img
+										src="${pageContext.request.contextPath}/images/defaultMission.jpg"
+										class="card-img"
+										alt="미션기본이미지"
+										style="width: 180px"
+									>
+								</c:otherwise>
+							</c:choose>
+
+							<div class="card-user">
+								<c:choose>
+									<c:when test="${mission.uprofileImg ne null}">
+										<div class="user-info">
+											<img
+												class="card-img-top rounded-circle"
+												src="image?miImg=${mission.uprofileImg}"
+											/>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="user-info">
+											<img
+												src="${pageContext.request.contextPath}/images/defaultProfile.png"
+												class="card-img-top rounded-circle"
+												alt="미션기본이미지"
+											/>
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div class="user-card-text">${mission.unickname}님도전중!</div>
+						</div>
 					</div>
-				</c:forEach>
-			</div>
+				</div>
+			</c:forEach>
 		</div>
+
 		<!--  페이지네이션 -->
 		<div class="d-flex justify-content-center mt-4">
-			
+
 			<c:choose>
 				<c:when test="${result.pageInfo.curPage>1 }">
-					<a href="${pagingPath}${result.pageInfo.curPage-1}">&lt;</a>
+					<a href="${pagingPath}${result.pageInfo.curPage-1}" style="text-decoration: none; color: black">&lt;</a>
 				</c:when>
 				<c:otherwise>
         &lt;
@@ -370,6 +370,7 @@ div.card.bg-secondary-subtle {
 						<a
 							href="${pagingPath}${i }"
 							class="page-selected"
+							style="text-decoration: none; color: black"
 							onClick="callBtn(${i}); return ${result.keyword== null};"
 						>${i}</a>&nbsp;&nbsp;
           </c:when>
@@ -377,6 +378,7 @@ div.card.bg-secondary-subtle {
 						<a
 							href="${pagingPath}${i }"
 							class="page-num"
+							style="text-decoration: none; color: black"
 							onClick="callBtn(${i}); return ${result.keyword== null};"
 						>${i}</a>&nbsp;&nbsp;
           </c:otherwise>
@@ -387,7 +389,7 @@ div.card.bg-secondary-subtle {
 				<c:when
 					test="${result.pageInfo.curPage< result.pageInfo.totalPages }"
 				>
-					<a href="${pagingPath}${result.pageInfo.curPage+1}">&gt;</a>
+					<a href="${pagingPath}${result.pageInfo.curPage+1}" style="text-decoration: none; color: black">&gt;</a>
 				</c:when>
 				<c:otherwise>
         &gt;
@@ -397,6 +399,7 @@ div.card.bg-secondary-subtle {
 		</div>
 		<!--  end -->
 	</div>
+	<!-- container 끝 -->
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

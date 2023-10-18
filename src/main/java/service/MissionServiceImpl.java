@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import dao.MissionDAO;
 import dao.MissionDAOImpl;
 import dto.Mission;
+import dto.User;
 import util.PageInfo;
 
 public class MissionServiceImpl implements MissionService {
@@ -337,23 +338,18 @@ public class MissionServiceImpl implements MissionService {
 		return missionDao.countTotalMissions(userIdx);
 	}
 
-	// 프로필카드 성공률
+	// 미션성공률 계산
 	@Override
-	public Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception {
-		// 특정 사용자의 어제 미션 성공률과 총 미션 수를 가져옴
-		Map<String, Object> missionSuccessRate = missionDao.calculateMissionSuccessRate(userIdx);
+	public Integer calSuccessRate(Integer userIdx) throws Exception {
+		Integer totalMissions = missionDao.countTotalMissions(userIdx);
+		Integer successMissions = missionDao.countSuccessMissions(userIdx);
 
-		// 성공률 계산 로직
-		Integer totalMissions = ((Number) missionSuccessRate.get("totalMissions")).intValue();
-		Integer successfulMissions = ((Number) missionSuccessRate.get("successfulMissions")).intValue();
-		Integer successRate = totalMissions == 0 ? 0 : (successfulMissions * 100) / totalMissions;
-		System.out.println("총 미션수 : " + totalMissions);
-		System.out.println("총 미션수 : " + successfulMissions);
+		Integer successRate = 0;
+		if (totalMissions != 0) {
+			successRate = (int) ((successMissions / totalMissions) * 100.0);
+		}
 
-		// 성공률을 맵에 추가
-		missionSuccessRate.put("successRate", successRate);
-
-		return missionSuccessRate;
+		return successRate;
 	}
 
 	// 오늘 날짜의 미션 조회
@@ -361,4 +357,14 @@ public class MissionServiceImpl implements MissionService {
 	public Mission getMissionRegToday(Integer userIdx) throws Exception {
 		return missionDao.getMissionRegToday(userIdx);
 	}
+
+	@Override
+	public List<User> findMissionLikeUser(Integer missionIdx) throws Exception {
+		List<User> userList = missionDao.selectMissionLikeUser(missionIdx);
+		System.out.println("좋아요 누른 유저 목록:" + userList);
+		return userList;
+
+	}
+
+	
 }
