@@ -52,13 +52,11 @@ public interface MissionService {
 	// 총 미션 수(프로필카드)
 	Integer countTotalMissions(Integer userIdx) throws Exception;
 
-	// 성공률 계산(프로필카드)
-	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
+	// 미션 성공률 계산 
+	Integer calSuccessRate(Integer userIdx) throws Exception;
 
-//좋아요한 유저 목록 조회 
+	//좋아요한 유저 목록 조회 
 	List<User> findMissionLikeUser(Integer missionIdx) throws Exception;
 
-	// 미션 성공률 계산 서비스
-	Integer calSuccessRate(Integer userIdx) throws Exception;
 
 }

@@ -154,16 +154,9 @@ public class MissionDAOImpl implements MissionDAO {
 	}
 
 	// 총 미션수 계산 by userIdx
-
 	@Override
 	public Integer countTotalMissions(Integer userIdx) throws Exception {
 		return sqlSession.selectOne("mapper.mission.countTotalMissions", userIdx);
-	}
-
-	// 성공률 계산
-	@Override
-	public Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception {
-		return sqlSession.selectOne("mapper.mission.calculateMissionSuccessRate", userIdx);
 	}
 
 	// 좋아요한 유저 목록

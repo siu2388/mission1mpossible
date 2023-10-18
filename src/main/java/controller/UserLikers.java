@@ -41,6 +41,7 @@ public class UserLikers extends HttpServlet {
 		try {
 			MissionService missionService = new MissionServiceImpl();
 			List<User> userLikers = missionService.findMissionLikeUser(missionIdx);
+			// 리스트로 받아온 유저
 			JSONArray jsonArray = new JSONArray();
 			for (User user : userLikers) {
 				JSONObject ouser = new JSONObject();
@@ -48,10 +49,7 @@ public class UserLikers extends HttpServlet {
 				ouser.put("nickname", user.getNickname());
 				jsonArray.add(ouser);
 			}
-			// JSONObject totObj = new JSONObject();
 
-			// req.setAttribute("users", userLikers);
-			// System.out.println("userLikers:" + userLikers);
 			resp.setCharacterEncoding("utf-8");
 			resp.getWriter().print(jsonArray.toJSONString());
 		} catch (Exception e) {

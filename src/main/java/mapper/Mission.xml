@@ -29,7 +29,7 @@
 	<select id="selectAllMissions" parameterType="Integer"
 		resultType="hashmap">
       <![CDATA[
-      SELECT m.idx as idx, m.title as title, m.createdAt as createdAt, m.miImg as miImg, m.likecount as likecount, u.profileImg as uprofileImg, u.nickname as unickname
+      SELECT m.idx as idx, m.title as title, m.success as success, m.createdAt as createdAt, m.miImg as miImg, m.likecount as likecount, u.profileImg as uprofileImg, u.nickname as unickname
       FROM mission m
       JOIN user u ON m.userIdx = u.idx
       ORDER BY m.idx DESC
@@ -45,7 +45,7 @@
 	<!-- 카테고리별 미션리스트 조회 : 최신순 -->
 	<select id="selectMissionsByCat" resultType="hashmap">
       <![CDATA[
-      SELECT  m.idx as idx, m.title as title, m.createdAt as createdAt, m.miImg as miImg, m.likecount as likecount, u.profileImg as uprofileImg, u.nickname as unickname
+      SELECT  m.idx as idx, m.title as title, m.success as success, m.createdAt as createdAt, m.miImg as miImg, m.likecount as likecount, u.profileImg as uprofileImg, u.nickname as unickname
       FROM mission m
       JOIN user u ON m.userIdx = u.idx
       where m.catId = #{catId}
@@ -97,23 +97,6 @@
   </select>
 
 
- 	<!-- 성공률 계산 -->
-
-	 <select id="calculateMissionSuccessRate" resultType="map"
-		parameterType="Integer">
-    <![CDATA[
-    SELECT 
-    COUNT(*) AS totalMissions,
-    SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) AS successfulMissions,
-    CAST(ROUND((SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) / COUNT(*) * 100), 2) AS INT) AS successRate
-FROM 
-    mission
-WHERE
-    CURDATE() > createdAt AND 
-    userIdx = #{userIdx}
-    ]]>
-    </select> 
-
 		<!-- like 증가 (update) -->
 		<update id="plusMissionLikeCount" parameterType="Integer">
         <![CDATA[
@@ -138,6 +121,7 @@ WHERE
   SELECT 
   m.idx as idx, 
   m.title as title, 
+  m.success as success,
   m.createdAt as createdAt, 
   m.miImg as miImg, 
   m.likecount as likecount,

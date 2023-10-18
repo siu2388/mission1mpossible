@@ -520,11 +520,11 @@ body {
 	</div>
 	<!-- 좋아요한 유저 모달 -->
 	<div
-		class="modal fade modal-btn"
+		class="modal fade"
 		id="Modal"
 		tabindex="-1">
 		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1
@@ -541,7 +541,7 @@ body {
 					class="modal-body"
 					style="text-align: center">
 					<!-- 사용자 정보를 출력하는 반복문 -->
-					<c:forEach
+					<%-- <c:forEach
 						items="${users}"
 						var="user">
 						<div class="line">
@@ -553,7 +553,7 @@ body {
 								<div id="liker-nickname" class="username">${user.nickname}</div>
 							</div>
 						</div>
-					</c:forEach>
+					</c:forEach> --%>
 				</div>
 				<div class="modal-footer">
 					<button
