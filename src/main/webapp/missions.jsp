@@ -71,6 +71,7 @@ header {
 .join-button {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	text-decoration: none;
 	width: 9.6875rem; /* 155px를 rem으로 변환 */
 	height: 2.5rem; /* 40px를 rem으로 변환 */
