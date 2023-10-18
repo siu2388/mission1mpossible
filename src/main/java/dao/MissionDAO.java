@@ -29,9 +29,6 @@ public interface MissionDAO {
 
 	// 미션 상세보기 by missionIdx
 	Mission selectMission(Integer idx) throws Exception;
-
-//	// 나의 미션기록 조회
-//	List<Mission> selectMyMissions(Integer userIdx) throws Exception;
 	
 	// 내 미션(myMission) 총 개수 조회 (for 페이지네이션 적용)
 	
@@ -78,6 +75,7 @@ public interface MissionDAO {
 
 	// 나의 미션기록 조회
 	List<Mission> selectMyMissions(Map<String, Object> params) throws Exception;
+
 	// 좋아요한 유저목록 조회
 	List<User> selectMissionLikeUser(Integer missionIdx) throws Exception;
 }

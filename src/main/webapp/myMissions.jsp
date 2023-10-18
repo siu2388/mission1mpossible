@@ -68,8 +68,9 @@ header {
 
 .page-selected {
 		margin: 0;
-		background-color: yellow;
+		font-weight:bold;
 }
+
 </style>
 </head>
 
@@ -125,7 +126,7 @@ header {
 
     <c:choose>
         <c:when test="${result.pageInfo.curPage > 1}">
-            <a href="${pagingPath}?page=${result.pageInfo.curPage - 1}">&lt;</a>
+            <a href="${pagingPath}?page=${result.pageInfo.curPage - 1}" style="text-decoration: none; color: black">&lt;</a>
         </c:when>
         <c:otherwise>
             &lt;
@@ -136,17 +137,17 @@ header {
     <c:forEach begin="${result.pageInfo.startPage}" end="${result.pageInfo.endPage}" var="i">
         <c:choose>
             <c:when test="${result.pageInfo.curPage == i}">
-                <a href="${pagingPath}?page=${i}" class="page-selected" onClick="callBtn(${i}); return ${result.keyword == null};">${i}</a>&nbsp;&nbsp;
+                <a href="${pagingPath}?page=${i}" class="page-selected" onClick="callBtn(${i}); return ${result.keyword == null};" style="text-decoration: none; color: black">${i}</a>&nbsp;&nbsp;
             </c:when>
             <c:otherwise>
-                <a href="${pagingPath}?page=${i}" class="page-num" onClick="callBtn(${i}); return ${result.keyword == null};">${i}</a>&nbsp;&nbsp;
+                <a href="${pagingPath}?page=${i}" class="page-num" onClick="callBtn(${i}); return ${result.keyword == null};" style="text-decoration: none; color: black">${i}</a>&nbsp;&nbsp;
             </c:otherwise>
         </c:choose>
     </c:forEach>
 
     <c:choose>
         <c:when test="${result.pageInfo.curPage < result.pageInfo.totalPages}">
-            <a href="${pagingPath}?page=${result.pageInfo.curPage + 1}">&gt;</a>
+            <a href="${pagingPath}?page=${result.pageInfo.curPage + 1}" style="text-decoration: none; color: black">&gt;</a>
         </c:when>
         <c:otherwise>
             &gt;
