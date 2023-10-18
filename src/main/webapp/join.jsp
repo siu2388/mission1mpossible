@@ -301,8 +301,6 @@ html, body {
 				};
 
 				reader.readAsDataURL(fileInput.files[0]);
-			} else {
-				imagePreview.src = '${pageContext.request.contextPath}/images/defaultProfile.png';
 			}
 		}
 
