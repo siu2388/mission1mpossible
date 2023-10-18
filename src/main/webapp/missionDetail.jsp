@@ -1,153 +1,153 @@
 <%@ page
-	language="java"
-	contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   language="java"
+   contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <%@ taglib
-	prefix="c"
-	uri="http://java.sun.com/jsp/jstl/core"%>
+   prefix="c"
+   uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib
-	prefix="fmt"
-	uri="http://java.sun.com/jsp/jstl/fmt"%>
+   prefix="fmt"
+   uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta
-	name="viewport"
-	content="width=device-width, initial-scale=1">
+   name="viewport"
+   content="width=device-width, initial-scale=1">
 <title>MISSION 1'M POSSIBLE</title>
 
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+   rel="stylesheet">
 <link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-	rel="stylesheet">
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+   rel="stylesheet">
 <script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-	crossorigin="anonymous"></script>
+   src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+   integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+   crossorigin="anonymous"></script>
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-	crossorigin="anonymous"></script>
+   src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+   integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+   crossorigin="anonymous"></script>
 <style>
 body {
-	height: 100%;
-	background-image: url(./images/bg.jpg);
+   height: 100%;
+   background-image: url(./images/bg.jpg);
 }
 
 .profilebox {
-	float: left;
+   float: left;
 }
 
 .join {
-	float: left;
-	margin: 20px;
-	margin-top: 50px;
-	border: 10px solid rgb(157, 217, 174);
-	border-radius: 30px;
-	width: 200px;
-	height: 250px;
-	font-weight: 500;
-	padding: 12px;
-	background-color: rgb(221, 241, 228);
-	border: 10px solid rgb(157, 217, 174);
+   float: left;
+   margin: 20px;
+   margin-top: 50px;
+   border: 10px solid rgb(157, 217, 174);
+   border-radius: 30px;
+   width: 200px;
+   height: 250px;
+   font-weight: 500;
+   padding: 12px;
+   background-color: rgb(221, 241, 228);
+   border: 10px solid rgb(157, 217, 174);
 }
 
 .join-text {
-	font-size: 18px;
-	font-weight: 900;
+   font-size: 18px;
+   font-weight: 900;
 }
 
 .join-button {
-	display: flex;
-	justify-content: center;
-	text-decoration: none;
-	width: 155px;
-	height: 40px;
-	font-size: 17px;
-	font-weight: 600;
-	color: white;
-	background-color: #49339A;
-	border: none;
-	border-radius: 45px;
-	cursor: pointer;
-	margin-top: 25px;
-	transition: 0.5s ease-in-out;
+   display: flex;
+   justify-content: center;
+   text-decoration: none;
+   width: 155px;
+   height: 40px;
+   font-size: 17px;
+   font-weight: 600;
+   color: white;
+   background-color: #49339A;
+   border: none;
+   border-radius: 45px;
+   cursor: pointer;
+   margin-top: 25px;
+   transition: 0.5s ease-in-out;
 }
 
 .join-button:hover {
-	background-color: white;
-	color: #49339A;
-	box-shadow: 10px 10px 10px #49339A;
-	transition: 0.5s ease-in-out;
+   background-color: white;
+   color: #49339A;
+   box-shadow: 10px 10px 10px #49339A;
+   transition: 0.5s ease-in-out;
 }
 
 .join {
-	float: left;
-	margin: 20px;
-	margin-top: 50px;
-	border: 10px solid rgb(157, 217, 174);
-	border-radius: 30px;
-	width: 200px;
-	height: 250px;
-	font-weight: 500;
-	padding: 12px;
-	background-color: rgb(221, 241, 228);
-	border: 10px solid rgb(157, 217, 174);
+   float: left;
+   margin: 20px;
+   margin-top: 50px;
+   border: 10px solid rgb(157, 217, 174);
+   border-radius: 30px;
+   width: 200px;
+   height: 250px;
+   font-weight: 500;
+   padding: 12px;
+   background-color: rgb(221, 241, 228);
+   border: 10px solid rgb(157, 217, 174);
 }
 
 .join-text {
-	font-size: 18px;
-	font-weight: 900;
+   font-size: 18px;
+   font-weight: 900;
 }
 
 .join-button {
-	display: flex;
-	justify-content: center;
-	text-decoration: none;
-	width: 155px;
-	height: 40px;
-	font-size: 17px;
-	font-weight: 600;
-	color: white;
-	background-color: #49339A;
-	border: none;
-	border-radius: 45px;
-	cursor: pointer;
-	margin-top: 25px;
-	transition: 0.5s ease-in-out;
+   display: flex;
+   justify-content: center;
+   text-decoration: none;
+   width: 155px;
+   height: 40px;
+   font-size: 17px;
+   font-weight: 600;
+   color: white;
+   background-color: #49339A;
+   border: none;
+   border-radius: 45px;
+   cursor: pointer;
+   margin-top: 25px;
+   transition: 0.5s ease-in-out;
 }
 
 .join-button:hover {
-	background-color: white;
-	color: #49339A;
-	box-shadow: 10px 10px 10px #49339A;
-	transition: 0.5s ease-in-out;
+   background-color: white;
+   color: #49339A;
+   box-shadow: 10px 10px 10px #49339A;
+   transition: 0.5s ease-in-out;
 }
 
 .missionbox {
-	border: 2px solid #EFD915;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	border-radius: 10px;
-	background-color: #E5D689;
-	background-size: contain;
-	width: 60%;
-	float: right;
-	height: 500px;
-	padding: 10px;
-	margin: 2rem 5rem 0 0;
+   border: 2px solid #EFD915;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+   border-radius: 10px;
+   background-color: #E5D689;
+   background-size: contain;
+   width: 60%;
+   /* float: right; */
+   height: 500px;
+   padding: 10px;
+   margin: 3.5rem 5rem 0 20rem;
 }
 
 .success-background {
-	border: 2px solid #9BD6AF;
-	background-color: #9BD6AF;
+   border: 2px solid #9BD6AF;
+   background-color: #9BD6AF;
 }
 
 .fail-background {
-	border: 2px solid #F3AA9F;
-	background-color: #F3AA9F;
+   border: 2px solid #F3AA9F;
+   background-color: #F3AA9F;
 }
 
 /* .success-text {
@@ -162,155 +162,155 @@ body {
   background-color: #800020;
 } */
 .custom-btn {
-	background-color: #4AC98C !important;
-	border-color: #4AC98C !important;
-	color: black !important;
-	font-weight: bold;
-	border-radius: 20px;
+   background-color: #4AC98C !important;
+   border-color: #4AC98C !important;
+   color: black !important;
+   font-weight: bold;
+   border-radius: 20px;
 }
 
 .custom-btn-success {
-	background-color: #556B2F !important;
-	color: #ffffff !important;
-	font-weight: bold;
-	border-radius: 10px;
+   background-color: #556B2F !important;
+   color: #ffffff !important;
+   font-weight: bold;
+   border-radius: 10px;
 }
 
 .custom-btn-fail {
-	background-color: #800020 !important;
-	color: #ffffff !important;
-	font-weight: bold;
-	border-radius: 10px;
+   background-color: #800020 !important;
+   color: #ffffff !important;
+   font-weight: bold;
+   border-radius: 10px;
 }
 
 .custom-btn-update {
-	background-color: #AAA9AD !important;
-	color: #ffffff !important;
-	border-radius: 10px;
+   background-color: #AAA9AD !important;
+   color: #ffffff !important;
+   border-radius: 10px;
 }
 
 .custom-form {
-	border-radius: 10px;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-	background-color: #E5D689;
+   border-radius: 10px;
+   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+   background-color: #E5D689;
 }
 
 .custom-currentDate-div {
-	border-radius: 10px;
-	/* background-color: #49339A; */
-	color: #ffffff !important;
-	position: relative;
+   border-radius: 10px;
+   /* background-color: #49339A; */
+   color: #ffffff !important;
+   position: relative;
 }
 
 .card .card-title {
-	font-size: 35px;
-	font-weight: bold;
-	background-color: #CBC65E;
-	margin: 0;
+   font-size: 35px;
+   font-weight: bold;
+   background-color: #CBC65E;
+   margin: 0;
 }
 
 .custom-text2 {
-	font-weight: bold;
-	color: #49339A;
-	margin-top: 20px;
+   font-weight: bold;
+   color: #49339A;
+   margin-top: 20px;
 }
 
 .custom-text3 {
-	font-size: 14px;
+   font-size: 14px;
 }
 
 .custom-text-color {
-	color: #49339A;
+   color: #49339A;
 }
 
 .custom-icon-color {
-	color: #49339A;
+   color: #49339A;
 }
 
 .custom-bg {
-	background-color: #49339A;
-	color: #ffffff;
-	padding: 5px;
-	border-radius: 8px;
-	position: absolute;
-	top: 0;
-	left: 0;
+   background-color: #49339A;
+   color: #ffffff;
+   padding: 5px;
+   border-radius: 8px;
+   position: absolute;
+   top: 0;
+   left: 0;
 }
 
 .btn-box {
-	position: relative;
-	top: 25px;
+   position: relative;
+   top: 25px;
 }
 
 .mission-img-default {
-	object-fit: cover;
-	width: 250px;
-	height: 250px;
+   object-fit: cover;
+   width: 250px;
+   height: 250px;
 }
 
 .w-70 {
-	width: 70%;
+   width: 70%;
 }
 
 .no-padding {
-	padding: 0 !important;
+   padding: 0 !important;
 }
 
 .no-padding {
-	padding: 0 !important;
+   padding: 0 !important;
 }
 
 #bookmarked {
-	margin-right: 28rem;
-	margin-top: 4px;
+   margin-right: 28rem;
+   margin-top: 4px;
 }
 
 #likeheart {
-	margin-top: 5px;
+   margin-top: 5px;
 }
 
 #likecount {
-	margin-top: 12px;
+   margin-top: 12px;
 }
 /* 좋아요한 유저 */
 .modal-content {
-	background-image: url("./images/bg2.png");
+   background-image: url("./images/bg2.png");
 }
 
 .btn77 {
-	width: 2.5rem;
-	height: 2.5rem;
+   width: 2.5rem;
+   height: 2.5rem;
 }
 </style>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
-	$(function() {
-		$('#likeheart').click(function() {
-			$.ajax({ //백엔드의 전송 -비동기 :controller>Like
-				url : 'like',
-				type : 'post',
-				dataType : 'json', //contentType
-				data : {
-					'idx' : '<c:out value="${mission.idx}"/>'
-				}, //파라미터로 넘어가는 데이터
-				success : function(res) {
-					console.log(res.selected);
-					console.log(res.likecount);
-					if (res.selected) {
-						$("#likeheart").attr("src", "<%=request.getContextPath()%>/images/likeFull.png")
-					} else {
-						$("#likeheart").attr("src", "<%=request.getContextPath()%>/images/likeEmpty.png")
-					}
-					$("#likecount").text(res.likecount)
-				},
-				error : function(err) {
-											console.log(err);
-										}
-			})
-		})
-						 
-		$('#bookmarked').click(function() {
+   $(function() {
+      $('#likeheart').click(function() {
+         $.ajax({ //백엔드의 전송 -비동기 :controller>Like
+            url : 'like',
+            type : 'post',
+            dataType : 'json', //contentType
+            data : {
+               'idx' : '<c:out value="${mission.idx}"/>'
+            }, //파라미터로 넘어가는 데이터
+            success : function(res) {
+               console.log(res.selected);
+               console.log(res.likecount);
+               if (res.selected) {
+                  $("#likeheart").attr("src", "<%=request.getContextPath()%>/images/likeFull.png")
+               } else {
+                  $("#likeheart").attr("src", "<%=request.getContextPath()%>/images/likeEmpty.png")
+               }
+               $("#likecount").text(res.likecount)
+            },
+            error : function(err) {
+                                 console.log(err);
+                              }
+         })
+      })
+                   
+      $('#bookmarked').click(function() {
       $.ajax({
         url: 'bookmark',
         type: 'post',
@@ -324,272 +324,273 @@ body {
             $("#bookmarked").attr("src", "<%=request.getContextPath()%>/images/bmFull.png")
           } else {
             $("#bookmarked").attr("src", "<%=request.getContextPath()%>/images/bmEmpty.png")
-					}
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			})
-		})
-			
-	})
+               }
+            },
+            error : function(err) {
+               console.log(err);
+            }
+         })
+      })
+         
+   })
 </script>
 </head>
 
 <body>
-	<header>
-		<jsp:include page="header.jsp" />
-	</header>
+   <header>
+      <jsp:include page="header.jsp" />
+   </header>
 
-	<!-- 좌 프로필카드 -->
-	<div class="profilebox">
-		<c:choose>
-			<c:when test="${empty sessionScope.user}">
-				<div class="join">
-					<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
-						이용하실 수 있습니다!</div>
-					<a
-						href="./join"
-						class="join-button">회원가입 </a>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="profilebox">
-					<jsp:include page="profilecard.jsp" />
-				</div>
-			</c:otherwise>
-		</c:choose>
-	</div>
+   <!-- 좌 프로필카드 -->
+   <div class="profilebox">
+      <c:choose>
+         <c:when test="${empty sessionScope.user}">
+            <div class="join">
+               <div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
+                  이용하실 수 있습니다!</div>
+               <a
+                  href="./join"
+                  class="join-button">회원가입 </a>
+            </div>
+         </c:when>
+         <c:otherwise>
+            <div class="profilebox">
+               <jsp:include page="profilecard.jsp" />
+            </div>
+         </c:otherwise>
+      </c:choose>
+   </div>
 
-	<div class="missionbox">
-		<div class="py-2 mx-auto w-90">
+   <div class="missionbox">
+      <div class="py-2 mx-auto w-90">
 
-			<div class="py-1 px-2 custom-currentDate-div text-center">
-				<span
-					id="createdAt"
-					class="custom-bg">${formattedDate}</span>
-				<div
-					id="missionStatus"
-					class="mb-2 mt-2 d-flex align-items-center justify-content-center">
-					<!-- 성공/실패/진행중에따라 보여지는 값 -->
-					<!-- 진행중: success가 null, createdAt이 오늘인 경우 -->
-					<!-- 성공: success가 성공, createdAt == updatedAt인 경우 -->
-					<!-- 실패: 기타 모든 경우 -->
-					<c:set
-						var="now"
-						value='<%=new java.util.Date()%>' />
-					<fmt:formatDate
-						var="today"
-						value="${now}"
-						pattern="yyyy-MM-dd" />
-					<c:set var="missionStatusText">
-						<c:choose>
-							<c:when
-								test="${mission.success == null && mission.createdAt == today}">
-	              진행중인 미션!
-	            </c:when>
-							<c:when
-								test="${'성공' eq mission.success && mission.createdAt == mission.updatedAt}">
-	              성공한 미션🤩
-	            </c:when>
-							<c:otherwise>
-	              실패한 미션😭
-	            </c:otherwise>
-						</c:choose>
-					</c:set>
-					<div class="custom-text2">${missionStatusText}</div>
-				</div>
+         <div class="py-1 px-2 custom-currentDate-div text-center">
+            <span
+               id="createdAt"
+               class="custom-bg">${formattedDate}</span>
+            <div
+               id="missionStatus"
+               class="mb-2 mt-2 d-flex align-items-center justify-content-center">
+               <!-- 성공/실패/진행중에따라 보여지는 값 -->
+               <!-- 진행중: success가 null, createdAt이 오늘인 경우 -->
+               <!-- 성공: success가 성공, createdAt == updatedAt인 경우 -->
+               <!-- 실패: 기타 모든 경우 -->
+               <c:set
+                  var="now"
+                  value='<%=new java.util.Date()%>' />
+               <fmt:formatDate
+                  var="today"
+                  value="${now}"
+                  pattern="yyyy-MM-dd" />
+               <c:set var="missionStatusText">
+                  <c:choose>
+                     <c:when
+                        test="${mission.success == null && mission.createdAt == today}">
+                 진행중인 미션!
+               </c:when>
+                     <c:when
+                        test="${'성공' eq mission.success && mission.createdAt == mission.updatedAt}">
+                 성공한 미션🤩
+               </c:when>
+                     <c:otherwise>
+                 실패한 미션😭
+               </c:otherwise>
+                  </c:choose>
+               </c:set>
+               <div class="custom-text2">${missionStatusText}</div>
+            </div>
 
 
-				<div class="card mx-auto w-70">
-					<div class="card-title text-center">${mission.title}</div>
-					<c:if test="${mission.miImg eq null}">
-						<img
-							class="card-img-top rounded-0 mission-img-default"
-							src="${pageContext.request.contextPath}/images/defaultMission.jpg" />
-					</c:if>
-					<c:if test="${mission.miImg ne null}">
-						<img
-							class="card-img-top rounded-0 mission-img-default"
-							src="image?miImg=${mission.miImg}" />
-					</c:if>
+            <div class="card mx-auto w-70">
+               <div class="card-title text-center">${mission.title}</div>
+               <c:if test="${mission.miImg eq null}">
+                  <img
+                     class="card-img-top rounded-0 mission-img-default"
+                     src="${pageContext.request.contextPath}/images/defaultMission.jpg" />
+               </c:if>
+               <c:if test="${mission.miImg ne null}">
+                  <img
+                     class="card-img-top rounded-0 mission-img-default"
+                     src="image?miImg=${mission.miImg}" />
+               </c:if>
 
-					<c:if test="${mission.context ne null}">
-						<div class="card-body custom-text3">${mission.context}</div>
-					</c:if>
-				</div>
-				<!--  북마크 & 좋아요 -->
-				<!--  북마크 -->
-				<div
-					class="mx-auto w-70 d-flex justify-content-end align-items-center">
-					<c:if test="${user ne Empty && user.idx ne mission.userIdx}">
-						<c:choose>
-							<c:when test="${bselected == true }">
-								<img
-									id="bookmarked"
-									alt="선택한북마크"
-									src="<%=request.getContextPath()%>/images/bmFull.png"
-									width="20px"
-									height="20px">
-							</c:when>
-							<c:otherwise>
-								<img
-									id="bookmarked"
-									alt="선택안된북마크"
-									src="<%=request.getContextPath()%>/images/bmEmpty.png"
-									width="20px"
-									height="20px">
-							</c:otherwise>
-						</c:choose>
+               <c:if test="${mission.context ne null}">
+                  <div class="card-body custom-text3">${mission.context}</div>
+               </c:if>
+            </div>
+            <!--  북마크 & 좋아요 -->
+            <!--  북마크 -->
+            <div class="mx-auto w-70 d-flex justify-content-center align-items-center">
+              <div class="container no-padding">
+            <div class="row">
+              <div class="col-md-2 no-padding"></div>
 
-						<!--  좋아요 -->
-						<c:choose>
-							<c:when test="${selected==true}">
-								<img
-									id="likeheart"
-									src="<%=request.getContextPath()%>/images/likeFull.png"
-									width="20px"
-									height="20px">
-							</c:when>
-							<c:otherwise>
-								<img
-									id="likeheart"
-									src="<%=request.getContextPath()%>/images/likeEmpty.png"
-									width="20px"
-									height="20px">
-							</c:otherwise>
-						</c:choose>
-					</c:if>
-					<span> <!-- 좋아요한 유저 버튼 -->
-						<button
-							id="likecount"
-							type="button"
-							class="btn btn77 modal-btn"
-							data-bs-toggle="modal"
-							data-bs-target="#Modal">${mission.likecount}</button>
-					</span> &nbsp;&nbsp;
-				</div>
-			</div>
-		</div>
+              <!-- 북마크 -->
+              <div class="col-md-8 no-padding">
+                <c:if test="${user ne Empty }">
+                  <c:choose>
+                    <c:when test="${bselected == true }">
+                    <img id="bookmarked" alt="선택한북마크"
+                         src="<%=request.getContextPath()%>/images/bmFull.png"
+                         width="20px" height="20px">
+                    </c:when>
+                  <c:otherwise>
+                    <img id="bookmarked" alt="선택안된북마크"
+                         src="<%=request.getContextPath()%>/images/bmEmpty.png"
+                         width="20px" height="20px">
+                  </c:otherwise>
+                  </c:choose>
+                </c:if>
+              </div>
 
-		<div class="btn-box d-flex justify-content-between">
-			<!-- 버튼 배치를 위한 그리드 -->
-			<div class="container no-padding">
-				<div class="row">
-					<!-- 왼쪽 공백 -->
-					<div class="col-md-2 no-padding"></div>
+              <!-- 하트, 좋아요한 유저 버튼 -->
+              <div class="col-md-1 no-padding d-flex justify-content-end">
+                <c:choose>
+                  <c:when test="${selected==true}">
+                  <img id="likeheart"
+                       src="<%=request.getContextPath()%>/images/likeFull.png"
+                       width="20px" height="20px">
+                  </c:when>
+                <c:otherwise>
+                  <img id="likeheart"
+                       src="<%=request.getContextPath()%>/images/likeEmpty.png"
+                       width="20px" height="20px">
+                </c:otherwise>
+                </c:choose>
 
-					<!-- 성공, 실패 버튼 -->
-					<c:if test="${user.idx eq mission.userIdx}">
-						<div class="col-md-8 no-padding">
-							<form
-								action="success-fail?idx=${mission.idx}"
-								method="post"
-								class="text-center">
-								<input
-									type="hidden"
-									name="idx"
-									value="${mission.idx}">
-								<input
-									class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
-									type="submit"
-									name="success"
-									value="성공" />
-								<input
-									class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail"
-									type="submit"
-									name="success"
-									value="실패" />
-							</form>
-						</div>
+                <span>
+                <!-- 좋아요한 유저 버튼 -->
+                <button type="button" class="btn btn77 modal-btn" data-bs-toggle="modal"
+                        data-bs-target="#Modal">
+                        ${mission.likecount}
+                </button>
+                </span>
+                &nbsp;&nbsp;
+              </div>
+            </div>
+          </div>
+        </div>
+         </div>
+      </div>
 
-						<!-- 수정 버튼 -->
-						<div class="col-md-2 no-padding d-flex justify-content-end">
+      <div class="btn-box d-flex justify-content-between">
+         <!-- 버튼 배치를 위한 그리드 -->
+         <div class="container no-padding">
+            <div class="row">
+               <!-- 왼쪽 공백 -->
+               <div class="col-md-2 no-padding"></div>
 
-							<a
-								href="update-mission?idx=${mission.idx}"
-								class="btn py-1 px-3 mx-2 mt-2 custom-btn-update"
-								type="button">수정</a>
-						</div>
-					</c:if>
-				</div>
-		</div>
-		<!-- row -->
-	</div>
-	<!-- container (그리드 끝) -->
-	</div>
-	<!-- 좋아요한 유저 모달 -->
-	<div
-		class="modal fade modal-btn"
-		id="Modal"
-		tabindex="-1">
-		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1
-						class="modal-title fs-5"
-						style="color: blueviolet; font-weight: bold">좋아요한 유저
-						${mission.likecount}명 💜</h1>
-					<button
-						type="button"
-						class="btn-close"
-						data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div
-					class="modal-body"
-					style="text-align: center">
-					<!-- 사용자 정보를 출력하는 반복문 -->
-					<c:forEach
-						items="${users}"
-						var="user">
-						<div class="line">
-							<div class="user-container">
-								<div
-								  id="liker-profileImg"
-									class="users"
-									style="background-image: url('<c:url value='${user.profileImg}'/>')"></div>
-								<div id="liker-nickname" class="username">${user.nickname}</div>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-				<div class="modal-footer">
-					<button
-						type="button"
-						class="btn btn-secondary"
-						data-bs-dismiss="modal">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
+               <!-- 성공, 실패 버튼 -->
+               <c:if test="${user.idx eq mission.userIdx}">
+                  <div class="col-md-8 no-padding">
+                     <form
+                        action="success-fail?idx=${mission.idx}"
+                        method="post"
+                        class="text-center">
+                        <input
+                           type="hidden"
+                           name="idx"
+                           value="${mission.idx}">
+                        <input
+                           class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
+                           type="submit"
+                           name="success"
+                           value="성공" />
+                        <input
+                           class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail"
+                           type="submit"
+                           name="success"
+                           value="실패" />
+                     </form>
+                  </div>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			let success = '${mission.success}';
-			let missionBox = $('.missionbox');
-			/* let missionStatusText = '${missionStatusText}'; */
+                  <!-- 수정 버튼 -->
+                  <div class="col-md-2 no-padding d-flex justify-content-end">
 
-			if (success == '성공') {
-				missionBox.addClass('success-background');
-				/* $('#missionStatus').addClass('success-text'); */
-			} else if (success == '실패') {
-				missionBox.addClass('fail-background');
-				/* $('#missionStatus').addClass('fail-text'); */
-			}
-		});
-		
-		/* 좋아요한 유저 */
-		/*
-	  const myModal = document.getElementById('myModal')
-	  const myInput = document.getElementById('myInput')
+                     <a
+                        href="update-mission?idx=${mission.idx}"
+                        class="btn py-1 px-3 mx-2 mt-2 custom-btn-update"
+                        type="button">수정</a>
+                  </div>
+               </c:if>
+            </div>
+      </div>
+      <!-- row -->
+   </div>
+   <!-- container (그리드 끝) -->
+   </div>
+   <!-- 좋아요한 유저 모달 -->
+   <div
+      class="modal fade modal-btn"
+      id="Modal"
+      tabindex="-1">
+      <div
+         class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h1
+                  class="modal-title fs-5"
+                  style="color: blueviolet; font-weight: bold">좋아요한 유저
+                  ${mission.likecount}명 💜</h1>
+               <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+            </div>
+            <div
+               class="modal-body"
+               style="text-align: center">
+               <!-- 사용자 정보를 출력하는 반복문 -->
+               <c:forEach
+                  items="${users}"
+                  var="user">
+                  <div class="line">
+                     <div class="user-container">
+                        <div
+                          id="liker-profileImg"
+                           class="users"
+                           style="background-image: url('<c:url value='${user.profileImg}'/>')"></div>
+                        <div id="liker-nickname" class="username">${user.nickname}</div>
+                     </div>
+                  </div>
+               </c:forEach>
+            </div>
+            <div class="modal-footer">
+               <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal">확인</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+      $(document).ready(function() {
+         let success = '${mission.success}';
+         let missionBox = $('.missionbox');
+         /* let missionStatusText = '${missionStatusText}'; */
+
+         if (success == '성공') {
+            missionBox.addClass('success-background');
+            /* $('#missionStatus').addClass('success-text'); */
+         } else if (success == '실패') {
+            missionBox.addClass('fail-background');
+            /* $('#missionStatus').addClass('fail-text'); */
+         }
+      });
+      
+      /* 좋아요한 유저 */
+      /*
+     const myModal = document.getElementById('myModal')
+     const myInput = document.getElementById('myInput')
     myModal.addEventListener('shown.bs.modal', () => {
-	    myInput.focus()
+       myInput.focus()
     })*/
-	    
+       
     $(function() {
     $('.modal-btn').click(function() {
       $.ajax({
@@ -600,9 +601,9 @@ body {
           'idx' : '<c:out value="${mission.idx}"/>'
         },
         success : function(res) {
-        	var body = $(".modal-body");
+           var body = $(".modal-body");
           for(user of res) {
-        	  var div = `<div class="line">
+             var div = `<div class="line">
                   <div class="user-container">
                   <div
                     id="liker-profileImg"

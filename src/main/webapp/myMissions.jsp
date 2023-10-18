@@ -14,52 +14,52 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <style>
 html, body {
-	background-image: url('<%=request.getContextPath()%>/images/bg.jpg');
-	margin: 0 auto;
+   background-image: url('<%=request.getContextPath()%>/images/bg.jpg');
+   margin: 0 auto;
 }
 
 header {
-	margin-bottom: 30px;
+   margin-bottom: 30px;
 }
 
 .profile {
-		float: left;
+      float: left;
 }
 
 .col77 {
-		margin-bottom: 25px;
+      margin-bottom: 25px;
 }
 
 .card77 {
-		width: 200px;
-		height: 200px;
-		text-align: center;
-		cursor: pointer;		
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      cursor: pointer;      
 }
 
 .card77:hover {
     /* transform: rotateY(180deg);
-		transition: 0.7s ease-in-out; */
-		cursor: pointer;
-		background-image: url("images/myMissionsHover.jpg");
+      transition: 0.7s ease-in-out; */
+      cursor: pointer;
+      background-image: url("images/myMissionsHover.jpg");
 }
 
 .card-title {
-		font-size: 20px;
-		font-weight: bold;
-		color: white;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
 }
 
 .like {
-	color: #49339A;
+   color: #49339A;
 }
 </style>
 </head>
 
 <body>
-	<header>
-		<jsp:include page="header.jsp" />
-	</header>
+   <header>
+      <jsp:include page="header.jsp" />
+   </header>
 
 <main>
   <div class="profile">
@@ -68,7 +68,6 @@ header {
   <div class="row row-cols-5 g-4">
     <c:forEach items="${missions}" var="mission">
       <div class="col col77">
-      
           <div class='${mission.success eq "성공"? "card card77 bg-success bg-opacity-75":"card card77 bg-danger bg-opacity-75"}' href="missions" role="button">
             <div>
             <c:choose>
@@ -84,13 +83,12 @@ header {
               ${mission.createdAt}
             </div>
             <div class="card-body">
-              <h5 class="card-title">
-                              
-                    <a href="mission?idx=${mission.idx}" style="text-decoration: none; color: white" class="stretched-link">
-                    <br>${mission.title }
-                    </a>
-                    <br>
-                    <br>
+              <h5 class="card-title" style="width:10rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;">
+                <a href="mission?idx=${mission.idx}" style="text-decoration: none; color: white" class="stretched-link">
+                <br>${mission.title}
+                </a>
+                <br>
+                <br>
               </h5>
             </div>
             <div class="card-footer">
@@ -99,9 +97,6 @@ header {
             </div>
             </div>
           </div>
-          
-        <script>
-      </script>
       </div>
     </c:forEach>
   </div>

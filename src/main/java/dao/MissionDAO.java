@@ -39,8 +39,8 @@ public interface MissionDAO {
 	// 성공한 미션 수 조회
 	Integer countSuccessMissions(Integer userIdx) throws Exception;
 
-//	// 성공률 계산
-//	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
+	// 성공률 계산
+	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
 
 	// 좋아요 수 증/감/조회
 	void plusMissionLikeCount(Integer idx) throws Exception;
