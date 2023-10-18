@@ -57,6 +57,7 @@ body {
 
 .outer {
 		height: 180px;
+		margin-top: 20px;
 }
 
 .btn-container {
@@ -102,11 +103,11 @@ hr {
 }
 </style>
 <script>
-      console.log(${catId});
+      //console.log(${catId});
       $(document).ready(function() {
         $(".nav-link").click(function() {
           $(".nav-link").removeClass("active")
-          console.log($(this))
+          //console.log($(this))
           $(this).addClass("active");
         });
 

@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import dto.User;
 
 public interface UserService {
@@ -23,6 +21,4 @@ public interface UserService {
 	// 아이디로 회원정보 가져오기
 	User getUserById(String userId) throws Exception;
 
-	// 좋아요한 유저
-	List<User> findMissionLikeUser(Integer missionIdx) throws Exception;
 }

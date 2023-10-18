@@ -1,7 +1,5 @@
 package dao;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
 import dto.User;
@@ -35,9 +33,4 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 
-	// 좋아요한 유저
-	@Override
-	public List<User> selectMissionLikeUser(Integer missionIdx) throws Exception {
-		return sqlSession.selectList("mapper.user.selectMissionLikeUser", missionIdx);
-	}
 }

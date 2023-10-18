@@ -48,14 +48,13 @@ public class Login extends HttpServlet {
 			Integer userIdx = user.getIdx();
 
 			MissionService missionService = new MissionServiceImpl();
-//			Integer totalMissions = missionService.countTotalMissions(userIdx);
-//			Map<String, Object> missionSuccessRate = missionService.calculateMissionSuccessRate(userIdx);
-//			Integer successRate = ((Number) missionSuccessRate.get("successRate")).intValue();
-
+			Integer totalMissions = missionService.countTotalMissions(userIdx);
+			Integer successRate = missionService.calSuccessRate(userIdx);
+	
 			HttpSession session = req.getSession();
 			session.setAttribute("user", user);
-//			session.setAttribute("totalMissions", totalMissions);
-//			session.setAttribute("successRate", successRate);
+			session.setAttribute("totalMissions", totalMissions);
+			session.setAttribute("successRate", successRate);
 
 			resp.sendRedirect("missions");
 

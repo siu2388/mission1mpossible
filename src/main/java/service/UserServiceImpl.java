@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import dto.User;
@@ -64,12 +62,6 @@ public class UserServiceImpl implements UserService {
 	public boolean isNicknameDuplicate(String nickname) throws Exception {
 		User findUser = userDao.selectUserByNickname(nickname);
 		return findUser != null; // 중복이면 true, 아니면 false 반환
-	}
-
-	// 좋아요한 유저
-	@Override
-	public List<User> findMissionLikeUser(Integer missionIdx) throws Exception {
-		return userDao.selectMissionLikeUser(missionIdx);
 	}
 
 }
