@@ -520,7 +520,7 @@ body {
 	</div>
 	<!-- 좋아요한 유저 모달 -->
 	<div
-		class="modal fade"
+		class="modal fade modal-btn"
 		id="Modal"
 		tabindex="-1">
 		<div
@@ -583,11 +583,12 @@ body {
 		});
 		
 		/* 좋아요한 유저 */
+		/*
 	  const myModal = document.getElementById('myModal')
 	  const myInput = document.getElementById('myInput')
     myModal.addEventListener('shown.bs.modal', () => {
 	    myInput.focus()
-    })
+    })*/
 	    
     $(function() {
     $('.modal-btn').click(function() {
@@ -599,10 +600,19 @@ body {
           'idx' : '<c:out value="${mission.idx}"/>'
         },
         success : function(res) {
-          console.log(res.users);
-          $('#liker-profileImg').text(res.profileImg);
-          console.log(res.nickname);
-          $('#liker-nickname').text(res.nickname);
+        	var body = $(".modal-body");
+          for(user of res) {
+        	  var div = `<div class="line">
+                  <div class="user-container">
+                  <div
+                    id="liker-profileImg"
+                    class="users"
+                    style="background-image: url('\${user.profileImg}')"></div>
+                  <div id="liker-nickname" class="username">\${user.nickname}</div>
+                </div>
+                </div>`;
+                body.append(div);
+          }
         },
         error : function(err) {
           console.log(err);

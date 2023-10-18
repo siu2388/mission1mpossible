@@ -82,30 +82,37 @@
 
 	<!-- 총 미션 수 조회 -->
 
-	<select id="countTotalMissions" resultType="Integer">
+	<select id="countTotalMissions" parameterType="Integer" resultType="Integer">
         <![CDATA[
-        SELECT COUNT(idx) from mission WHERE userIdx = #{userIdx} AND CURDATE() > createdAt;
+        SELECT COUNT(idx) from mission WHERE userIdx = #{userIdx} AND CURDATE() > createdAt
         ]]>
 	</select>
+	
+	<!-- 성공한 미션 수 조회 -->
+
+  <select id="countSuccessMissions" parameterType="Integer" resultType="Integer">
+        <![CDATA[
+        SELECT COUNT(idx) FROM mission WHERE success="성공" AND CURDATE() > createdAt AND userIdx=#{userIdx}
+        ]]>
+  </select>
 
 
-	<!-- 성공률 계산 -->
+ 	<!-- 성공률 계산 -->
 
-	<select id="calculateMissionSuccessRate" resultType="map"
+	 <select id="calculateMissionSuccessRate" resultType="map"
 		parameterType="Integer">
     <![CDATA[
     SELECT 
-        COUNT(*) AS totalMissions,
-        SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) AS successfulMissions,
-        ROUND((SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS successRate
-    FROM 
-        mission
-    WHERE 
-        DATE(createdAt) BETWEEN CURDATE() - INTERVAL 100 DAY AND CURDATE() - INTERVAL 1 DAY
-        AND (success = '성공' OR success IS NULL OR success = '실패')
-        AND userIdx = #{userIdx}
+    COUNT(*) AS totalMissions,
+    SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) AS successfulMissions,
+    CAST(ROUND((SUM(CASE WHEN success = '성공' THEN 1 ELSE 0 END) / COUNT(*) * 100), 2) AS INT) AS successRate
+FROM 
+    mission
+WHERE
+    CURDATE() > createdAt AND 
+    userIdx = #{userIdx}
     ]]>
-    </select>
+    </select> 
 
 		<!-- like 증가 (update) -->
 		<update id="plusMissionLikeCount" parameterType="Integer">
@@ -164,4 +171,18 @@ ORDER BY
       WHERE userIdx = #{userIdx} AND createdAt = CURDATE();
     ]]>
 		</select>
+		
+		
+		  <!-- 좋아요한 유저 목록 조회 -->
+  <select id="selectMissionLikeUser" parameterType="Integer"
+    resultType="User">
+  <![CDATA[
+      SELECT u.profileImg as profileImg, u.nickname as nickname
+FROM user u
+JOIN goodidea g ON u.idx = g.userIdx
+JOIN mission m ON m.idx = g.missionIdx
+WHERE m.idx = #{missionIdx}
+      ]]>
+  </select>
+		
 </mapper>

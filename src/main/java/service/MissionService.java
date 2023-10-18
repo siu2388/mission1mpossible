@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import dto.Mission;
+import dto.User;
 
 public interface MissionService {
 	// 미션등록
@@ -53,5 +54,11 @@ public interface MissionService {
 
 	// 성공률 계산(프로필카드)
 	Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception;
+
+//좋아요한 유저 목록 조회 
+	List<User> findMissionLikeUser(Integer missionIdx) throws Exception;
+
+	// 미션 성공률 계산 서비스
+	Integer calSuccessRate(Integer userIdx) throws Exception;
 
 }

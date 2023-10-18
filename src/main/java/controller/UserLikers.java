@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import dto.User;
-import service.UserService;
-import service.UserServiceImpl;
+import service.MissionService;
+import service.MissionServiceImpl;
 
 /**
  * Servlet implementation class UserLikers
@@ -36,12 +39,21 @@ public class UserLikers extends HttpServlet {
 		System.out.println("쿼리 idx: " + missionIdx);
 
 		try {
-			UserService userService = new UserServiceImpl();
-			List<User> userLikers = userService.findMissionLikeUser(missionIdx);
+			MissionService missionService = new MissionServiceImpl();
+			List<User> userLikers = missionService.findMissionLikeUser(missionIdx);
+			JSONArray jsonArray = new JSONArray();
+			for (User user : userLikers) {
+				JSONObject ouser = new JSONObject();
+				ouser.put("profileImg", user.getProfileImg());
+				ouser.put("nickname", user.getNickname());
+				jsonArray.add(ouser);
+			}
+			// JSONObject totObj = new JSONObject();
 
-			req.setAttribute("users", userLikers);
-			System.out.println("userLikers" + userLikers);
-
+			// req.setAttribute("users", userLikers);
+			// System.out.println("userLikers:" + userLikers);
+			resp.setCharacterEncoding("utf-8");
+			resp.getWriter().print(jsonArray.toJSONString());
 		} catch (Exception e) {
 			// TODO: handle exceptiono
 			e.printStackTrace();

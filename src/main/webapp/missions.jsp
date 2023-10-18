@@ -224,7 +224,8 @@ div.card.bg-secondary-subtle {
         }
     </script>
 
-</head>
+</h
+ead>
 
 <body>
 	<header>

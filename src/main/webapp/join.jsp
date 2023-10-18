@@ -244,26 +244,12 @@ html, body {
 	      event.preventDefault();
 	      return;
 	    }
-	    
-	    // 아이디 중복확인 여부 확인
-	    if (!isUserIdChecked) {
-        alert('아이디 중복확인을 해주세요.');
-        event.preventDefault();
-        return;
-	    }
 
 	    // 닉네임 입력 확인
 	    if (nickname.trim() === '') {
 	      alert('닉네임을 입력해주세요.');
 	      event.preventDefault();
 	      return;
-	    }
-
-	    // 닉네임 중복확인 여부 확인
-	    if (!isNicknameChecked) {
-        alert('아이디 중복확인을 해주세요.');
-        event.preventDefault();
-        return;
 	    }
 	    
 	    // 비밀번호 입력 확인
