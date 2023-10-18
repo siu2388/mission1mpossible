@@ -102,7 +102,7 @@ header {
 						</div>
 						<div class="card-header">${mission.createdAt}</div>
 						<div class="card-body">
-							<h5 class="card-title">
+							<h5 class="card-title" style="width:10rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;">
 
 								<a href="mission?idx=${mission.idx}"
 									style="text-decoration: none; color: white"
