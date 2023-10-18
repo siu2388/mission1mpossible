@@ -135,20 +135,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <body>
     <div class="card card1">
       <div>
-<%--         <c:choose>
-          <c:when test="${user.profileImg ne null}"> --%>
-            <img
-              src="profile-image?profileImg=${user.profileImg}"
-              class="profile-img"
-            />
-<%--           </c:when>
-          <c:otherwise>
-            <img
-              src="${pageContext.request.contextPath}/upload/default_profile.jpg"
-              class="profile-img"
-            />
-          </c:otherwise>
-        </c:choose> --%>
+        <img
+          src="profile-image?profileImg=${user.profileImg}"
+          class="profile-img"
+        />
       </div>
       <div class="desc">
         <div class="name">

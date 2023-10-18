@@ -52,7 +52,7 @@ public class Join extends HttpServlet {
 		if (profileImg == null) {
 			profileImg = "defaultProfile.png";
 		}
-
+		
 		User user = new User();
 		user.setUserId(userId);
 		user.setPwd(pwd);
