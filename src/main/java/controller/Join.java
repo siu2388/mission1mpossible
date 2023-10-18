@@ -49,6 +49,10 @@ public class Join extends HttpServlet {
 		String pwd = multi.getParameter("pwd");
 		String profileImg = multi.getOriginalFileName("profileImg");
 
+		if (profileImg == null) {
+			profileImg = "defaultProfile.png";
+		}
+
 		User user = new User();
 		user.setUserId(userId);
 		user.setPwd(pwd);
