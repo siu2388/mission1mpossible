@@ -547,7 +547,7 @@ body {
 						<div class="line">
 							<div class="user-container">
 								<div
-								  id="liker-profileImg"
+								   id="liker-profileImg"
 									class="users"
 									style="background-image: url('<c:url value='${user.profileImg}'/>')"></div>
 								<div id="liker-nickname" class="username">${user.nickname}</div>
