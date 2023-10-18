@@ -84,91 +84,91 @@ html, body {
 </head>
 
 <body class="d-flex align-items-center py-4">
-   <main class="w-100 m-auto">
-      <!-- 상단 로고 -->
-      <div class="container">
-         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-               <a href="missions" class="logo-a">
-               <img class="img-fluid"
-                  src="${pageContext.request.contextPath}/images/miplogo.png"
-                  alt="logo" />
-               </a>
-            </div>
-            <div class="col-md-3"></div>
-         </div>
-      </div>
+	<main class="w-100 m-auto">
+		<!-- 상단 로고 -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<a href="missions" class="logo-a">
+					<img class="img-fluid"
+						src="${pageContext.request.contextPath}/images/miplogo.png"
+						alt="logo" />
+					</a>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+		</div>
 
       <div class="container">
          <div class="row">
             <div class="col-md-2"></div>
 
-            <!-- 좌 이미지 -->
-            <div class="col-md-3">
-               <img class="img-fluid"
-                  src="${pageContext.request.contextPath}/images/mainImg2.png"
-                  alt="MainImg1" />
-            </div>
+				<!-- 좌 이미지 -->
+				<div class="col-md-3">
+					<img class="img-fluid"
+						src="${pageContext.request.contextPath}/images/mainImg2.png"
+						alt="MainImg1" />
+				</div>
 
-            <!-- 중앙, 우 회원가입 폼 -->
-            <div
-               class="col-md-5 custom-form d-flex align-items-center justify-content-center">
-               <form class="px-1" action="join" method="post" enctype="multipart/form-data">
-                  <div class="row">
-                     <div class="col-md-5 d-flex align-items-center justify-content-center" id="imgUploadBundle">
-                        <div class="px-4">
-                           <div class="d-flex justify-content-center mb-4">
-                              <img src="${pageContext.request.contextPath}/images/defaultProfile.png"
-                                 class="rounded-circle user-img-default" id="imagePreview"
-                                 alt="defaultProfile" />
-                           </div>
-                           <div class="d-flex justify-content-center mb-2 custom-text-title">프로필사진</div>
-                           <div class="d-flex justify-content-center align-items-center">
-                              <div class="btn w-30 custom-btn d-flex justify-content-center align-items-center">
-                                 <label class="form-label m-0" for="pofileImgUpload">선택</label>
-                                 <input type="file" class="form-control d-none custom-btn"
-                                    id="pofileImgUpload" name="profileImg"
-                                    accept="profile-image/*" onchange="previewImg(event)" />
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+				<!-- 중앙, 우 회원가입 폼 -->
+				<div
+					class="col-md-5 custom-form d-flex align-items-center justify-content-center">
+					<form class="px-1" action="join" method="post" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-5 d-flex align-items-center justify-content-center" id="imgUploadBundle">
+								<div class="px-4">
+									<div class="d-flex justify-content-center mb-4">
+										<img src="${pageContext.request.contextPath}/images/defaultProfile.png"
+											class="rounded-circle user-img-default" id="imagePreview"
+											alt="defaultProfile" />
+									</div>
+									<div class="d-flex justify-content-center mb-2 custom-text-title">프로필사진</div>
+									<div class="d-flex justify-content-center align-items-center">
+										<div class="btn w-30 custom-btn d-flex justify-content-center align-items-center">
+											<label class="form-label m-0" for="pofileImgUpload">선택</label>
+											<input type="file" class="form-control d-none custom-btn"
+												id="pofileImgUpload" name="profileImg"
+												accept="profile-image/*" onchange="previewImg(event)" />
+										</div>
+									</div>
+								</div>
+							</div>
 
-                     <div class="col-md-7" id="joinFormBundle">
-                        <div class="mb-4 text-center custom-text-title-2">회원가입</div>
-                        <div class="form-floating mb-2">
-                           <input type="text" class="form-control-sm" id="floatingInput" name="userId" placeholder="아이디" />
-                           <input type="button" class="btn btn-secondary btn-sm" value="중복확인"
-                              onclick="checkDuplicate('userId')" />
-                        </div>
-                        <div class="form-floating mb-2">
-                           <input type="text" class="form-control-sm" id="floatingInput" name="nickname" placeholder="닉네임" />
-                           <input type="button" class="btn btn-secondary btn-sm" value="중복확인"
-                              onclick="checkDuplicate('nickname')" />
-                        </div>
-                        <div class="form-floating mb-2">
-                           <input type="password" class="form-control-sm" id="floatingPassword" name="pwd" placeholder="비밀번호" />
-                        </div>
-                        <div class="form-floating mb-2">
-                           <input type="password" class="form-control-sm" id="floatingPasswordCheck" name="pwdCheck" placeholder="비밀번호확인" />
-                        </div>
-                        <input class="btn w-100 py-2 mt-3 custom-btn-join" type="submit" value="가입하기" id="joinBtn" />
-                     </div>
-                  </div>
-               </form>
-            </div>
+							<div class="col-md-7" id="joinFormBundle">
+								<div class="mb-4 text-center custom-text-title-2">회원가입</div>
+								<div class="form-floating mb-2">
+									<input type="text" class="form-control-sm" id="floatingInput" name="userId" placeholder="아이디" />
+									<input type="button" class="btn btn-secondary btn-sm" value="중복확인"
+										onclick="checkDuplicate('userId')" />
+								</div>
+								<div class="form-floating mb-2">
+									<input type="text" class="form-control-sm" id="floatingInput" name="nickname" placeholder="닉네임" />
+									<input type="button" class="btn btn-secondary btn-sm" value="중복확인"
+										onclick="checkDuplicate('nickname')" />
+								</div>
+								<div class="form-floating mb-2">
+									<input type="password" class="form-control-sm" id="floatingPassword" name="pwd" placeholder="비밀번호" />
+								</div>
+								<div class="form-floating mb-2">
+									<input type="password" class="form-control-sm" id="floatingPasswordCheck" name="pwdCheck" placeholder="비밀번호확인" />
+								</div>
+								<input class="btn w-100 py-2 mt-3 custom-btn-join" type="submit" value="가입하기" id="joinBtn" />
+							</div>
+						</div>
+					</form>
+				</div>
 
             <div class="col-md-2"></div>
          </div>
       </div>
    </main>
 
-   <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-   <script>
+	<script>
     // 중복확인 변수
     let userIdChecked = false;
     let nicknameChecked = false;
