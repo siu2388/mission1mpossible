@@ -13,6 +13,7 @@ public class Mission {
 	private int catId;
 	private int userIdx;
 	private int likecount;
+	private String catName;
 
 	public int getIdx() {
 		return idx;
@@ -92,6 +93,14 @@ public class Mission {
 
 	public void setLikecount(int likecount) {
 		this.likecount = likecount;
+	}
+
+	public String getCatName() {
+		return catName;
+	}
+
+	public void setCatName(String catName) {
+		this.catName = catName;
 	}
 
 }

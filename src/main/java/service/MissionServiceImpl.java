@@ -346,7 +346,7 @@ public class MissionServiceImpl implements MissionService {
 
 		Integer successRate = 0;
 		if (totalMissions != 0) {
-			successRate = (int) ((successMissions / totalMissions) * 100.0);
+			successRate = (int) (successMissions * 100.0 / totalMissions);
 		}
 
 		return successRate;
