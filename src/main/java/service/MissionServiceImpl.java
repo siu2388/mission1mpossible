@@ -42,19 +42,72 @@ public class MissionServiceImpl implements MissionService {
 
 	// 나의 미션기록 조회
 	@Override
-	public List<Mission> findMyMissions(Integer userIdx) throws Exception {
-		return missionDao.selectMyMissions(userIdx);
+	public Map<String, Object> findMyMissions(Integer page, Integer userIdx) throws Exception {
+		int totalCounts = missionDao.countMyMissions(userIdx);
+		System.out.println("----------내 미션 총개수:" + totalCounts);
+
+		Map<String, Object> pageInfoResult = getPageInfoMyMission(page, totalCounts);
+		int adjustedPage = (int) pageInfoResult.get("startRow");
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("userIdx", userIdx);
+		params.put("row", adjustedPage - 1);
+
+		List<Mission> myMissionList = missionDao.selectMyMissions(params);
+		System.out.println("--------내 미션 리스트 뿌려줘 : " + myMissionList);
+
+		// 맵에 담아서 전달
+		Map<String, Object> result = new HashMap<>();
+		result.put("pageInfo", pageInfoResult.get("pageInfo"));
+		result.put("myMissionList", myMissionList);
+
+		System.out.println("------맵에 전달 되는거니??? : " + result);
+
+		return result;
 	}
 
-//	@Override
-//	public Integer countTotalMissions(Integer userIdx) throws Exception {
-//		return missionDao.selectTotalMissions(userIdx);
-//	}
-//
-//	@Override
-//	public Integer calculateSuccessRate(Integer userIdx) throws Exception {
-//		return missionDao.calculateSuccessRate(userIdx);
-//	}
+	// 내 미션기록 한정 페이징처리 서비스
+	@Override
+	public Map<String, Object> getPageInfoMyMission(int page, int totalCounts) throws Exception {
+		PageInfo pageInfo = new PageInfo();
+
+		Map<String, Object> paging = new HashMap<>();
+		int itemsPerPage = 5; // 한 페이지당 보여줄 미션 게시물 수
+		int maxPage = (int) Math.ceil((double) totalCounts / itemsPerPage);
+
+		if (maxPage == 0) {
+			paging.put("pageInfo", pageInfo);
+			paging.put("startRow", 1);
+			return paging;
+		}
+
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 10 - 1;
+
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+
+		if (page > maxPage) {
+			page = maxPage;
+		}
+
+		pageInfo.setTotalPages(maxPage);
+		pageInfo.setCurPage(page);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+
+		System.out.println("페이징처리에서 받은 토탈카운트(내미션):" + totalCounts);
+		System.out.println("페이징처리에서 받은 maxPage(내미션):" + maxPage);
+		System.out.println("startPage(내미션):" + startPage + " endPage(내미션):" + endPage);
+
+		int row = (page - 1) * itemsPerPage + 1;
+
+		paging.put("pageInfo", pageInfo);
+		paging.put("startRow", row);
+
+		return paging;
+	}
 
 	// 페이징 처리 서비스
 	@Override
@@ -295,7 +348,7 @@ public class MissionServiceImpl implements MissionService {
 		Integer successfulMissions = ((Number) missionSuccessRate.get("successfulMissions")).intValue();
 		Integer successRate = totalMissions == 0 ? 0 : (successfulMissions * 100) / totalMissions;
 		System.out.println("총 미션수 : " + totalMissions);
-		System.out.println("성공한 미션 : " + successfulMissions);
+		System.out.println("총 미션수 : " + successfulMissions);
 
 		// 성공률을 맵에 추가
 		missionSuccessRate.put("successRate", successRate);

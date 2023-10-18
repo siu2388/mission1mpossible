@@ -42,6 +42,8 @@ public class UserLikers extends HttpServlet {
 			req.setAttribute("users", userLikers);
 			System.out.println("userLikers" + userLikers);
 
+			req.getRequestDispatcher("missionDetail.jsp").forward(req, resp);
+
 		} catch (Exception e) {
 			// TODO: handle exceptiono
 			e.printStackTrace();

@@ -41,8 +41,8 @@ public class MissionDAOImpl implements MissionDAO {
 
 	// 나의 미션기록 조회
 	@Override
-	public List<Mission> selectMyMissions(Integer userIdx) throws Exception {
-		return sqlSession.selectList("mapper.mission.selectMyMissions", userIdx);
+	public List<Mission> selectMyMissions(Map<String, Object> params) throws Exception {
+		return sqlSession.selectList("mapper.mission.selectMyMissions", params);
 	}
 
 
@@ -158,4 +158,10 @@ public class MissionDAOImpl implements MissionDAO {
 	@Override
 	public Map<String, Object> calculateMissionSuccessRate(Integer userIdx) throws Exception {
 		return sqlSession.selectOne("mapper.mission.calculateMissionSuccessRate", userIdx);	}
+
+	// 내 미션 총 개수 by userIdx
+	@Override
+	public Integer countMyMissions(Integer userIdx) throws Exception {
+		return sqlSession.selectOne("mapper.mission.countMyMissions", userIdx);
+	}
 }
