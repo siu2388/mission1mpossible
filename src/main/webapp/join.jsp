@@ -214,8 +214,6 @@ html, body {
         swal('', '비밀번호가 일치하지 않습니다.', 'error')
         event.preventDefault();
       }
-      
-  
 
       // 아이디 중복 확인이 체크되지 않았으면
       if (!userIdChecked) {

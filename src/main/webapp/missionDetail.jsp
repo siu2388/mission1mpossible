@@ -581,16 +581,18 @@ body {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			let success = '${mission.success}';
-			let missionBox = $('.missionbox');
-			/* let missionStatusText = '${missionStatusText}'; */
-
-			if (success == '성공') {
+			const success = '${mission.success}';
+			const	createdAt = '${mission.createdAt}';
+			const updatedAt = '${mission.updatedAt}';
+			const missionBox = $('.missionbox');
+			const today = new Date().toISOString().slice(0, 10);
+			
+			if (success == '성공' && createdAt == updatedAt) {
 				missionBox.addClass('success-background');
-				/* $('#missionStatus').addClass('success-text'); */
-			} else if (success == '실패') {
+			} else if (success == null && createdAt == today) {
+				// 배경색 그대로
+			} else {
 				missionBox.addClass('fail-background');
-				/* $('#missionStatus').addClass('fail-text'); */
 			}
 		});
 		
