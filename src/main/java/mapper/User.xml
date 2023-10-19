@@ -12,8 +12,11 @@
 	<!-- 회원정보수정 -->
 	<update id="updateUser" parameterType="User">
 		UPDATE user
-		SET nickname = #{nickname}, pwd = #{pwd}
-		<if test="profileImg != null">, profileImg = #{profileImg}</if>
+		<trim prefix="SET" suffixOverrides=",">
+		<if test = "nickname != null"> nickname = #{nickname},</if>
+		<if test = "pwd != null"> pwd = #{pwd},</if>
+		<if test = "profileImg != null"> profileImg = #{profileImg},</if>
+		</trim>
 		WHERE userId = #{userId}
 	</update>
 

@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,20 +43,19 @@ public class UpdateUser extends HttpServlet {
 		// 세션을 사용하여 사용자 로그인 여부 확인
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") == null) {
-			response.sendRedirect("login.jsp"); // 로그인 페이지로 리디렉션
+			response.sendRedirect("login.jsp");
 			return;
 		}
 		
-		// 세션에서 user 정보 얻기
-		User user = (User) session.getAttribute("user");
+		String userId = request.getParameter("userId");
 
 		try {
 			// UserService를 이용해 사용자 정보 조회(Id로 정보 가져오기)
 			UserService userService = new UserServiceImpl();
-			User updatedUser = userService.getUserById(user.getUserId());
+			User user = userService.getUserById(userId);
 
 			// 조회한 정보를 request 속성에 저장
-			request.setAttribute("user", updatedUser);
+			request.setAttribute("user", user);
 
 			// 회원 정보 수정 페이지로 요청 포워딩
 			request.getRequestDispatcher("updateUser.jsp").forward(request, response);
@@ -86,19 +88,19 @@ public class UpdateUser extends HttpServlet {
 		user.setPwd(pwd);
 		user.setProfileImg(profileImg);
 		user.setNickname(nickname);
-		
-		// 세션을 사용하여 사용자 로그인 여부 확인
+			
     HttpSession session = request.getSession();
 
 		try {
 			UserService userService = new UserServiceImpl();
 			userService.updateUser(user);
+			User updatedUser = userService.getUserById(userId);
 			
 			// 사용자 정보 수정 후, 업데이트된 정보를 세션에 저장
-      User updatedUser = userService.getUserById(user.getUserId());
       session.setAttribute("user", updatedUser);
 			
 			response.sendRedirect("missions");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
