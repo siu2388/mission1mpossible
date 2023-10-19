@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 		return findUser != null; // 중복이면 true, 아니면 false 반환
 	}
 
-		// 닉네임 중복체크 (내 닉네임 제외)
+// 닉네임 중복체크 (내 닉네임 제외)
 	@Override
 	public boolean isOtherNicknameDuplicate(String nickname, String userId) throws Exception {
 		Map<String, Object> params = new HashMap<>();

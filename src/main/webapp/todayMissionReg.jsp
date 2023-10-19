@@ -124,9 +124,6 @@ body {
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 	crossorigin="anonymous"
 ></script>
-
-
-
 </head>
 
 <body>
@@ -229,7 +226,7 @@ body {
 	<script type="text/javascript">
 	$(document).ready(function(){
 	  $(function(){
-		  $("#insert-btn").click(function() {
+		  $("#insert-btn").click(function(e) {
 		    e.preventDefault();
 		    Swal.fire({
 		      title: '미션등록',

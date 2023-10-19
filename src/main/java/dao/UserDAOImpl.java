@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 
-	@Override
+@Override
 	public User selectOtherUserByNickname(Map<String, Object> params) throws Exception {
 		return sqlSession.selectOne("mapper.user.selectOtherUserByNickname", params);
 	}

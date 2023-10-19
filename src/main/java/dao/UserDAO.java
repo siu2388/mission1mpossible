@@ -17,6 +17,6 @@ public interface UserDAO {
 	// nickname으로 user 선택
 	User selectUserByNickname(String nickname) throws Exception;
 
-		// nickname으로 user 선택 (나를 제외한 user 중)
+// nickname으로 user 선택 (나를 제외한 user 중)
 	User selectOtherUserByNickname(Map<String, Object> params) throws Exception;
 }

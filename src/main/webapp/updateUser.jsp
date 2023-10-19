@@ -218,8 +218,8 @@ html, body {
       }
     }
     
- 		/// 중복체크 함수
-     function checkDuplicate(type) {
+ 		// 중복체크 함수
+    function checkDuplicate(type) {
       let value = document.querySelector('input[name=nickname]').value;
 
       // AJAX 요청 보내기

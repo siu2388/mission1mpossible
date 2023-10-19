@@ -33,7 +33,14 @@
 	crossorigin="anonymous"
 ></script>
 <style>
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 body {
+    font-family: 'NPSfontBold', sans-serif !important;
 		height: 100%;
 		background-image: url(./images/bg.jpg);
 }
@@ -43,7 +50,7 @@ a.custom-link {
 }
 
 header {
-		margin-bottom: 1.875rem; /* 30px를 rem으로 변환 */
+		margin-bottom: 1.875rem; 
 }
 
 .profilebox {
@@ -52,19 +59,19 @@ header {
 
 .join-box {
 		float: left;
-		margin: 1.25rem; /* 20px를 rem으로 변환 */
-		margin-top: 3.125rem; /* 50px를 rem으로 변환 */
-		border: 0.625rem solid rgb(157, 217, 174); /* 10px를 rem으로 변환 */
-		border-radius: 1.875rem; /* 30px를 rem으로 변환 */
-		width: 12.5rem; /* 200px를 rem으로 변환 */
-		height: 15.625rem; /* 250px를 rem으로 변환 */
+		margin: 1.25rem; 
+		margin-top: 3.125rem; 
+		border: 0.625rem solid rgb(157, 217, 174); 
+		border-radius: 1.875rem; 
+		width: 12.5rem; 
+		height: 15.625rem; 
 		font-weight: 500;
-		padding: 0.75rem; /* 12px를 rem으로 변환 */
+		padding: 0.75rem; 
 		background-color: rgb(221, 241, 228);
 }
 
 .join-text {
-		font-size: 1.125rem; /* 18px를 rem으로 변환 */
+		font-size: 1.125rem; 
 		font-weight: 900;
 }
 
@@ -73,16 +80,16 @@ header {
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
-		width: 9.6875rem; /* 155px를 rem으로 변환 */
-		height: 2.5rem; /* 40px를 rem으로 변환 */
-		font-size: 1.0625rem; /* 17px를 rem으로 변환 */
+		width: 9.6875rem; 
+		height: 2.5rem;
+		font-size: 1.0625rem;
 		font-weight: 600;
 		color: white;
 		background-color: #49339A;
 		border: none;
-		border-radius: 2.8125rem; /* 45px를 rem으로 변환 */
+		border-radius: 2.8125rem;
 		cursor: pointer;
-		margin-top: 1.5625rem; /* 25px를 rem으로 변환 */
+		margin-top: 1.5625rem;
 		transition: 0.5s ease-in-out;
 }
 
@@ -137,16 +144,17 @@ div.card.bg-secondary-subtle {
 }
 
 .card-date {
-		border: 1px solid black;
+		border: 1px solid #adada8;
 		border-radius: 5px;
-		width: 82px;
+		width: 90px;
 		margin-left: 20px;
 		font-size: 13px;
-		padding-left: 5px;
+		padding: 1px 5px 1px 7px;
+		background-color: #fff1d9;
+		font-weight:semi-bold;
 }
 
 .card-img {
-		width: 160px;
 		height: 90px;
 		margin: 15px 20px 10px 30px;
 		padding-top: 0px;
@@ -206,8 +214,7 @@ div.card.bg-secondary-subtle {
 }
 
 .container {
-	height: 37.5rem; /* 600px를 rem으로 변환 */
-	
+	height: 37.5rem;
 }
 
 .page-selected {
@@ -223,8 +230,7 @@ div.card.bg-secondary-subtle {
         }
     </script>
 
-</h
-ead>
+</head>
 <body>
 	<header>
 		<jsp:include page="header.jsp" />
@@ -297,7 +303,7 @@ ead>
 								<a
 									href="mission?idx=${mission.idx}"
 									class="stretched-link"
-									style="text-decoration: none; color: black"
+									style="text-decoration: none; color: black; width:220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"
 								>${mission.title }</a>
 							</div>
 							<div class="card-date">${mission.createdAt}</div>
@@ -340,7 +346,7 @@ ead>
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<div class="user-card-text">${mission.unickname}님도전중!</div>
+							<div class="user-card-text">${mission.unickname}님 미션!</div>
 						</div>
 					</div>
 				</div>
