@@ -132,7 +132,7 @@ html, body {
               <div class="col-md-7" id="joinFormBundle">
                 <div class="mb-4 text-center custom-text-title-2">회원정보수정</div>
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control-sm" id="floatingInput" name="nickname" placeholder="닉네임" value="${user.nickname}" />
+                  <input type="text" class="form-control-sm" id="floatingInput" name="nickname" placeholder="닉네임(최대 7글자)" value="${user.nickname}" />
                   <input type="button" class="btn btn-secondary btn-sm" value="중복확인" onclick="checkDuplicate('nickname')"/>
                 </div>
                 <div class="form-floating mb-2">
@@ -218,26 +218,26 @@ html, body {
       }
     }
     
- 		// 중복체크 함수
-    function checkDuplicate(type) {
-      let value = document.querySelector('input[name="' + type + '"]').value;
+ 		/// 중복체크 함수
+     function checkDuplicate(type) {
+      let value = document.querySelector('input[name=nickname]').value;
 
       // AJAX 요청 보내기
       let xhr = new XMLHttpRequest();
-      xhr.open('POST', 'check-duplicate', true); // 서블릿 URL
+      xhr.open('POST', 'check-duplicate-update', true); // 서블릿 URL
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
           // 서버 응답을 확인하여 중복 여부를 처리
           if (xhr.responseText === '{"result":"duplicate"}') {
-            swal('', '이미 사용중인 ' + (type === 'userId' ? '아이디' : '닉네임') + '입니다.', 'error');
+            swal('', '이미 사용중인 닉네임입니다.', 'error');
           } else {
-            swal('', '사용 가능한 ' + (type === 'userId' ? '아이디' : '닉네임') + '입니다.', 'success');
-            type === 'userId' ? userIdChecked = true : nicknameChecked = true;
+            swal('', '사용 가능한 닉네임입니다.', 'success');
+            nicknameChecked = true;
           }
         }
       }
-      xhr.send('type=' + type + '&value=' + value);
+      xhr.send('value=' + value);
     }
   </script>
 </body>
