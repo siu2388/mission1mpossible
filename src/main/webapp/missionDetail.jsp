@@ -32,7 +32,14 @@
 	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
 	crossorigin="anonymous"></script>
 <style>
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 body {
+  font-family: 'NPSfontBold', sans-serif !important;
 	height: 100%;
 	background-image: url(./images/bg.jpg);
 }
@@ -334,8 +341,30 @@ body {
 				}
 			})
 		})
-			
 	})
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(function(){
+      $("#insert-btn").click(function(e) {
+        e.preventDefault();
+        Swal.fire({
+          title: '미션등록',
+          text : '한 번 등록한 미션은 삭제가 불가능합니다. ',
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonText: '등록',
+          cancelButtonText: '취소',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.getElementById("regform").submit(); 
+          } else if (result.isDenied) {
+            return false;
+          }
+        })
+      })
+    })
+  })
 </script>
 </head>
 
