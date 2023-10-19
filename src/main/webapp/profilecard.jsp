@@ -48,7 +48,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       .desc {
         margin-bottom: 0;
         text-align: center;
-        width: 135px;
+        /* width: 135px; */
         height: 170px;
       }
 

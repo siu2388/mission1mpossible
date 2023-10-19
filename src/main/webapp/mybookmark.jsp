@@ -21,7 +21,14 @@
 	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
 	crossorigin="anonymous"></script>
 <style>
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 body {
+  font-family: 'NPSfontBold', sans-serif !important;
 	height: 100%;
 	background-image: url(./images/bg.jpg);
 }
