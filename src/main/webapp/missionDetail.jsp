@@ -492,7 +492,7 @@ body {
 					<div class="col-md-2 no-padding"></div>
 
 					<!-- 성공, 실패 버튼 -->
-					<c:if test="${user.idx eq mission.userIdx}">
+					<c:if test="${user.idx eq mission.userIdx && mission.createdAt == today}">
 						<div class="col-md-8 no-padding">
 							<form
 								action="success-fail?idx=${mission.idx}"
