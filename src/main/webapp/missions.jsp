@@ -222,9 +222,7 @@ div.card.bg-secondary-subtle {
             }
         }
     </script>
-
-</h
-ead>
+</head>
 <body>
 	<header>
 		<jsp:include page="header.jsp" />
