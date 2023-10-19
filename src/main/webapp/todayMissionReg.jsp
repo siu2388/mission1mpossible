@@ -22,6 +22,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 >
+<!-- 네브바 드랍업 작동 -->
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
 	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -32,6 +33,8 @@
 	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
 	crossorigin="anonymous"
 ></script>
+<!--  sweet alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 body {
 		height: 100%;
@@ -108,6 +111,22 @@ body {
 		text-align: center;
 }
 </style>
+
+<link
+	rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"
+>
+<script
+  src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"
+></script>
+<script
+	src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"
+></script>
+
+
+
 </head>
 
 <body>
@@ -122,6 +141,7 @@ body {
 		<!-- 우 todayMission 등록 폼 -->
 		<div class="missionbox img-fluid">
 			<form
+				id="regform"
 				action="today-mission-reg"
 				method="post"
 				enctype="multipart/form-data"
@@ -172,6 +192,7 @@ body {
 							id="missionContent"
 							name="context"
 							rows="8"
+							placeholder="미션의 구체적인 설명을 작성합니다.(최대200자)"
 						></textarea>
 					</div>
 				</div>
@@ -188,6 +209,7 @@ body {
 				</div>
 				<div class="button">
 					<input
+						id="insert-btn"
 						class="btn"
 						type="submit"
 						value="미션등록"
@@ -204,6 +226,29 @@ body {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+	  $(function(){
+		  $("#insert-btn").click(function() {
+		    e.preventDefault();
+		    Swal.fire({
+		      title: '미션등록',
+		      text : '한 번 등록한 미션은 삭제가 불가능합니다. ',
+		      icon: 'info',
+		      showCancelButton: true,
+		      confirmButtonText: '등록',
+		      cancelButtonText: '취소',
+		    }).then((result) => {
+		      if (result.isConfirmed) {
+		    	  document.getElementById("regform").submit(); 
+		      } else if (result.isDenied) {
+		        return false;
+		      }
+		    })
+		  })
+		})
+  })
+</script>
 </body>
 
 </html>
