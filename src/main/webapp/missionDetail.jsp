@@ -107,6 +107,7 @@ body {
 	display: flex;
 	justify-content: center;
 	text-decoration: none;
+	align-items: center;
 	width: 155px;
 	height: 40px;
 	font-size: 17px;
@@ -150,17 +151,6 @@ body {
 	background-color: #F3AA9F;
 }
 
-/* .success-text {
-  color: #FFFFFF !important;
-  border-radius: 5px;
-  background-color: #556B2F;
-}
-
-.fail-text {
-  color: #FFFFFF !important;
-  border-radius: 5px;
-  background-color: #800020;
-} */
 .custom-btn {
 	background-color: #4AC98C !important;
 	border-color: #4AC98C !important;
@@ -230,7 +220,7 @@ body {
 .custom-bg {
 	background-color: #49339A;
 	color: #ffffff;
-	padding: 5px;
+	padding: 5px 10px;
 	border-radius: 8px;
 	position: absolute;
 	top: 0;
