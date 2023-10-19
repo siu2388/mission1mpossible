@@ -1,5 +1,8 @@
 package service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import dto.User;
@@ -70,9 +73,9 @@ public class UserServiceImpl implements UserService {
 		Map<String, Object> params = new HashMap<>();
 		params.put("nickname", nickname);
 		params.put("userId", userId);
-		
+
 		User findUser = userDao.selectOtherUserByNickname(params);
-		
+
 		return findUser != null; // 중복이면 true, 아니면 false 반환
 	}
 }

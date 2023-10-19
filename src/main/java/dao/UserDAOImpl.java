@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.User;
@@ -33,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 
-@Override
+	@Override
 	public User selectOtherUserByNickname(Map<String, Object> params) throws Exception {
 		return sqlSession.selectOne("mapper.user.selectOtherUserByNickname", params);
 	}
