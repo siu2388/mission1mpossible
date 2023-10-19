@@ -134,10 +134,10 @@ body {
 	background-color: #E5D689;
 	background-size: contain;
 	width: 60%;
-	float: right;
+	/* float: right; */
 	height: 500px;
 	padding: 10px;
-	margin: 2rem 5rem 0 0;
+	margin: 3.5rem 5rem 0 20rem;
 }
 
 .success-background {
@@ -272,14 +272,27 @@ body {
 #likecount {
 	margin-top: 12px;
 }
+.bookmark {
+	margin: 9px 0 0 20px;
+}
+
+.likeheart {
+	margin-top: 9px;
+}
+
 /* 좋아요한 유저 */
 .modal-content {
 	background-image: url("./images/bg2.png");
 }
 
 .btn77 {
-	width: 2.5rem;
-	height: 2.5rem;
+	border: none;
+	background-color: transparent;
+	font-weight: bold;
+}
+
+.btn77:hover {
+	background-color: transparent;
 }
 </style>
 <!-- 제이쿼리 -->
@@ -309,7 +322,7 @@ body {
 										}
 			})
 		})
-						 
+
 		$('#bookmarked').click(function() {
       $.ajax({
         url: 'bookmark',
@@ -421,62 +434,72 @@ body {
 				<!--  북마크 & 좋아요 -->
 				<!--  북마크 -->
 				<div
-					class="mx-auto w-70 d-flex justify-content-center align-items-center">
+					class="mx-auto w-70 d-flex justify-content-center align-items-center"
+				>
 					<div class="container no-padding">
 						<div class="row">
-							<div class="col-md-2 no-padding"></div>
+							<div class="col-md-0 no-padding"></div>
 
 							<!-- 북마크 -->
-							<div class="col-md-8 no-padding">
+							<div class="col-md-10 no-padding">
 								<c:if test="${user ne Empty && user.idx ne mission.userIdx }">
-									<c:choose>
-										<c:when test="${bselected == true }">
-											<img
-												id="bookmarked"
-												alt="선택한북마크"
-												src="<%=request.getContextPath()%>/images/bmFull.png"
-												width="20px"
-												height="20px">
-										</c:when>
-										<c:otherwise>
-											<img
-												id="bookmarked"
-												alt="선택안된북마크"
-												src="<%=request.getContextPath()%>/images/bmEmpty.png"
-												width="20px"
-												height="20px">
-										</c:otherwise>
-									</c:choose>
+									<div class="bookmark">
+										<c:choose>
+											<c:when test="${bselected == true }">
+												<img
+													id="bookmarked"
+													alt="선택한북마크"
+													src="<%=request.getContextPath()%>/images/bmFull.png"
+													width="20px"
+													height="20px"
+												>
+											</c:when>
+											<c:otherwise>
+												<img
+													id="bookmarked"
+													alt="선택안된북마크"
+													src="<%=request.getContextPath()%>/images/bmEmpty.png"
+													width="20px"
+													height="20px"
+												>
+											</c:otherwise>
+										</c:choose>
+									</div>
 								</c:if>
 							</div>
 
 							<!-- 하트, 좋아요한 유저 버튼 -->
-							<div class="col-md-1 no-padding d-flex justify-content-end">
-								<c:choose>
-									<c:when test="${selected==true}">
-										<img
-											id="likeheart"
-											src="<%=request.getContextPath()%>/images/likeFull.png"
-											width="20px"
-											height="20px">
-									</c:when>
-									<c:otherwise>
-										<img
-											id="likeheart"
-											src="<%=request.getContextPath()%>/images/likeEmpty.png"
-											width="20px"
-											height="20px">
-									</c:otherwise>
-								</c:choose>
+							<div class="col-md-2 no-padding d-flex justify-content-end">
+								<div class="likeheart">
+									<c:choose>
+										<c:when test="${selected==true}">
+											<img
+												id="likeheart"
+												src="<%=request.getContextPath()%>/images/likeFull.png"
+												width="20px"
+												height="20px"
+											>
+										</c:when>
+										<c:otherwise>
+											<img
+												id="likeheart"
+												src="<%=request.getContextPath()%>/images/likeEmpty.png"
+												width="20px"
+												height="20px"
+											>
+										</c:otherwise>
+									</c:choose>
+								</div>
 
-								<span> <!-- 좋아요한 유저 버튼 -->
-									<button
-										type="button"
-										id="likecount"
-										class="btn btn77 modal-btn"
-										data-bs-toggle="modal"
-										data-bs-target="#Modal">${mission.likecount}</button>
-								</span> &nbsp;&nbsp;
+								<!-- 좋아요한 유저 버튼 -->
+								<button
+									type="button"
+									id="likecount"
+									class="btn77 modal-btn"
+									data-bs-toggle="modal"
+									data-bs-target="#Modal"
+								>${mission.likecount}</button>
+								&nbsp;&nbsp;
 							</div>
 						</div>
 					</div>
@@ -559,7 +582,7 @@ body {
 						<div class="line">
 							<div class="user-container">
 								<div
-								   id="liker-profileImg"
+								  id="liker-profileImg"
 									class="users"
 									style="background-image: url('<c:url value='${user.profileImg}'/>')"></div>
 								<div id="liker-nickname" class="username">${user.nickname}</div>
