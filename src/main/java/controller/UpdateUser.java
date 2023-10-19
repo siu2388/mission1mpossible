@@ -45,7 +45,6 @@ public class UpdateUser extends HttpServlet {
 			response.sendRedirect("login.jsp");
 			return;
 		}
-
 		String userId = request.getParameter("userId");
 
 		try {

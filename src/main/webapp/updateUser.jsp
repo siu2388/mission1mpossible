@@ -156,18 +156,50 @@ html, body {
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   <script>
-    // 비밀번호 일치 유효성 검사
+    let nicknameChecked = false;
+    
     document.getElementById('updateBtn').addEventListener('click', function(event) {
+      let nickname = document.querySelector('input[name=nickname]').value;
       let pwd = document.querySelector('input[name=pwd]').value;
       let pwdCheck = document.querySelector('input[name=pwdCheck]').value;
 
+ 			// 닉네임 입력 확인
+      if (nickname.trim() === '') {
+        swal('', '닉네임을 입력해주세요.', 'error')
+        event.preventDefault();
+        return;
+      }
+      
+      // 비밀번호 입력 확인
+      if (pwd.trim() === '') {
+        swal('', '비밀번호를 입력해주세요.', 'error')
+        event.preventDefault();
+        return;
+      }
+
+      // 비밀번호확인 입력 확인
+      if (pwdCheck.trim() === '') {
+        swal('', '비밀번호를 한 번 더 입력해주세요.', 'error')
+        event.preventDefault();
+        return;
+      }
+      
+      // 비밀번호 일치 유효성 검사
       if (pwd != pwdCheck) {
-        alert('비밀번호가 일치하지 않습니다.');
-        event.preventDefault(); // 폼 제출 막음
+        swal('', '비밀번호가 일치하지 않습니다.', 'error')
+        event.preventDefault();
+      }
+      
+      // 닉네임 중복 확인이 체크되지 않았으면
+      if (!nicknameChecked) {
+        swal('', '닉네임 중복확인을 해주세요.', 'error');
+        event.preventDefault();
+        return;
       }
     });
-
+    
     // 프로필사진 첨부했을 때 미리보기
     function previewImg(event) {
       const imagePreview = document.getElementById('imagePreview');
@@ -186,7 +218,7 @@ html, body {
       }
     }
     
-    // 중복체크 함수
+ 		// 중복체크 함수
     function checkDuplicate(type) {
       let value = document.querySelector('input[name="' + type + '"]').value;
 
@@ -198,9 +230,10 @@ html, body {
         if (xhr.readyState === 4 && xhr.status === 200) {
           // 서버 응답을 확인하여 중복 여부를 처리
           if (xhr.responseText === '{"result":"duplicate"}') {
-            alert('이미 사용중인 ' + (type === 'userId' ? '아이디' : '닉네임') + '입니다.');
+            swal('', '이미 사용중인 ' + (type === 'userId' ? '아이디' : '닉네임') + '입니다.', 'error');
           } else {
-            alert('사용 가능한 ' + (type === 'userId' ? '아이디' : '닉네임') + '입니다.');
+            swal('', '사용 가능한 ' + (type === 'userId' ? '아이디' : '닉네임') + '입니다.', 'success');
+            type === 'userId' ? userIdChecked = true : nicknameChecked = true;
           }
         }
       }
