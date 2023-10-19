@@ -21,6 +21,4 @@ public interface UserService {
 	// 아이디로 회원정보 가져오기
 	User getUserById(String userId) throws Exception;
 
-	// 닉네임 중복체크 (내 닉네임 제외)
-	boolean isOtherNicknameDuplicate(String nickname, String userId) throws Exception;
 }
