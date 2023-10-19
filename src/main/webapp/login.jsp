@@ -67,7 +67,9 @@ img.img-fluid {
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
-					<img class="img-fluid" src="${pageContext.request.contextPath}/images/miplogo.png" alt="logo">
+					<a href="missions" class="logo-a">
+					  <img class="img-fluid" src="${pageContext.request.contextPath}/images/miplogo.png" alt="logo">
+					</a>
 				</div>
 				<div class="col-md-3"></div>
 			</div>
@@ -101,5 +103,27 @@ img.img-fluid {
 		</div>
 	</main>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+	  document.getElementById('loginBtn').addEventListener('click', function(event) {
+	    // 사용자 입력을 가져옴
+	    let userId = document.querySelector('input[name=userId]').value;
+	    let pwd = document.querySelector('input[name=pwd]').value;
+	    
+	    // 아이디 입력 확인
+	    if (userId.trim() === '') {
+	      swal('', '아이디를 입력해주세요.', 'info')
+	      event.preventDefault();
+	      return;
+	    }
+	    
+	    // 비밀번호 입력 확인
+	    if (pwd.trim() === '') {
+	      swal('', '비밀번호를 입력해주세요.', 'info')
+	      event.preventDefault();
+	      return;
+	    }
+	  });	 
+	</script>
 </body>
 </html>
