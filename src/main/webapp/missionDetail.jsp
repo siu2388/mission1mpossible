@@ -136,10 +136,10 @@ body {
 }
 
 .missionbox {
-	border: 2px solid #EFD915;
+	border: 1px solid blueviolet;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	border-radius: 10px;
-	background-color: #E5D689;
+	background-color: antiquewhite;
 	background-size: contain;
 	width: 60%;
 	/* float: right; */
@@ -149,13 +149,19 @@ body {
 }
 
 .success-background {
-	border: 2px solid #9BD6AF;
-	background-color: #9BD6AF;
+	border: 3px solid #87a96b;
+	background-color: #faebd7;
+	/* background: linear-gradient(#d0e3c4, #adc698); */
 }
 
 .fail-background {
-	border: 2px solid #F3AA9F;
-	background-color: #F3AA9F;
+	border: 3px solid #c50000;
+	background-color: #faebd7;
+}
+
+.normal-background {
+	border: 2px solid #E5D689;
+	background-color: #E5D689;
 }
 
 .custom-btn {
@@ -167,14 +173,14 @@ body {
 }
 
 .custom-btn-success {
-	background-color: #556B2F !important;
+	background-color: #87a96b !important;
 	color: #ffffff !important;
 	font-weight: bold;
 	border-radius: 10px;
 }
 
 .custom-btn-fail {
-	background-color: #800020 !important;
+	background-color: #c50000 !important;
 	color: #ffffff !important;
 	font-weight: bold;
 	border-radius: 10px;
@@ -194,15 +200,15 @@ body {
 
 .custom-currentDate-div {
 	border-radius: 10px;
-	/* background-color: #49339A; */
 	color: #ffffff !important;
 	position: relative;
 }
 
 .card .card-title {
+	color: #101d42;
 	font-size: 35px;
 	font-weight: bold;
-	background-color: #CBC65E;
+	background-color: #e8ccd7;
 	margin: 0;
 }
 
@@ -225,7 +231,7 @@ body {
 }
 
 .custom-bg {
-	background-color: #49339A;
+	background-color: #946be2;
 	color: #ffffff;
 	padding: 5px 10px;
 	border-radius: 8px;
@@ -291,6 +297,7 @@ body {
 .btn77:hover {
 	background-color: transparent;
 }
+
 </style>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -447,7 +454,7 @@ body {
 					</c:if>
 
 					<c:if test="${mission.context ne null}">
-						<div class="card-body custom-text3">${mission.context}</div>
+						<div class="card-body custom-text3 transparent-background">${mission.context}</div>
 					</c:if>
 				</div>
 				<!--  북마크 & 좋아요 -->
@@ -631,8 +638,8 @@ body {
 			
 			if (success == '성공' && createdAt == updatedAt) {
 				missionBox.addClass('success-background');
-			} else if (success == null && createdAt == today) {
-				// 배경색 그대로
+			} else if (success != '성공' && success != '실패' && createdAt == today) {
+				// 배경색 그대로 둠
 			} else {
 				missionBox.addClass('fail-background');
 			}
