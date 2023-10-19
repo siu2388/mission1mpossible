@@ -1,8 +1,5 @@
 package service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import dto.User;

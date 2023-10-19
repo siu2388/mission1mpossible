@@ -143,7 +143,7 @@ html, body {
 										onclick="checkDuplicate('userId')" />
 								</div>
 								<div class="form-floating mb-2">
-									<input type="text" class="form-control-sm" id="floatingInput" name="nickname" placeholder="닉네임(최대 7글자)" />
+									<input type="text" class="form-control-sm" id="floatingInput" name="nickname" placeholder="닉네임" />
 									<input type="button" class="btn btn-secondary btn-sm" value="중복확인"
 										onclick="checkDuplicate('nickname')" />
 								</div>

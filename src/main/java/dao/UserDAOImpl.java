@@ -1,7 +1,5 @@
 package dao;
 
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 
 import dto.User;
