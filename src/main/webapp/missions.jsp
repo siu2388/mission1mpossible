@@ -146,7 +146,7 @@ div.card.bg-secondary-subtle {
 .card-date {
 		border: 1px solid #adada8;
 		border-radius: 5px;
-		width: 90px;
+		width: 95px;
 		margin-left: 20px;
 		font-size: 13px;
 		padding: 1px 5px 1px 7px;
@@ -174,8 +174,8 @@ div.card.bg-secondary-subtle {
 }
 
 .user-img {
-		width: 35px;
-		height: 35px;
+		width: 30px;
+		height: 30px;
 		border-radius: 50%;
 		float: left;
 		margin-right: 5px;
@@ -194,7 +194,7 @@ div.card.bg-secondary-subtle {
 		font-size: 12.5px;
 		margin-right: 0;
 		margin-left: 50px;
-		margin-top: -23px;
+		margin-top: -25px;
 		padding-left: 22px;
 }
 

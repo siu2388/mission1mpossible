@@ -147,7 +147,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div
           class="star ${successRate >= 90 ? 'high-success' : successRate >= 80 ? 'medium-success' : successRate >= 70 ? 'low-success' : 'no-success'}"
         ></div>
-        <div class="date"><i>Since</i> <b>${user.createdAt}</b></div>
+        <div class="date"><i style="font-size:10px;">Since</i> <b>${user.createdAt}</b></div>
         <div class="mission">Total <b>${totalMissions}</b>개의 미션</div>
         <div class="success">성공률: <b>${successRate} %</b></div>
       </div>

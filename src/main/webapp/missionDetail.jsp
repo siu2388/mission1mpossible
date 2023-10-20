@@ -139,7 +139,8 @@ body {
 	border: 1px solid blueviolet;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	border-radius: 10px;
-	background-color: antiquewhite;
+	background-image: url(./images/bg3.png);
+	/*background-color: antiquewhite;*/
 	background-size: contain;
 	width: 60%;
 	/* float: right; */
@@ -299,6 +300,20 @@ body {
 }
 
 </style>
+<!--  sweet alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"
+>
+<script
+  src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"
+></script>
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"
+></script>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
@@ -350,29 +365,7 @@ body {
 		})
 	})
 </script>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $(function(){
-      $("#insert-btn").click(function(e) {
-        e.preventDefault();
-        Swal.fire({
-          title: '미션등록',
-          text : '한 번 등록한 미션은 삭제가 불가능합니다. ',
-          icon: 'info',
-          showCancelButton: true,
-          confirmButtonText: '등록',
-          cancelButtonText: '취소',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            document.getElementById("regform").submit(); 
-          } else if (result.isDenied) {
-            return false;
-          }
-        })
-      })
-    })
-  })
-</script>
+
 </head>
 
 <body>
@@ -544,6 +537,7 @@ body {
 					<c:if test="${user.idx eq mission.userIdx && mission.createdAt == today}">
 						<div class="col-md-8 no-padding">
 							<form
+							  id="suc-fail-check"
 								action="success-fail?idx=${mission.idx}"
 								method="post"
 								class="text-center">
@@ -552,12 +546,14 @@ body {
 									name="idx"
 									value="${mission.idx}">
 								<input
-									class="btn py-1 px-3 mx-2 mt-2 custom-btn-success"
+								  id="suc-btn"
+									class="btn py-1 px-3 mx-2 mt-2 custom-btn-success suc-fail-btn"
 									type="submit"
 									name="success"
 									value="성공" />
 								<input
-									class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail"
+								  id="fail-btn"
+									class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail suc-fail-btn"
 									type="submit"
 									name="success"
 									value="실패" />
@@ -683,6 +679,60 @@ body {
       });
     });
   });
+</script>
+<!--  성공 / 실패 확인 모달 -->
+<script type="text/javascript">
+  /* $(document).ready(function(){
+    $(function(){
+      $("#suc-fail-check").click(function(e) {
+        console.log("123");
+        e.preventDefault();
+        Swal.fire({
+          title: '미션',
+          text : '성공 or 실패는 미션을 등록한 날짜에만 수정 가능합니다! ',
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonText: '입력',
+          cancelButtonText: '취소',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.getElementByClassName("suc-fail-btn").submit(); 
+          } else if (result.isDenied) {
+            return false;
+          }
+        })
+      })
+    })
+  }) */
+  /* $(document).ready(function(){
+      $(function(){
+          $(".suc-fail-btn").click(function(e) {
+              console.log("123");
+              e.preventDefault();
+        	  var selectedValue = $("suc-btn").val();
+              var selectedValue = $("input[name='success']:checked").val(); // 선택된 input의 값을 가져옴
+              var sele
+              console.log(selectedValue); // 선택된 값 확인 (성공 또는 실패)
+              Swal.fire({
+                  title: '미션',
+                  text : '성공 or 실패는 미션을 등록한 날짜에만 수정 가능합니다! ',
+                  icon: 'info',
+                  showCancelButton: true,
+                  confirmButtonText: '입력',
+                  cancelButtonText: '취소',
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      // Assuming that the form is a sibling of the buttons
+                      console.log('Form submitted');
+                      //$(this).closest('form').submit(); 
+                      document.getElementById("suc-fail-check").submit();
+                  } else if (result.isDenied) {
+                      return false;
+                  }
+              })
+          })
+      })
+  }); */
 </script>
 </body>
 
