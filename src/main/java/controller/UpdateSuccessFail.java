@@ -35,6 +35,7 @@ public class UpdateSuccessFail extends HttpServlet {
 		Integer idx = Integer.parseInt(req.getParameter("idx"));
 		String success = req.getParameter("success");
 
+		System.out.println("success: " + success);
 		Mission mission = new Mission();
 		mission.setIdx(idx);
 		mission.setSuccess(success);

@@ -85,6 +85,7 @@ header {
 		height: 200px;
 		text-align: center;
 		cursor: pointer;
+		margin-top: 1.8rem;
 }
 
 .card77:hover {
