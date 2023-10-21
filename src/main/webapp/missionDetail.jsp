@@ -136,7 +136,7 @@ body {
 }
 
 .missionbox {
-	border: 1px solid blueviolet;
+	border: 3px solid blueviolet;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	border-radius: 10px;
 	background-image: url(./images/bg3.png);
@@ -144,7 +144,7 @@ body {
 	background-size: contain;
 	width: 60%;
 	/* float: right; */
-	height: 500px;
+	height: 550px;
 	padding: 10px;
 	margin: 3.5rem 5rem 0 20rem;
 }
