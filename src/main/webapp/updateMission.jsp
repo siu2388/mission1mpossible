@@ -42,6 +42,7 @@ body {
 
 .profilebox {
   float: left;
+  margin-left:3rem;
 }
 
 .missionbox {
@@ -53,7 +54,7 @@ body {
   height: 500px;
   float: right;
   padding: 10px;
-  margin: 2rem 5rem 0 0;
+  margin: 3.5rem 5rem 0 0;
 }
 
 .header-p {
@@ -63,23 +64,22 @@ body {
 
 .header {
   color: #49339A;
-  font-weight: 600;
   display: block;
 }
 
 #title {
   margin-bottom: 4px;
   font-weight: bold;
-  font-size: 1.3rem;
-  padding-top: 5px;
+  font-size: 1.7rem;
+  padding-top: 8px;
 }
 
 #createdAt {
   display: inline-block;
-  border: 2px solid #49339A;
+  border: 2px solid #6555a3;
   border-radius: 20px;
-  border: 2px solid #49339A;
-  padding: 2px 4px;
+  padding: 6px 8px 5px 8px;
+  color:#6555a3;
 }
 
 .header>input {
@@ -118,6 +118,16 @@ input[type='file'] {
   padding-top: 1rem;
   text-align: center;
 }
+.custom-btn-success {
+  background-color: #87a96b !important;
+  color: #ffffff !important;
+  
+}
+.custom-btn-update {
+  background-color: #AAA9AD !important;
+  color: #ffffff !important;
+  
+}
 </style>
 </head>
 <body>
@@ -143,7 +153,7 @@ input[type='file'] {
         <div class="header-p">
           <div class="header">
             <div id="title">${mission.title }</div>
-            <div id="createdAt">${formattedDate}에작성한미션입니다.</div>
+            <div id="createdAt">${formattedDate}에&nbsp;작성한&nbsp;미션입니다.</div>
           </div>
         </div>
         <div
@@ -198,7 +208,7 @@ input[type='file'] {
                   value="수정완료" />
                 <a
                   href="./missions"
-                  class="btn py-1 px-3 mx-2 mt-2 custom-btn-cancel">목록</a>
+                  class="btn py-1 px-3 mx-2 mt-2 custom-btn-update">목록</a>
               </div>
             </div>
           </div>

@@ -50,7 +50,7 @@ body {
 
 .profilebox {
 		float: left;
-		margin-left:5rem;
+		margin-left:3rem;
 }
 
 .missionbox {
@@ -62,7 +62,7 @@ body {
 		float: right;
 		height: 500px;
 		padding: 10px;
-		margin: 3.5rem 7rem 0 0;
+		margin: 3.5rem 5rem 0 0;
 }
 
 .img-flued {
@@ -182,6 +182,7 @@ body {
 							type="text"
 							id="missionTitle"
 							name="title"
+							placeholder="미션 제목을 작성합니다. (최대15자)"
 						>
 					</div>
 				</div>
@@ -197,7 +198,7 @@ body {
 							id="missionContent"
 							name="context"
 							rows="8"
-							placeholder="미션의 구체적인 설명을 작성합니다.(최대200자)"
+							placeholder="미션의 구체적인 설명을 작성합니다. (최대100자)"
 						></textarea>
 					</div>
 				</div>

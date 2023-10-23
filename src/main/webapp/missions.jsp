@@ -151,7 +151,7 @@ div.card.bg-secondary-subtle {
 	font-size: 18px;
 	padding-left: 20px;
 	font-weight: bold;
-	margin-bottom:0 !important;
+	margin-bottom: 0 !important;
 }
 
 .card-date {
@@ -323,7 +323,12 @@ div.card.bg-secondary-subtle {
 							</c:choose>
 
 							<div class="card-user">
-								<c:choose>
+								<div class="user-info">
+									<img
+										class="card-img-top rounded-circle user-img"
+										src="image?miImg=${mission.uprofileImg}" />
+								</div>
+								<!--<c:choose>
 									<c:when test="${mission.uprofileImg ne null}">
 										<div class="user-info">
 											<img
@@ -339,9 +344,9 @@ div.card.bg-secondary-subtle {
 												alt="미션기본이미지" />
 										</div>
 									</c:otherwise>
-								</c:choose>
+								</c:choose> -->
 							</div>
-							<div class="user-card-text">${mission.unickname}님&nbsp; 미션!</div>
+							<div class="user-card-text">${mission.unickname}님&nbsp;미션!</div>
 						</div>
 					</div>
 				</div>

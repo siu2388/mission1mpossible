@@ -33,98 +33,57 @@
 	crossorigin="anonymous"></script>
 <style>
 @font-face {
-    font-family: 'NPSfontBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
+	font-family: 'NPSfontBold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
 }
+
 body {
-  font-family: 'NPSfontBold', sans-serif !important;
+	font-family: 'NPSfontBold', sans-serif !important;
 	height: 100%;
 	background-image: url(./images/bg.jpg);
 }
 
 .profilebox {
 	float: left;
+	margin-left: 5rem;
 }
 
-.join {
+.join-box {
 	float: left;
-	margin: 20px;
-	margin-top: 50px;
-	border: 10px solid rgb(157, 217, 174);
-	border-radius: 30px;
-	width: 200px;
+	margin: 3.5rem 0 0 5rem;
+	border: 3px solid blueviolet;
+	border-radius: 1.875rem;
+	width: 12.5rem;
 	height: 250px;
 	font-weight: 500;
-	padding: 12px;
-	background-color: rgb(221, 241, 228);
-	border: 10px solid rgb(157, 217, 174);
+	padding: 2rem 1rem;
+	background-color: #feebd2;
 }
 
 .join-text {
-	font-size: 18px;
+	font-size: 1.125rem;
 	font-weight: 900;
 }
 
 .join-button {
 	display: flex;
 	justify-content: center;
-	text-decoration: none;
-	width: 155px;
-	height: 40px;
-	font-size: 17px;
-	font-weight: 600;
-	color: white;
-	background-color: #49339A;
-	border: none;
-	border-radius: 45px;
-	cursor: pointer;
-	margin-top: 25px;
-	transition: 0.5s ease-in-out;
-}
-
-.join-button:hover {
-	background-color: white;
-	color: #49339A;
-	box-shadow: 10px 10px 10px #49339A;
-	transition: 0.5s ease-in-out;
-}
-
-.join {
-	float: left;
-	margin: 20px;
-	margin-top: 50px;
-	border: 10px solid rgb(157, 217, 174);
-	border-radius: 30px;
-	width: 200px;
-	height: 250px;
-	font-weight: 500;
-	padding: 12px;
-	background-color: rgb(221, 241, 228);
-	border: 10px solid rgb(157, 217, 174);
-}
-
-.join-text {
-	font-size: 18px;
-	font-weight: 900;
-}
-
-.join-button {
-	display: flex;
-	justify-content: center;
-	text-decoration: none;
 	align-items: center;
-	width: 155px;
-	height: 40px;
-	font-size: 17px;
+	text-decoration: none;
+	width: 9.6875rem;
+	height: 2.5rem;
+	font-size: 1.0625rem;
 	font-weight: 600;
 	color: white;
 	background-color: #49339A;
 	border: none;
-	border-radius: 45px;
+	border-radius: 2.8125rem;
 	cursor: pointer;
-	margin-top: 25px;
+	margin-top: 1rem;
 	transition: 0.5s ease-in-out;
 }
 
@@ -143,10 +102,10 @@ body {
 	/*background-color: antiquewhite;*/
 	background-size: contain;
 	width: 60%;
-  float: right;
+	float: right;
 	height: 550px;
 	padding: 10px;
-	margin: 3.5rem 10rem 0 0;
+	margin: 3.5rem 7rem 0 0;
 	/*margin: 3.5rem 5rem 0 20rem;  */
 }
 
@@ -206,22 +165,28 @@ body {
 	position: relative;
 }
 
+.card {
+	border-radius: 8px !important;
+}
+
 .card .card-title {
 	color: #101d42;
 	font-size: 35px;
 	font-weight: bold;
 	background-color: #e8ccd7;
 	margin: 0;
+	border-radius: 6px 6px 0 0;
 }
 
 .custom-text2 {
 	font-weight: bold;
 	color: #49339A;
-	margin-top: 20px;
+	margin: 20px 7rem 0 0;
 }
 
 .custom-text3 {
 	font-size: 14px;
+	height: 95px;
 }
 
 .custom-text-color {
@@ -235,8 +200,9 @@ body {
 .custom-bg {
 	background-color: #946be2;
 	color: #ffffff;
-	padding: 5px 10px;
-	border-radius: 8px;
+	padding: 7px 13px;
+	margin-left:10px;
+	border-radius: 20px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -277,6 +243,7 @@ body {
 #likecount {
 	margin-top: 12px;
 }
+
 .bookmark {
 	margin: 9px 0 0 20px;
 }
@@ -299,22 +266,18 @@ body {
 .btn77:hover {
 	background-color: transparent;
 }
-
 </style>
 <!--  sweet alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"
->
+	rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script
-  src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"
-></script>
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script
-  src="https://code.jquery.com/jquery-3.7.1.min.js"
-  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-  crossorigin="anonymous"
-></script>
+	src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
@@ -375,24 +338,22 @@ body {
 	</header>
 
 	<!-- 좌 프로필카드 -->
-	<div class="profilebox">
-		<c:choose>
-			<c:when test="${empty sessionScope.user}">
-				<div class="join">
-					<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
-						이용하실 수 있습니다!</div>
-					<a
-						href="./join"
-						class="join-button">회원가입 </a>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="profilebox">
-					<jsp:include page="profilecard.jsp" />
-				</div>
-			</c:otherwise>
-		</c:choose>
-	</div>
+	<c:choose>
+		<c:when test="${empty sessionScope.user}">
+			<div class="join-box">
+				<div class="join-text">회원가입을 하시면 오늘의 미션을 등록하고, 더욱 다양한 서비스를
+					이용하실 수 있습니다!</div>
+				<a
+					href="join"
+					class="join-button">회원가입</a>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="profilebox">
+				<jsp:include page="profilecard.jsp" />
+			</div>
+		</c:otherwise>
+	</c:choose>
 
 	<div class="missionbox">
 		<div class="py-2 mx-auto w-90">
@@ -403,7 +364,7 @@ body {
 					class="custom-bg">${formattedDate}</span>
 				<div
 					id="missionStatus"
-					class="mb-2 mt-2 d-flex align-items-center justify-content-center">
+					class="mb-2 mt-2 d-flex align-items-center justify-content-end">
 					<!-- 성공/실패/진행중에따라 보여지는 값 -->
 					<!-- 진행중: success가 null, createdAt이 오늘인 경우 -->
 					<!-- 성공: success가 성공, createdAt == updatedAt인 경우 -->
@@ -433,8 +394,7 @@ body {
 					<div class="custom-text2">${missionStatusText}</div>
 				</div>
 
-
-				<div class="card mx-auto w-70">
+				<div class="card mx-auto w-70 custom-card">
 					<div class="card-title text-center">${mission.title}</div>
 					<c:if test="${mission.miImg eq null}">
 						<img
@@ -454,8 +414,7 @@ body {
 				<!--  북마크 & 좋아요 -->
 				<!--  북마크 -->
 				<div
-					class="mx-auto w-70 d-flex justify-content-center align-items-center"
-				>
+					class="mx-auto w-70 d-flex justify-content-center align-items-center">
 					<div class="container no-padding">
 						<div class="row">
 							<div class="col-md-0 no-padding"></div>
@@ -471,8 +430,7 @@ body {
 													alt="선택한북마크"
 													src="<%=request.getContextPath()%>/images/bmFull.png"
 													width="20px"
-													height="20px"
-												>
+													height="20px">
 											</c:when>
 											<c:otherwise>
 												<img
@@ -480,8 +438,7 @@ body {
 													alt="선택안된북마크"
 													src="<%=request.getContextPath()%>/images/bmEmpty.png"
 													width="20px"
-													height="20px"
-												>
+													height="20px">
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -497,16 +454,14 @@ body {
 												id="likeheart"
 												src="<%=request.getContextPath()%>/images/likeFull.png"
 												width="20px"
-												height="20px"
-											>
+												height="20px">
 										</c:when>
 										<c:otherwise>
 											<img
 												id="likeheart"
 												src="<%=request.getContextPath()%>/images/likeEmpty.png"
 												width="20px"
-												height="20px"
-											>
+												height="20px">
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -517,8 +472,7 @@ body {
 									id="likecount"
 									class="btn77 modal-btn"
 									data-bs-toggle="modal"
-									data-bs-target="#Modal"
-								>${mission.likecount}</button>
+									data-bs-target="#Modal">${mission.likecount}</button>
 								&nbsp;&nbsp;
 							</div>
 						</div>
@@ -527,6 +481,7 @@ body {
 			</div>
 		</div>
 
+		<div></div>
 		<div class="btn-box d-flex justify-content-between">
 			<!-- 버튼 배치를 위한 그리드 -->
 			<div class="container no-padding">
@@ -535,10 +490,11 @@ body {
 					<div class="col-md-2 no-padding"></div>
 
 					<!-- 성공, 실패 버튼 -->
-					<c:if test="${user.idx eq mission.userIdx && mission.createdAt == today}">
+					<c:if
+						test="${user.idx eq mission.userIdx && mission.createdAt == today}">
 						<div class="col-md-8 no-padding">
 							<form
-							  id="suc-fail-check"
+								id="suc-fail-check"
 								action="success-fail?idx=${mission.idx}"
 								method="post"
 								class="text-center">
@@ -547,13 +503,13 @@ body {
 									name="idx"
 									value="${mission.idx}">
 								<input
-								  id="suc-btn"
+									id="suc-btn"
 									class="btn py-1 px-3 mx-2 mt-2 custom-btn-success suc-fail-btn"
 									type="submit"
 									name="success"
 									value="성공" />
 								<input
-								  id="fail-btn"
+									id="fail-btn"
 									class="btn py-1 px-3 mx-2 mt-2 custom-btn-fail suc-fail-btn"
 									type="submit"
 									name="success"
@@ -598,20 +554,7 @@ body {
 				<div
 					class="modal-body"
 					style="text-align: center">
-					<!-- 사용자 정보를 출력하는 반복문 -->
-					<%-- <c:forEach
-						items="${users}"
-						var="user">
-						<div class="line">
-							<div class="user-container">
-								<div
-								  id="liker-profileImg"
-									class="users"
-									style="background-image: url('<c:url value='${user.profileImg}'/>')"></div>
-								<div id="liker-nickname" class="username">${user.nickname}</div>
-							</div>
-						</div>
-					</c:forEach> --%>
+					<!-- 좋아요 한 유저 바디 insert -->
 				</div>
 				<div class="modal-footer">
 					<button
@@ -642,14 +585,6 @@ body {
 			}
 		});
 		
-		/* 좋아요한 유저 */
-		/*
-	  const myModal = document.getElementById('myModal')
-	  const myInput = document.getElementById('myInput')
-    myModal.addEventListener('shown.bs.modal', () => {
-	    myInput.focus()
-    })*/
-	    
     $(function() {
     $('.modal-btn').click(function() {
       $.ajax({
@@ -681,8 +616,8 @@ body {
     });
   });
 </script>
-<!--  성공 / 실패 확인 모달 -->
-<script type="text/javascript">
+	<!--  성공 / 실패 확인 모달 -->
+	<script type="text/javascript">
   /* $(document).ready(function(){
     $(function(){
       $("#suc-fail-check").click(function(e) {
