@@ -54,6 +54,7 @@ public class MissionDetail extends HttpServlet {
 			if (user != null) {
 				Boolean isLiked = missionService.isMissionLiked(idx, user.getIdx());
 				Boolean isBookmarked = missionService.isBookmarked(idx, user.getIdx());
+				System.out.println("isLiked:" + isLiked);
 				req.setAttribute("bselected", isBookmarked);
 				req.setAttribute("selected", isLiked);
 			}

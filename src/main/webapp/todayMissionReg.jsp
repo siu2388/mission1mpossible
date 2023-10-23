@@ -239,7 +239,7 @@ body {
 		    e.preventDefault();
 		    Swal.fire({
 		      title: '미션등록',
-		      text : '한 번 등록한 미션은 삭제가 불가능합니다. ',
+		      text : '등록한 미션은 삭제 및 제목 수정이 불가합니다.',
 		      icon: 'info',
 		      showCancelButton: true,
 		      confirmButtonText: '등록',

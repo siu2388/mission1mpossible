@@ -148,9 +148,10 @@ public class MissionServiceImpl implements MissionService {
 		int totalCounts = missionDao.countAllMissions();
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
-		// missionService.isMissionLiked(idx, userIdx);
+//		missionService.isMissionLiked(idx, userIdx);
 
 		List<Mission> missionList = missionDao.selectMissionList(row - 1);
+		System.out.println(missionList);
 
 		Map<String, Object> result = new HashMap<>();
 		result.put("pageInfo", pageInfoResult.get("pageInfo"));
@@ -164,7 +165,7 @@ public class MissionServiceImpl implements MissionService {
 	public Map<String, Object> findhMissionsByCat(Integer page, Integer catId) throws Exception {
 
 		int totalCounts = missionDao.countMissions(catId);
-
+	
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
 
@@ -175,6 +176,7 @@ public class MissionServiceImpl implements MissionService {
 		params.put("row", row - 1);
 
 		List<Mission> missionListByCat = missionDao.selectMissionsByCat(params);
+		System.out.println(missionListByCat);
 
 		// 맵에 담아서 전달
 		Map<String, Object> result = new HashMap<>();
@@ -197,7 +199,7 @@ public class MissionServiceImpl implements MissionService {
 
 		if (likenum == null)
 			likenum = 0;
-
+		
 		Map<String, Object> result = new HashMap<>();
 
 		// 2-1 없으면 goodidea에 삽입
@@ -285,6 +287,7 @@ public class MissionServiceImpl implements MissionService {
 	@Override
 	public Map<String, Object> findMyBookmarks(Integer page, Integer userIdx) throws Exception {
 		int totalCounts = missionDao.countBookmarks(userIdx);
+		System.out.println("북마크 총개수:" + totalCounts);
 
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
@@ -336,4 +339,5 @@ public class MissionServiceImpl implements MissionService {
 
 	}
 
+	
 }
