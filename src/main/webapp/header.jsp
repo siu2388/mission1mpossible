@@ -99,7 +99,7 @@ hr {
 }
 
 .nav-link.active {
-		background-color: #946be2;
+		background-color: #946be2 !important;
 }
 </style>
 <script>

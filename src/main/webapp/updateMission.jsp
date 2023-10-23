@@ -111,7 +111,6 @@ body {
 
 input[type='file'] {
   font-weight: bold;
-  background-color: #946BE2;
 }
 
 .button {
@@ -182,6 +181,7 @@ input[type='file'] {
             </div>
           </div>
           <div class="row">
+            <div class="title">파일수정</div>
             <div class="input">
               <input
                 type="file"

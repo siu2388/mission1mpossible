@@ -36,7 +36,6 @@ public class UserLikers extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 
 		Integer missionIdx = Integer.parseInt(req.getParameter("idx"));
-		System.out.println("쿼리 idx: " + missionIdx);
 
 		try {
 			MissionService missionService = new MissionServiceImpl();

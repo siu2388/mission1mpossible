@@ -199,7 +199,7 @@ div.card.bg-secondary-subtle {
 	font-size: 12.5px;
 	margin-right: 0;
 	margin-left: 50px;
-	margin-top: -25px;
+	margin-top: -21px;
 	padding-left: 22px;
 }
 

@@ -34,7 +34,6 @@ public class Like extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 
 		Integer idx = Integer.parseInt(req.getParameter("idx"));
-		System.out.println("쿼리에서 받는 idx: " + idx);
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
 
@@ -42,7 +41,6 @@ public class Like extends HttpServlet {
 			MissionService missionService = new MissionServiceImpl();
 
 			String result = missionService.missionLike(idx, user.getIdx());
-			System.out.println("컨트롤러result:"+result);
 			resp.getWriter().print(result);
 
 		} catch (Exception e) {

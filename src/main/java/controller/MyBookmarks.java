@@ -50,8 +50,6 @@ public class MyBookmarks extends HttpServlet {
 			req.setAttribute("result", result);
 			req.setAttribute("catId", -1);
 
-			System.out.println(req.getAttribute("result"));
-
 			req.getRequestDispatcher("missions.jsp").forward(req, resp);
 
 		} catch (Exception e) {

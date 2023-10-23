@@ -98,10 +98,6 @@ public class MissionServiceImpl implements MissionService {
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 
-		System.out.println("페이징처리에서 받은 토탈카운트(내미션):" + totalCounts);
-		System.out.println("페이징처리에서 받은 maxPage(내미션):" + maxPage);
-		System.out.println("startPage(내미션):" + startPage + " endPage(내미션):" + endPage);
-
 		int row = (page - 1) * itemsPerPage + 1;
 
 		paging.put("pageInfo", pageInfo);
@@ -137,10 +133,6 @@ public class MissionServiceImpl implements MissionService {
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 
-		System.out.println("페이징처리에서 받은 토탈카운트:" + totalCounts);
-		System.out.println("페이징처리에서 받은 maxPage:" + maxPage);
-		System.out.println("startPage:" + startPage + " endPage:" + endPage);
-
 		int row = (page - 1) * 8 + 1;
 
 		paging.put("pageInfo", pageInfo);
@@ -156,10 +148,9 @@ public class MissionServiceImpl implements MissionService {
 		int totalCounts = missionDao.countAllMissions();
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
-//		missionService.isMissionLiked(idx, userIdx);
+		// missionService.isMissionLiked(idx, userIdx);
 
 		List<Mission> missionList = missionDao.selectMissionList(row - 1);
-		System.out.println(missionList);
 
 		Map<String, Object> result = new HashMap<>();
 		result.put("pageInfo", pageInfoResult.get("pageInfo"));
@@ -173,21 +164,17 @@ public class MissionServiceImpl implements MissionService {
 	public Map<String, Object> findhMissionsByCat(Integer page, Integer catId) throws Exception {
 
 		int totalCounts = missionDao.countMissions(catId);
-		System.out.println("미션 총개수:" + totalCounts);
 
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
-		System.out.println("row :" + row);
 
 		String strcatId = catId.toString();
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("catId", strcatId);
 		params.put("row", row - 1);
-		System.out.println("params를 찍으면:" + params);
 
 		List<Mission> missionListByCat = missionDao.selectMissionsByCat(params);
-		System.out.println(missionListByCat);
 
 		// 맵에 담아서 전달
 		Map<String, Object> result = new HashMap<>();
@@ -205,15 +192,12 @@ public class MissionServiceImpl implements MissionService {
 		params.put("idx", idx);
 		params.put("userIdx", userIdx);
 
-		System.out.println("서비스idx: " + idx);
-		System.out.println("userIdx:" + userIdx);
-
 		// 1. goodidea 테이블에 데이터 있는지 확인 (
 		Integer likenum = missionDao.selectMissionLike(params);
 
 		if (likenum == null)
 			likenum = 0;
-		System.out.println("서비스likenum" + likenum);
+
 		Map<String, Object> result = new HashMap<>();
 
 		// 2-1 없으면 goodidea에 삽입
@@ -228,13 +212,10 @@ public class MissionServiceImpl implements MissionService {
 		}
 		// 3.전체 좋아요 수
 		Integer likecount = missionDao.selectMissionLikeCount(idx);
-		System.out.println("서비스 likecount: " + likecount);
 		result.put("likecount", likecount);
-		System.out.println("result: " + result);
 
 		// 4.좋아요 수 리턴
 		JSONObject jsonObj = new JSONObject(result); // by JSON.simple json으로
-		System.out.println("toJSON" + jsonObj.toString());
 		return jsonObj.toJSONString(); // 최종 string 타입으로 응답
 	}
 
@@ -246,8 +227,6 @@ public class MissionServiceImpl implements MissionService {
 		params.put("idx", idx);
 
 		Integer likenum = missionDao.selectMissionLike(params);
-		System.out.println(missionDao.selectMissionLike(params));
-		System.out.println("좋아요?: " + likenum);
 
 		if (likenum > 0) {
 			return true;
@@ -279,16 +258,13 @@ public class MissionServiceImpl implements MissionService {
 		params.put("idx", idx);
 		params.put("userIdx", userIdx);
 
-		System.out.println("서비스idx: " + idx);
-		System.out.println("userIdx:" + userIdx);
-
 		// 북마크 테이블에 데이터 있는지 확인 (
 		Integer bmcheck = missionDao.selectBookmarked(params);
 
 		// 북마크 없을 경우 처리
 		if (bmcheck == null)
 			bmcheck = 0;
-		System.out.println("서비스bmcheck :" + bmcheck);
+
 		Map<String, Object> result = new HashMap<>();
 
 		// 없으면 bookmark테이블에 추가
@@ -302,7 +278,6 @@ public class MissionServiceImpl implements MissionService {
 
 		// 북마크 여부 리턴
 		JSONObject jsonObj = new JSONObject(result); // by JSON.simple json으로
-		System.out.println("toJSON" + jsonObj.toString());
 		return jsonObj.toJSONString(); // 최종 string 타입으로 응답
 	}
 
@@ -310,19 +285,15 @@ public class MissionServiceImpl implements MissionService {
 	@Override
 	public Map<String, Object> findMyBookmarks(Integer page, Integer userIdx) throws Exception {
 		int totalCounts = missionDao.countBookmarks(userIdx);
-		System.out.println("북마크 총개수:" + totalCounts);
 
 		Map<String, Object> pageInfoResult = getPageInfo(page, totalCounts);
 		int row = (int) pageInfoResult.get("startRow");
-		System.out.println("row :" + row);
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("userIdx", userIdx);
 		params.put("row", row - 1);
-		System.out.println("params를 찍으면:" + params);
 
 		List<Mission> bookmarkList = missionDao.selectBookmarks(params);
-		System.out.println(bookmarkList);
 
 		// 맵에 담아서 전달
 		Map<String, Object> result = new HashMap<>();
@@ -361,10 +332,8 @@ public class MissionServiceImpl implements MissionService {
 	@Override
 	public List<User> findMissionLikeUser(Integer missionIdx) throws Exception {
 		List<User> userList = missionDao.selectMissionLikeUser(missionIdx);
-		System.out.println("좋아요 누른 유저 목록:" + userList);
 		return userList;
 
 	}
 
-	
 }
