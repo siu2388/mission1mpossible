@@ -143,10 +143,11 @@ body {
 	/*background-color: antiquewhite;*/
 	background-size: contain;
 	width: 60%;
-	/* float: right; */
+  float: right;
 	height: 550px;
 	padding: 10px;
-	margin: 3.5rem 5rem 0 20rem;
+	margin: 3.5rem 10rem 0 0;
+	/*margin: 3.5rem 5rem 0 20rem;  */
 }
 
 .success-background {

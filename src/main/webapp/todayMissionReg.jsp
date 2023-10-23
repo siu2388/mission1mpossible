@@ -50,6 +50,7 @@ body {
 
 .profilebox {
 		float: left;
+		margin-left:5rem;
 }
 
 .missionbox {
@@ -61,7 +62,7 @@ body {
 		float: right;
 		height: 500px;
 		padding: 10px;
-		margin: 2rem 5rem 0 0;
+		margin: 3.5rem 7rem 0 0;
 }
 
 .img-flued {
